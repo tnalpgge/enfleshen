@@ -3,7 +3,21 @@
     xmlns:xfdf="http://ns.adobe.com/xfdf/"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    xmlns:x="urn:tnalpgge:enfleshen"
     exclude-result-prefixes="xfdf">
+
+  <x:saving-throws>
+    <x:saving-throw ability="strength">Check Box 11</x:saving-throw>
+    <x:saving-throw ability="dexterity">Check Box 18</x:saving-throw>
+    <x:saving-throw ability="constitution">Check Box 19</x:saving-throw>
+    <x:saving-throw ability="intelligence">Check Box 20</x:saving-throw>
+    <x:saving-throw ability="wisdom">Check Box 21</x:saving-throw>
+    <x:saving-throw ability="charisma">Check Box 22</x:saving-throw>
+  </x:saving-throws>
+
+  <x:skills>
+    <x:skill name="acrobatics">Check Box 23</x:skill>
+  </x:skills>
 
   <xsl:template name="field">
     <xsl:param name="name"/>
@@ -128,6 +142,9 @@ lower-case(
   <xsl:template name="saving-throw-field">
     <xsl:param name="name"/>
     <xsl:param name="value"/>
+    <xsl:param name="proficient">
+      <xsl:text>Off</xsl:text>
+    </xsl:param>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat(
 'ST ',
@@ -139,6 +156,10 @@ lower-case(
 )
 )"/>
       <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:saving-throws/x:saving-throw[@ability=$name]/text()"/>
+      <xsl:with-param name="value" select="$proficient"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -346,6 +367,7 @@ lower-case(
     <xsl:call-template name="saving-throw-field">
       <xsl:with-param name="name" select="name()"/>
       <xsl:with-param name="value" select="text()"/>
+      <xsl:with-param name="proficient" select="@proficient"/>
     </xsl:call-template>
   </xsl:template>
 

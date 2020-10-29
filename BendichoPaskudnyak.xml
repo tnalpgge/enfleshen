@@ -41,9 +41,9 @@
   <prof-bonus>+2</prof-bonus>
   <saving-throws>
     <strength>-1</strength>
-    <dexterity proficient="true">+5</dexterity>
+    <dexterity proficient="Yes">+5</dexterity>
     <constitution>+2</constitution>
-    <intelligence proficient="true">+3</intelligence>
+    <intelligence proficient="Yes">+3</intelligence>
     <wisdom>+2</wisdom>
     <charisma>0</charisma>
   </saving-throws>

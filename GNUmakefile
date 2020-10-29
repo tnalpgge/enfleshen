@@ -1,7 +1,10 @@
 SOURCEPDF=dnd5e.pdf
 STYLESHEET=dnd5e.xsl
+CHARACTER=BendichoPaskudnyak
 
-all: BendichoPaskudnyak.fdf
+all: $(CHARACTER).fdf $(CHARACTER).pdf $(CHARACTER).xfdf
+
+clean:
 
 %.fdf: %.pdf
 	pdftk $< generate_fdf output $@
