@@ -3,7 +3,7 @@
   <player-name>Nobody McNobodyFace</player-name>
   <class-level>Rogue 1</class-level>
   <background>Criminal</background>
-  <experience>0</experience>
+  <xp>0</xp>
   <alignment>Neutral</alignment>
   <race>Human</race>
   <abilities>
@@ -47,7 +47,7 @@
     <wisdom>+2</wisdom>
     <charisma>0</charisma>
   </saving-throws>
-  <inspiration/>
+  <inspiration>0</inspiration>
   <ac>14</ac>
   <speed>30</speed>
   <initiative>+3</initiative>
@@ -117,14 +117,14 @@
     When I see something valuable, I can't think about anything but
     how to steal it.
   </flaws>
-  <features>
+  <features-and-traits>
     Expertise: Thieves' Tools
     Expertise: Stealth
     Sneak Attack 1d6
     Thieves' Cant
     Criminal Contact
     Criminal Specialty: Burglar
-  </features>
+  </features-and-traits>
   <age>20</age>
   <height>5'6"</height>
   <weight>130</weight>

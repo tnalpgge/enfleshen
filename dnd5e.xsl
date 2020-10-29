@@ -197,7 +197,7 @@ lower-case(
 		       background |
 		       backstory |
 		       bonds |
-		       deception |
+
 		       equipment |
 		       eyes |
 		       flaws |
@@ -207,7 +207,7 @@ lower-case(
 		       initiative |
 		       insight |
 		       intimidation |
-		       investigation |
+
 		       inspiration |
 		       medicine |
 		       nature |
@@ -227,7 +227,10 @@ lower-case(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="perception |
+  <xsl:template match="deception |
+		       history |
+		       investigation |
+		       perception |
 		       race |
 		       stealth">
     <xsl:call-template name="single-word-space-field">
@@ -239,7 +242,7 @@ lower-case(
     </xsl:call-template>    
   </xsl:template>
 
-  <xsl:template match="history">
+  <xsl:template match="totallybogus">
     <xsl:call-template name="single-word-space-field">
       <xsl:with-param name="name" select="name()"/>
       <xsl:with-param name="value" select="text()"/>
@@ -252,7 +255,6 @@ lower-case(
   <xsl:template match="character-name |
 		       class-level |
 		       faction-name |
-		       personality-traits |
 		       player-name |
 		       prof-bonus |
 		       proficiencies-lang
@@ -288,8 +290,7 @@ lower-case(
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="abilities/charisma |
-		       abilities/constitution |
+  <xsl:template match="abilities/constitution |
 		       abilities/intelligence |
 		       abilities/strength | 
 		       abilities/wisdom">
@@ -320,6 +321,23 @@ lower-case(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="abilities/charisma">
+    <xsl:call-template name="all-caps-field">
+      <xsl:with-param name="name" select="substring(name(), 1, 3)"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:text>CHamod</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="text()"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>  
+
   <xsl:template match="saving-throws">
     <xsl:apply-templates/>
   </xsl:template>
@@ -340,6 +358,32 @@ lower-case(
       <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
   </xsl:template>
-		
+
+  <xsl:template match="sleight-of-hand">
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:text>SleightofHand</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="personality-traits">
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:text>PersonalityTraits </xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="features-and-traits">
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:text>Features and Traits</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
 
 </xsl:stylesheet>
