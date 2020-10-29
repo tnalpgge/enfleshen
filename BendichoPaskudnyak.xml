@@ -1,0 +1,134 @@
+<character>
+  <character-name>Bendicho Paskudnyak</character-name>
+  <player-name>Nobody McNobodyFace</player-name>
+  <class-level>Rogue 1</class-level>
+  <background>Criminal</background>
+  <experience>0</experience>
+  <alignment>Neutral</alignment>
+  <race>Human</race>
+  <abilities>
+    <strength>9</strength>
+    <dexterity>16</dexterity>
+    <constitution>14</constitution>
+    <intelligence>13</intelligence>
+    <wisdom>15</wisdom>
+    <charisma>11</charisma>
+  </abilities>
+  <acrobatics proficient="true">+5</acrobatics>
+  <animal-handling>+2</animal-handling>
+  <arcana>+1</arcana>
+  <athletics>-1</athletics>
+  <deception proficient="true">+2</deception>
+  <history>+1</history>
+  <insight>+2</insight>
+  <intimidation>0</intimidation>
+  <investigation proficient="true">+3</investigation>
+  <medicine>+2</medicine>
+  <nature>+1</nature>
+  <perception proficient="true">+4</perception>
+  <performance>0</performance>
+  <persuasion>0</persuasion>
+  <religion>+1</religion>
+  <sleight-of-hand proficient="true">+5</sleight-of-hand>
+  <stealth proficient="true" expertise="true">+7</stealth>
+  <survival>+2</survival>
+  <passive>14</passive>
+  <proficiencies-lang>
+    Language: Common
+    Language: Orc
+    Thieves' Tools
+  </proficiencies-lang>
+  <prof-bonus>+2</prof-bonus>
+  <saving-throws>
+    <strength>-1</strength>
+    <dexterity proficient="true">+5</dexterity>
+    <constitution>+2</constitution>
+    <intelligence proficient="true">+3</intelligence>
+    <wisdom>+2</wisdom>
+    <charisma>0</charisma>
+  </saving-throws>
+  <inspiration/>
+  <ac>14</ac>
+  <speed>30</speed>
+  <initiative>+3</initiative>
+  <hp-max>9</hp-max>
+  <hp-current>9</hp-current>
+  <hp-temp>0</hp-temp>
+  <hd>1d8</hd>
+  <hd-total>1d8</hd-total>
+  <attacks>
+    <attack>
+      <weapon-name>shortsword</weapon-name>
+      <atk-bonus>+5</atk-bonus>
+      <damage>1d6+3 piercing</damage>
+    </attack>
+    <attack>
+      <weapon-name>shortbow</weapon-name>
+      <atk-bonus>+5</atk-bonus>
+      <damage>1d6+3 piercing</damage>
+    </attack>
+    <attack>
+      <weapon-name>dagger</weapon-name>
+      <atk-bonus>+5</atk-bonus>
+      <damage>1d4+3 piercing</damage>
+    </attack>
+  </attacks>
+  <cp>0</cp>
+  <sp>0</sp>
+  <ep>0</ep>
+  <gp>15</gp>
+  <pp>0</pp>
+  <equipment>
+    dark common clothes with hood
+    tinderbox
+    waterskin
+    bedroll
+    flask of oil x2
+    rations x5
+    hammer
+    pitons x10
+    hooded lantern
+    backpack
+    bell
+    candles x5
+    crowbar
+    quiver
+    arrows x20
+    ball bearings x1000
+    string 10'
+    dagger x2
+    hemp rope 50'
+    leather armor
+    thieves' tools
+  </equipment>
+  <personality-traits>
+    I am always calm, no matter what the situation.  I never raise my
+    voice or let my emotions control me.
+    I case new locations for valuables.
+  </personality-traits>
+  <ideals>
+    People: I'm loyal to my friends, not to any ideals.
+  </ideals>
+  <bonds>
+    Someone I loved died because of a mistake I made.  That will never
+    happen again.
+  </bonds>
+  <flaws>
+    When I see something valuable, I can't think about anything but
+    how to steal it.
+  </flaws>
+  <features>
+    Expertise: Thieves' Tools
+    Expertise: Stealth
+    Sneak Attack 1d6
+    Thieves' Cant
+    Criminal Contact
+    Criminal Specialty: Burglar
+  </features>
+  <age>20</age>
+  <height>5'6"</height>
+  <weight>130</weight>
+  <eyes>blue</eyes>
+  <skin>pale</skin>
+  <hair>black, messy</hair>
+</character>
