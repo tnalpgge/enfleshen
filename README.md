@@ -10,3 +10,7 @@ than it should, typically in the middle of typing.
 # First test case
 
 D&D 5th Edition character sheet.
+
+# License 
+
+[GNU General Public License v3.0](LICENSE.txt)
