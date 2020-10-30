@@ -38,7 +38,16 @@
   <proficiencies-lang>
     Language: Common
     Language: Orc
+    Language: Thieves' Cant
     Thieves' Tools
+    Dice set
+    Disguise Kit
+    Light armor
+    Simple weapons
+    Hand crossbow
+    Longsword
+    Rapier
+    Shortsword
   </proficiencies-lang>
   <prof-bonus>+2</prof-bonus>
   <saving-throws>
@@ -104,20 +113,17 @@
     thieves' tools
   </equipment>
   <personality-traits>
-    I am always calm, no matter what the situation.  I never raise my
-    voice or let my emotions control me.
-    I case new locations for valuables.
+    I am always calm, no matter what the situation.  I never raise my voice or let my emotions control me.
+    The first thing I do in a new place is note the locations of everything valuable -- or where such things could be hidden.
   </personality-traits>
   <ideals>
-    People: I'm loyal to my friends, not to any ideals.
+    People: I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care.
   </ideals>
   <bonds>
-    Someone I loved died because of a mistake I made.  That will never
-    happen again.
+    Someone I loved died because of a mistake I made.  That will never happen again.
   </bonds>
   <flaws>
-    When I see something valuable, I can't think about anything but
-    how to steal it.
+    When I see something valuable, I can't think about anything but how to steal it.
   </flaws>
   <features-and-traits>
     Expertise: Thieves' Tools
