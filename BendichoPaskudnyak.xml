@@ -15,23 +15,23 @@
     <charisma>11</charisma>
   </abilities>
   <skills>
-  <acrobatics proficient="on">+5</acrobatics>
+  <acrobatics proficient="false">+5</acrobatics>
   <animal-handling>+2</animal-handling>
   <arcana>+1</arcana>
   <athletics>-1</athletics>
-  <deception proficient="true">+2</deception>
+  <deception proficient="false">+2</deception>
   <history>+1</history>
   <insight>+2</insight>
   <intimidation>0</intimidation>
-  <investigation proficient="yes">+3</investigation>
+  <investigation proficient="false">+3</investigation>
   <medicine>+2</medicine>
   <nature>+1</nature>
-  <perception proficient="2">+4</perception>
+  <perception proficient="false">+4</perception>
   <performance>0</performance>
   <persuasion>0</persuasion>
   <religion>+1</religion>
-  <sleight-of-hand proficient="true">+5</sleight-of-hand>
-  <stealth proficient="true">+7</stealth>
+  <sleight-of-hand proficient="false">+5</sleight-of-hand>
+  <stealth proficient="false">+7</stealth>
   <survival>+2</survival>
   </skills>
   <passive>14</passive>
@@ -52,9 +52,9 @@
   <prof-bonus>+2</prof-bonus>
   <saving-throws>
     <strength>-1</strength>
-    <dexterity proficient="Yes">+5</dexterity>
+    <dexterity proficient="false">+5</dexterity>
     <constitution>+2</constitution>
-    <intelligence proficient="Yes">+3</intelligence>
+    <intelligence proficient="false">+3</intelligence>
     <wisdom>+2</wisdom>
     <charisma>0</charisma>
   </saving-throws>
