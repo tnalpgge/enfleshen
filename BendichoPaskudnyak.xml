@@ -146,14 +146,40 @@ What's that in yer pocket, hm?</backstory>
   <add-features-traits>Additional Features &amp; Traits</add-features-traits>
   <treasure>Treasure</treasure>
   <spellcasting>
-    <ability>sp-abil</ability>
-    <attack-bonus>sp-atk</attack-bonus>
-    <class>sp-cls</class>
-    <save-dc>sp-dc</save-dc>
+    <ability>Dexterity</ability>
+    <attack-bonus>+5</attack-bonus>
+    <class>Rogue</class>
+    <save-dc>13</save-dc>
   </spellcasting>
   <spells>
     <level number="1" slots="3" expended="2">
-      <spell prepared="true">Ordinary Missile</spell>
+      <spell>level 1 spell 1</spell>
+      <spell>level 1 spell 2</spell>
+      <spell>level 1 spell 3</spell>
+      <spell>level 1 spell 4</spell>
+      <spell>level 1 spell 5</spell>
+      <spell>level 1 spell 6</spell>
+      <spell>level 1 spell 7</spell>
+      <spell>level 1 spell 8</spell>
+      <spell>level 1 spell 9</spell>
+      <spell>level 1 spell 10</spell>
+      <spell>level 1 spell 11</spell>
+      <spell>level 1 spell 12</spell>            
+    </level>
+    <level number="2" slots="2" expended="0">
+      <spell>level 2 spell 1</spell>
+      <spell>level 2 spell 2</spell>
+      <spell>level 2 spell 3</spell>
+      <spell>level 2 spell 4</spell>
+      <spell>level 2 spell 5</spell>
+      <spell>level 2 spell 6</spell>
+      <spell>level 2 spell 7</spell>
+      <spell>level 2 spell 8</spell>
+      <spell>level 2 spell 9</spell>
+      <spell>level 2 spell 10</spell>
+      <spell>level 2 spell 11</spell>
+      <spell>level 2 spell 12</spell>
+      <spell>level 2 spell 13</spell>      
     </level>
   </spells>
 </character>

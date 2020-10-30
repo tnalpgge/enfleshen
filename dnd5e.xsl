@@ -67,6 +67,21 @@
     <x:level number="1" index="12" formfield="Spells 1033" prepared="Check Box 3019"/>
 
     <x:slots level="2" total="SlotsTotal 20" expended="SlotsRemaining 20"/>
+
+    <x:level number="2" index="1" formfield="Spells 1046" prepared="Check Box "/>
+    <x:level number="2" index="2" formfield="Spells 1034" prepared="Check Box "/>
+    <x:level number="2" index="3" formfield="Spells 1035" prepared="Check Box "/>
+    <x:level number="2" index="4" formfield="Spells 1036" prepared="Check Box "/>
+    <x:level number="2" index="5" formfield="Spells 1037" prepared="Check Box "/>
+    <x:level number="2" index="6" formfield="Spells 1038" prepared="Check Box "/>
+    <x:level number="2" index="7" formfield="Spells 1039" prepared="Check Box "/>
+    <x:level number="2" index="8" formfield="Spells 1040" prepared="Check Box "/>
+    <x:level number="2" index="9" formfield="Spells 1041" prepared="Check Box "/>
+    <x:level number="2" index="10" formfield="Spells 1042" prepared="Check Box "/>
+    <x:level number="2" index="11" formfield="Spells 1043" prepared="Check Box "/>        
+    <x:level number="2" index="12" formfield="Spells 1044" prepared="Check Box "/>
+    <x:level number="2" index="13" formfield="Spells 1045" prepared="Check Box "/>        
+    
     <x:slots level="3" total="SlotsTotal 21" expended="SlotsRemaining 21"/>
     <x:slots level="4" total="SlotsTotal 22" expended="SlotsRemaining 22"/>
     <x:slots level="5" total="SlotsTotal 23" expended="SlotsRemaining 23"/>
@@ -539,31 +554,35 @@ lower-case(
       <xsl:with-param name="name" select="document('')//x:spells/x:slots[@level=$level]/@expended"/>
       <xsl:with-param name="value" select="@expended"/>
     </xsl:call-template>
-    <xsl:for-each select="spell">
-      <xsl:comment>
-	<xsl:text> level </xsl:text>
-	<xsl:value-of select="$level"/>
-	<xsl:text> position </xsl:text>
-	<xsl:value-of select="position()"/>
-	<xsl:text> </xsl:text>
-      </xsl:comment>
-      <xsl:call-template name="field">
-	<xsl:with-param name="name" select="document('')//x:spells/x:level[@number=$level][@index=position()]/@formfield"/>
-	<xsl:with-param name="value" select="text()"/>
-      </xsl:call-template>
-      <xsl:call-template name="field">
-	<xsl:with-param name="name" select="document('')//x:spells/x:level[@number=$level][@index=position()]/@prepared"/>
-	<xsl:with-param name="value">
-	  <xsl:call-template name="checkbox">
-	    <xsl:with-param name="value" select="@prepared"/>
-	  </xsl:call-template>
-	</xsl:with-param>
-      </xsl:call-template>      
-    </xsl:for-each>
+    <xsl:apply-templates>
+      <xsl:with-param name="level" select="$level"/>
+    </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="spells/level/spell">
-
+    <xsl:param name="level"/>
+    <xsl:variable name="index" select="position() div 2"/> <!-- ?! -->
+    <xsl:comment>
+      <xsl:text> level </xsl:text>
+      <xsl:value-of select="$level"/>
+      <xsl:text> position </xsl:text>
+      <xsl:value-of select="position()"/>
+      <xsl:text> index </xsl:text>
+      <xsl:value-of select="$index"/>
+      <xsl:text> </xsl:text>
+    </xsl:comment>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:spells/x:level[@number=$level][@index=$index]/@formfield"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:spells/x:level[@number=$level][@index=$index]/@prepared"/>
+      <xsl:with-param name="value">
+	<xsl:call-template name="checkbox">
+	  <xsl:with-param name="value" select="@prepared"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>      
   </xsl:template>
 
 </xsl:stylesheet>
