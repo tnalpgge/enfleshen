@@ -145,4 +145,15 @@
 What's that in yer pocket, hm?</backstory>
   <add-features-traits>Additional Features &amp; Traits</add-features-traits>
   <treasure>Treasure</treasure>
+  <spellcasting>
+    <ability>sp-abil</ability>
+    <attack-bonus>sp-atk</attack-bonus>
+    <class>sp-cls</class>
+    <save-dc>sp-dc</save-dc>
+  </spellcasting>
+  <spells>
+    <level number="1" slots="3" expended="2">
+      <spell prepared="true">Ordinary Missile</spell>
+    </level>
+  </spells>
 </character>

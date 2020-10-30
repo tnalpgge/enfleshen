@@ -41,29 +41,30 @@
     <x:attack-bonus formfield="SpellAtkBonus 2"/>
     <x:class formfield="Spellcasting Class 2"/>
     <x:save-dc formfield="SpellSaveDC  2"/>
-    <x:level number="0" index="0" formfield="Spells 1014"/>
-    <x:level number="0" index="1" formfield="Spells 1016"/>
-    <x:level number="0" index="2" formfield="Spells 1017"/>
-    <x:level number="0" index="3" formfield="Spells 1018"/>
-    <x:level number="0" index="4" formfield="Spells 1019"/>
-    <x:level number="0" index="5" formfield="Spells 1020"/>
-    <x:level number="0" index="6" formfield="Spells 1021"/>
-    <x:level number="0" index="7" formfield="Spells 1022"/>
+    <x:level number="0" index="1" formfield="Spells 1014"/>
+    <x:level number="0" index="2" formfield="Spells 1016"/>
+    <x:level number="0" index="3" formfield="Spells 1017"/>
+    <x:level number="0" index="4" formfield="Spells 1018"/>
+    <x:level number="0" index="5" formfield="Spells 1019"/>
+    <x:level number="0" index="6" formfield="Spells 1020"/>
+    <x:level number="0" index="7" formfield="Spells 1021"/>
+    <x:level number="0" index="8" formfield="Spells 1022"/>
 
+    <!-- Ugh, make up your mind.  expended vs. remaining? -->
     <x:slots level="1" total="SlotsTotal 19" expended="SlotsRemaining 19"/>
 
-    <x:level number="1" index="0" formfield="Spells 1015" prepared="Check Box 251"/>
-    <x:level number="1" index="1" formfield="Spells 1023" prepared="Check Box 309"/>
-    <x:level number="1" index="2" formfield="Spells 1024" prepared="Check Box 3010"/>
-    <x:level number="1" index="3" formfield="Spells 1025" prepared="Check Box 3011"/>
-    <x:level number="1" index="4" formfield="Spells 1026" prepared="Check Box 3012"/>
-    <x:level number="1" index="5" formfield="Spells 1027" prepared="Check Box 3013"/>
-    <x:level number="1" index="6" formfield="Spells 1028" prepared="Check Box 3014"/>
-    <x:level number="1" index="7" formfield="Spells 1029" prepared="Check Box 3015"/>
-    <x:level number="1" index="8" formfield="Spells 1030" prepared="Check Box 3016"/>
-    <x:level number="1" index="9" formfield="Spells 1031" prepared="Check Box 3017"/>
-    <x:level number="1" index="10" formfield="Spells 1032" prepared="Check Box 3018"/>
-    <x:level number="1" index="11" formfield="Spells 1033" prepared="Check Box 3019"/>
+    <x:level number="1" index="1" formfield="Spells 1015" prepared="Check Box 251"/>
+    <x:level number="1" index="2" formfield="Spells 1023" prepared="Check Box 309"/>
+    <x:level number="1" index="3" formfield="Spells 1024" prepared="Check Box 3010"/>
+    <x:level number="1" index="4" formfield="Spells 1025" prepared="Check Box 3011"/>
+    <x:level number="1" index="5" formfield="Spells 1026" prepared="Check Box 3012"/>
+    <x:level number="1" index="6" formfield="Spells 1027" prepared="Check Box 3013"/>
+    <x:level number="1" index="7" formfield="Spells 1028" prepared="Check Box 3014"/>
+    <x:level number="1" index="8" formfield="Spells 1029" prepared="Check Box 3015"/>
+    <x:level number="1" index="9" formfield="Spells 1030" prepared="Check Box 3016"/>
+    <x:level number="1" index="10" formfield="Spells 1031" prepared="Check Box 3017"/>
+    <x:level number="1" index="11" formfield="Spells 1032" prepared="Check Box 3018"/>
+    <x:level number="1" index="12" formfield="Spells 1033" prepared="Check Box 3019"/>
 
     <x:slots level="2" total="SlotsTotal 20" expended="SlotsRemaining 20"/>
     <x:slots level="3" total="SlotsTotal 21" expended="SlotsRemaining 21"/>
@@ -507,6 +508,62 @@ lower-case(
       <xsl:with-param name="value" select="text()"/>
       <xsl:with-param name="proficient" select="@proficient"/>
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="spellcasting">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="spellcasting/ability |
+		       spellcasting/attack-bonus |
+		       spellcasting/class |
+		       spellcasting/save-dc">
+    <xsl:variable name="x" select="name()"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:spells/*[local-name()=$x]/@formfield"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="spells">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="spells/level">
+    <xsl:variable name="level" select="@number"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:spells/x:slots[@level=$level]/@total"/>
+      <xsl:with-param name="value" select="@slots"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:spells/x:slots[@level=$level]/@expended"/>
+      <xsl:with-param name="value" select="@expended"/>
+    </xsl:call-template>
+    <xsl:for-each select="spell">
+      <xsl:comment>
+	<xsl:text> level </xsl:text>
+	<xsl:value-of select="$level"/>
+	<xsl:text> position </xsl:text>
+	<xsl:value-of select="position()"/>
+	<xsl:text> </xsl:text>
+      </xsl:comment>
+      <xsl:call-template name="field">
+	<xsl:with-param name="name" select="document('')//x:spells/x:level[@number=$level][@index=position()]/@formfield"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+      <xsl:call-template name="field">
+	<xsl:with-param name="name" select="document('')//x:spells/x:level[@number=$level][@index=position()]/@prepared"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value" select="@prepared"/>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>      
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="spells/level/spell">
+
   </xsl:template>
 
 </xsl:stylesheet>
