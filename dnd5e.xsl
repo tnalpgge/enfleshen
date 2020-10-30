@@ -64,6 +64,16 @@
     <x:level number="1" index="9" formfield="Spells 1031" prepared="Check Box 3017"/>
     <x:level number="1" index="10" formfield="Spells 1032" prepared="Check Box 3018"/>
     <x:level number="1" index="11" formfield="Spells 1033" prepared="Check Box 3019"/>
+
+    <x:slots level="2" total="SlotsTotal 20" expended="SlotsRemaining 20"/>
+    <x:slots level="3" total="SlotsTotal 21" expended="SlotsRemaining 21"/>
+    <x:slots level="4" total="SlotsTotal 22" expended="SlotsRemaining 22"/>
+    <x:slots level="5" total="SlotsTotal 23" expended="SlotsRemaining 23"/>
+    <x:slots level="6" total="SlotsTotal 24" expended="SlotsRemaining 24"/>
+    <x:slots level="7" total="SlotsTotal 25" expended="SlotsRemaining 25"/>
+    <x:slots level="8" total="SlotsTotal 26" expended="SlotsRemaining 26"/>
+    <x:slots level="9" total="SlotsTotal 27" expended="SlotsRemaining 27"/>
+
   </x:spells>
 
   <xsl:template name="field">
