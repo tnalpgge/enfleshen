@@ -273,6 +273,7 @@ lower-case(
 
   <xsl:template match="age |
 		       alignment |
+		       allies |
 		       background |
 		       backstory |
 		       bonds |
@@ -327,6 +328,19 @@ lower-case(
       <xsl:with-param name="name" select="name()"/>
       <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="character-name">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="name()"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:text>CharacterName 2</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>        
   </xsl:template>
 
   <xsl:template match="ac |
@@ -429,10 +443,19 @@ lower-case(
   <xsl:template match="features-and-traits">
     <xsl:call-template name="field">
       <xsl:with-param name="name">
-	<xsl:text>Features and Traits</xsl:text>
+	<xsl:text>Features and Traits</xsl:text> <!-- first page -->
       </xsl:with-param>
       <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="add-features-traits">
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:text>Feat+Traits</xsl:text> <!-- second page -->
+      </xsl:with-param>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>    
   </xsl:template>
 
   <xsl:template match="skills">

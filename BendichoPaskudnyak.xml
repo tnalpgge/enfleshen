@@ -134,9 +134,15 @@
     Criminal Specialty: Burglar
   </features-and-traits>
   <age>20</age>
-  <height>5'6"</height>
+  <height>Shortish, 5'6"</height>
   <weight>130</weight>
-  <eyes>blue</eyes>
-  <skin>pale</skin>
-  <hair>black, messy</hair>
+  <eyes>Blue, always alert and moving</eyes>
+  <skin>Pale, maybe a bit dirty</skin>
+  <hair>Black, wavy, messy, above the shoulder</hair>
+  <allies>Allies &amp; Organizations</allies>
+  <backstory>Been stealin' things long as I can remember.  Started with chickens in my farming town out in the sticks when I was a young'n.  Never kept 'em, just wanted to know if I could 'r not.  Never was much use on the farm anyway.  Ventured the Big City (hah!) in my teens to see if I could make an honest somethin' of my self.  That din't work out neither.  Still managed to keep my nose clean, mostly.  Picked a pocket I prob'ly shouldn't'a, but least it wasn't a law man -- very much the opposite.  Found someone who recognized my, er, unique talents and invited me to join the, er, organization.  Was pretty good for a year or so, ran outta challenges though.  Left there too.  Guess you could say I'm between jobs now? 
+
+What's that in yer pocket, hm?</backstory>
+  <add-features-traits>Additional Features &amp; Traits</add-features-traits>
+  <treasure>Treasure</treasure>
 </character>
