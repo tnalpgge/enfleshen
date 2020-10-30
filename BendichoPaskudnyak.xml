@@ -14,7 +14,8 @@
     <wisdom>15</wisdom>
     <charisma>11</charisma>
   </abilities>
-  <acrobatics proficient="true">+5</acrobatics>
+  <skills>
+  <acrobatics proficient="on">+5</acrobatics>
   <animal-handling>+2</animal-handling>
   <arcana>+1</arcana>
   <athletics>-1</athletics>
@@ -22,16 +23,17 @@
   <history>+1</history>
   <insight>+2</insight>
   <intimidation>0</intimidation>
-  <investigation proficient="true">+3</investigation>
+  <investigation proficient="yes">+3</investigation>
   <medicine>+2</medicine>
   <nature>+1</nature>
-  <perception proficient="true">+4</perception>
+  <perception proficient="2">+4</perception>
   <performance>0</performance>
   <persuasion>0</persuasion>
   <religion>+1</religion>
   <sleight-of-hand proficient="true">+5</sleight-of-hand>
-  <stealth proficient="true" expertise="true">+7</stealth>
+  <stealth proficient="true">+7</stealth>
   <survival>+2</survival>
+  </skills>
   <passive>14</passive>
   <proficiencies-lang>
     Language: Common
