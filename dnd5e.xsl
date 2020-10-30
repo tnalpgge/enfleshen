@@ -17,17 +17,17 @@
 
   <x:skills>
     <x:skill name="acrobatics" formfield="Acrobatics" proficient="Check Box 23"/>
-    <x:skill name="animal-handling" formfield="Animal" proficient="Check Box 24"/>    
+    <x:skill name="animal-handling" formfield="Animal" proficient="Check Box 24"/>
     <x:skill name="arcana" formfield="Arcana" proficient="Check Box 25"/>
     <x:skill name="athletics" formfield="Athletics" proficient="Check Box 26"/>
     <x:skill name="deception" formfield="Deception " proficient="Check Box 27"/>
-    <x:skill name="history" formfield="History " proficient="Check Box 28"/>    
+    <x:skill name="history" formfield="History " proficient="Check Box 28"/>
     <x:skill name="insight" formfield="Insight" proficient="Check Box 29"/>
     <x:skill name="intimidation" formfield="Intimidation" proficient="Check Box 30"/>
-    <x:skill name="investigation" formfield="Investigation " proficient="Check Box 31"/>    
+    <x:skill name="investigation" formfield="Investigation " proficient="Check Box 31"/>
     <x:skill name="medicine" formfield="Medicine" proficient="Check Box 32"/>
     <x:skill name="nature" formfield="Nature" proficient="Check Box 33"/>
-    <x:skill name="perception" formfield="Perception " proficient="Check Box 34"/>    
+    <x:skill name="perception" formfield="Perception " proficient="Check Box 34"/>
     <x:skill name="performance" formfield="Performance" proficient="Check Box 35"/>
     <x:skill name="persuasion" formfield="Persuasion" proficient="Check Box 36"/>
     <x:skill name="religion" formfield="Religion" proficient="Check Box 37"/>
@@ -35,6 +35,36 @@
     <x:skill name="stealth" formfield="Stealth " proficient="Check Box 39"/>
     <x:skill name="survival" formfield="Survival" proficient="Check Box 40"/>
   </x:skills>
+
+  <x:spells>
+    <x:ability formfield="SpellcastingAbility 2"/>
+    <x:attack-bonus formfield="SpellAtkBonus 2"/>
+    <x:class formfield="Spellcasting Class 2"/>
+    <x:save-dc formfield="SpellSaveDC  2"/>
+    <x:level number="0" index="0" formfield="Spells 1014"/>
+    <x:level number="0" index="1" formfield="Spells 1016"/>
+    <x:level number="0" index="2" formfield="Spells 1017"/>
+    <x:level number="0" index="3" formfield="Spells 1018"/>
+    <x:level number="0" index="4" formfield="Spells 1019"/>
+    <x:level number="0" index="5" formfield="Spells 1020"/>
+    <x:level number="0" index="6" formfield="Spells 1021"/>
+    <x:level number="0" index="7" formfield="Spells 1022"/>
+
+    <x:slots level="1" total="SlotsTotal 19" expended="SlotsRemaining 19"/>
+
+    <x:level number="1" index="0" formfield="Spells 1015" prepared="Check Box 251"/>
+    <x:level number="1" index="1" formfield="Spells 1023" prepared="Check Box 309"/>
+    <x:level number="1" index="2" formfield="Spells 1024" prepared="Check Box 3010"/>
+    <x:level number="1" index="3" formfield="Spells 1025" prepared="Check Box 3011"/>
+    <x:level number="1" index="4" formfield="Spells 1026" prepared="Check Box 3012"/>
+    <x:level number="1" index="5" formfield="Spells 1027" prepared="Check Box 3013"/>
+    <x:level number="1" index="6" formfield="Spells 1028" prepared="Check Box 3014"/>
+    <x:level number="1" index="7" formfield="Spells 1029" prepared="Check Box 3015"/>
+    <x:level number="1" index="8" formfield="Spells 1030" prepared="Check Box 3016"/>
+    <x:level number="1" index="9" formfield="Spells 1031" prepared="Check Box 3017"/>
+    <x:level number="1" index="10" formfield="Spells 1032" prepared="Check Box 3018"/>
+    <x:level number="1" index="11" formfield="Spells 1033" prepared="Check Box 3019"/>
+  </x:spells>
 
   <xsl:template name="field">
     <xsl:param name="name"/>
@@ -54,7 +84,7 @@
     <xsl:if test="number($score) &gt; 11">
       <xsl:text>+</xsl:text>
     </xsl:if>
-    <xsl:value-of select="floor(number($score) div 2) - 5"/>    
+    <xsl:value-of select="floor(number($score) div 2) - 5"/>
   </xsl:template>
 
   <xsl:template name="ability-modifier-field">
@@ -123,7 +153,7 @@ upper-case(
 ),
 lower-case(
   substring($name, 2)
-), 
+),
 $spaces)"/>
       <xsl:with-param name="value" select="$value"/>
     </xsl:call-template>
@@ -131,7 +161,7 @@ $spaces)"/>
 
   <xsl:template name="all-caps-field">
     <xsl:param name="name"/>
-    <xsl:param name="value"/>    
+    <xsl:param name="value"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="upper-case($name)"/>
       <xsl:with-param name="value" select="$value"/>
@@ -140,7 +170,7 @@ $spaces)"/>
 
   <xsl:template name="first-word-field">
     <xsl:param name="name"/>
-    <xsl:param name="value"/>    
+    <xsl:param name="value"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat(
 upper-case(
@@ -148,12 +178,12 @@ upper-case(
 ),
 lower-case(
   substring-before(
-    substring($name, 2), 
+    substring($name, 2),
     '-'
   )
 ))"/>
       <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="checkbox">
@@ -161,7 +191,7 @@ lower-case(
     <xsl:choose>
       <xsl:when test="lower-case($value) = 'on'">
 	<xsl:text>Yes</xsl:text>
-      </xsl:when>            
+      </xsl:when>
       <xsl:when test="lower-case($value) = 'true'">
 	<xsl:text>Yes</xsl:text>
       </xsl:when>
@@ -170,7 +200,7 @@ lower-case(
       </xsl:when>
       <xsl:when test="number($value) >= 1">
 	<xsl:text>Yes</xsl:text>
-      </xsl:when>      
+      </xsl:when>
       <xsl:otherwise>
 	<xsl:text>Off</xsl:text>
       </xsl:otherwise>
@@ -289,7 +319,7 @@ lower-case(
 		       skin |
 		       speed |
 		       treasure |
-		       weight 
+		       weight
 		       ">
     <xsl:call-template name="single-word-field">
       <xsl:with-param name="name" select="name()"/>
@@ -304,7 +334,7 @@ lower-case(
       <xsl:with-param name="spaces">
 	<xsl:text> </xsl:text>
       </xsl:with-param>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="totallybogus">
@@ -314,11 +344,10 @@ lower-case(
       <xsl:with-param name="spaces">
 	<xsl:text>  </xsl:text>
       </xsl:with-param>
-    </xsl:call-template>    
-  </xsl:template>  
+    </xsl:call-template>
+  </xsl:template>
 
-  <xsl:template match="character-name |
-		       class-level |
+  <xsl:template match="class-level |
 		       faction-name |
 		       player-name |
 		       prof-bonus |
@@ -340,7 +369,7 @@ lower-case(
 	<xsl:text>CharacterName 2</xsl:text>
       </xsl:with-param>
       <xsl:with-param name="value" select="text()"/>
-    </xsl:call-template>        
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="ac |
@@ -356,14 +385,14 @@ lower-case(
       <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
   </xsl:template>
-  
+
   <xsl:template match="abilities">
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="abilities/constitution |
 		       abilities/intelligence |
-		       abilities/strength | 
+		       abilities/strength |
 		       abilities/wisdom">
     <xsl:call-template name="all-caps-field">
       <xsl:with-param name="name" select="substring(name(), 1, 3)"/>
@@ -407,7 +436,7 @@ lower-case(
 	</xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
-  </xsl:template>  
+  </xsl:template>
 
   <xsl:template match="saving-throws">
     <xsl:apply-templates/>
@@ -422,8 +451,8 @@ lower-case(
   </xsl:template>
 
   <xsl:template match="hd-total |
-		       hp-current | 
-		       hp-max | 
+		       hp-current |
+		       hp-max |
 		       hp-temp">
     <xsl:call-template name="acronym-with-word-field">
       <xsl:with-param name="name" select="name()"/>
@@ -455,7 +484,7 @@ lower-case(
 	<xsl:text>Feat+Traits</xsl:text> <!-- second page -->
       </xsl:with-param>
       <xsl:with-param name="value" select="text()"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="skills">
