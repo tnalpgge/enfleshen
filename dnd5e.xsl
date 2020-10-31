@@ -36,6 +36,15 @@
     <x:skill name="survival" formfield="Survival" proficient="Check Box 40"/>
   </x:skills>
 
+  <x:death-saves>
+    <x:success>Check Box 12</x:success>
+    <x:success>Check Box 13</x:success>
+    <x:success>Check Box 14</x:success>
+    <x:failure>Check Box 15</x:failure>
+    <x:failure>Check Box 16</x:failure>
+    <x:failure>Check Box 17</x:failure>
+  </x:death-saves>
+
   <x:spells>
     <x:ability formfield="SpellcastingAbility 2"/>
     <x:attack-bonus formfield="SpellAtkBonus 2"/>
@@ -663,6 +672,38 @@ lower-case(
 	</xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
+  </xsl:template>
+
+  <!-- death save success: Check Box 12, Check Box 13, Check Box 14 -->
+  <!-- death save fail: Check Box 15, Check Box 16, Check Box 17 -->
+
+  <xsl:template match="death-saves">
+    <xsl:variable name="successes" select="@successes"/>
+    <xsl:variable name="failures" select="@failures"/>
+    <xsl:for-each select="document('')//x:death-saves/x:success[position() &lt;= $successes]">
+      <xsl:call-template name="field">
+	<xsl:with-param name="name" select="text()"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value">
+	      <xsl:text>true</xsl:text>
+	    </xsl:with-param>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:for-each select="document('')//x:death-saves/x:failure[position() &lt;= $failures]">
+      <xsl:call-template name="field">
+	<xsl:with-param name="name" select="text()"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value">
+	      <xsl:text>true</xsl:text>
+	    </xsl:with-param>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
 </xsl:stylesheet>

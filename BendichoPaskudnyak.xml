@@ -67,6 +67,7 @@
   <hp-temp>0</hp-temp>
   <hd>1d8</hd>
   <hd-total>1d8</hd-total>
+  <death-saves successes="2" failures="1"/>
   <attacks>
     <attack>
       <weapon-name>shortsword</weapon-name>
