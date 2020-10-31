@@ -84,35 +84,35 @@
 
     <x:slots level="3" total="SlotsTotal 21" expended="SlotsRemaining 21"/>
 
-    <x:level number="3" index="1" formfield="Spells 1048" prepared="Check Box"/>
-    <x:level number="3" index="2" formfield="Spells 1047" prepared="Check Box"/>
-    <x:level number="3" index="3" formfield="Spells 1049" prepared="Check Box"/>
-    <x:level number="3" index="4" formfield="Spells 1050" prepared="Check Box"/>
-    <x:level number="3" index="5" formfield="Spells 1051" prepared="Check Box"/>
-    <x:level number="3" index="6" formfield="Spells 1052" prepared="Check Box"/>
-    <x:level number="3" index="7" formfield="Spells 1053" prepared="Check Box"/>
-    <x:level number="3" index="8" formfield="Spells 1054" prepared="Check Box"/>
-    <x:level number="3" index="9" formfield="Spells 1055" prepared="Check Box"/>
-    <x:level number="3" index="10" formfield="Spells 1056" prepared="Check Box"/>
-    <x:level number="3" index="11" formfield="Spells 1057" prepared="Check Box"/>
-    <x:level number="3" index="12" formfield="Spells 1058" prepared="Check Box"/>
-    <x:level number="3" index="13" formfield="Spells 1059" prepared="Check Box"/>
+    <x:level number="3" index="1" formfield="Spells 1048" prepared="Check Box 315"/>
+    <x:level number="3" index="2" formfield="Spells 1047" prepared="Check Box 314"/>
+    <x:level number="3" index="3" formfield="Spells 1049" prepared="Check Box 3031"/>
+    <x:level number="3" index="4" formfield="Spells 1050" prepared="Check Box 3032"/>
+    <x:level number="3" index="5" formfield="Spells 1051" prepared="Check Box 3033"/>
+    <x:level number="3" index="6" formfield="Spells 1052" prepared="Check Box 3034"/>
+    <x:level number="3" index="7" formfield="Spells 1053" prepared="Check Box 3035"/>
+    <x:level number="3" index="8" formfield="Spells 1054" prepared="Check Box 3036"/>
+    <x:level number="3" index="9" formfield="Spells 1055" prepared="Check Box 3037"/>
+    <x:level number="3" index="10" formfield="Spells 1056" prepared="Check Box 3038"/>
+    <x:level number="3" index="11" formfield="Spells 1057" prepared="Check Box 3039"/>
+    <x:level number="3" index="12" formfield="Spells 1058" prepared="Check Box 3040"/>
+    <x:level number="3" index="13" formfield="Spells 1059" prepared="Check Box 3041"/>
 
     <x:slots level="4" total="SlotsTotal 22" expended="SlotsRemaining 22"/>
 
-    <x:level number="4" index="1" formfield="Spells 1061" prepared="Check Box"/>
-    <x:level number="4" index="2" formfield="Spells 1060" prepared="Check Box"/>
-    <x:level number="4" index="3" formfield="Spells 1062" prepared="Check Box"/>
-    <x:level number="4" index="4" formfield="Spells 1063" prepared="Check Box"/>
-    <x:level number="4" index="5" formfield="Spells 1064" prepared="Check Box"/>
-    <x:level number="4" index="6" formfield="Spells 1065" prepared="Check Box"/>
-    <x:level number="4" index="7" formfield="Spells 1066" prepared="Check Box"/>
-    <x:level number="4" index="8" formfield="Spells 1067" prepared="Check Box"/>
-    <x:level number="4" index="9" formfield="Spells 1068" prepared="Check Box"/>
-    <x:level number="4" index="10" formfield="Spells 1069" prepared="Check Box"/>
-    <x:level number="4" index="11" formfield="Spells 1070" prepared="Check Box"/>
-    <x:level number="4" index="12" formfield="Spells 1071" prepared="Check Box"/>
-    <x:level number="4" index="13" formfield="Spells 1072" prepared="Check Box"/>
+    <x:level number="4" index="1" formfield="Spells 1061" prepared="Check Box 317"/>
+    <x:level number="4" index="2" formfield="Spells 1060" prepared="Check Box 316"/>
+    <x:level number="4" index="3" formfield="Spells 1062" prepared="Check Box 3042"/>
+    <x:level number="4" index="4" formfield="Spells 1063" prepared="Check Box 3043"/>
+    <x:level number="4" index="5" formfield="Spells 1064" prepared="Check Box 3044"/>
+    <x:level number="4" index="6" formfield="Spells 1065" prepared="Check Box 3045"/>
+    <x:level number="4" index="7" formfield="Spells 1066" prepared="Check Box 3046"/>
+    <x:level number="4" index="8" formfield="Spells 1067" prepared="Check Box 3047"/>
+    <x:level number="4" index="9" formfield="Spells 1068" prepared="Check Box 3048"/>
+    <x:level number="4" index="10" formfield="Spells 1069" prepared="Check Box 3049"/>
+    <x:level number="4" index="11" formfield="Spells 1070" prepared="Check Box 3050"/>
+    <x:level number="4" index="12" formfield="Spells 1071" prepared="Check Box 3051"/>
+    <x:level number="4" index="13" formfield="Spells 1072" prepared="Check Box 3052"/>
 
     <x:slots level="5" total="SlotsTotal 23" expended="SlotsRemaining 23"/>
 
