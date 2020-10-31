@@ -70,18 +70,18 @@
   <death-saves successes="3" failures="3"/>
   <attacks>
     <attack>
-      <weapon-name>shortsword</weapon-name>
+      <weapon-name>greataxe</weapon-name>
       <atk-bonus>+5</atk-bonus>
-      <damage>1d6+3 piercing</damage>
+      <damage>1d12+3 slashing</damage>
     </attack>
     <attack>
-      <weapon-name>shortbow</weapon-name>
-      <atk-bonus>+5</atk-bonus>
-      <damage>1d6+3 piercing</damage>
+      <weapon-name>club</weapon-name>
+      <atk-bonus>+2</atk-bonus>
+      <damage>1d6-1 bludgeoning</damage>
     </attack>
     <attack>
       <weapon-name>dagger</weapon-name>
-      <atk-bonus>+5</atk-bonus>
+      <atk-bonus>+3</atk-bonus>
       <damage>1d4+3 piercing</damage>
     </attack>
     <attack>
@@ -95,11 +95,11 @@
       <damage>wpn5dmg</damage>
     </attack>
   </attacks>
-  <cp>0</cp>
-  <sp>0</sp>
-  <ep>0</ep>
+  <cp>30</cp>
+  <sp>200</sp>
+  <ep>5</ep>
   <gp>15</gp>
-  <pp>0</pp>
+  <pp>1000</pp>
   <equipment>
     leather armor
     nylon rope 50'
