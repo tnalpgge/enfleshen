@@ -84,6 +84,11 @@
       <atk-bonus>+5</atk-bonus>
       <damage>1d4+3 piercing</damage>
     </attack>
+    <attack>
+      <weapon-name>weapon4</weapon-name>
+      <atk-bonus>wpn4atk</atk-bonus>
+      <damage>wpn4dmg</damage>
+    </attack>
   </attacks>
   <cp>0</cp>
   <sp>0</sp>

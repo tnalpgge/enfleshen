@@ -45,6 +45,12 @@
     <x:failure>Check Box 17</x:failure>
   </x:death-saves>
 
+  <x:attacks>
+    <x:attack weapon="Wpn Name" bonus="Wpn1 AtkBonus" damage="Wpn1 Damage"/>
+    <x:attack weapon="Wpn Name 2" bonus="Wpn2 AtkBonus " damage="Wpn2 Damage "/>
+    <x:attack weapon="Wpn Name 3" bonus="Wpn3 AtkBonus  " damage="Wpn3 Damage "/>
+  </x:attacks>
+
   <x:spells>
     <x:ability formfield="SpellcastingAbility 2"/>
     <x:attack-bonus formfield="SpellAtkBonus 2"/>
@@ -412,7 +418,37 @@ lower-case(
 
   <xsl:template match="attacks">
     <xsl:comment>
-      <xsl:text> attacks TBD </xsl:text>
+      <xsl:text> computing attacks </xsl:text>
+    </xsl:comment>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="attacks/attack[position() &lt; 4]"> <!-- ?! -->
+    <xsl:comment>
+      <xsl:text> top attack </xsl:text>
+      <xsl:value-of select="position()"/>
+      <xsl:text> </xsl:text>
+    </xsl:comment>
+    <xsl:variable name="index" select="position() div 2"/> <!-- ?! -->
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@weapon"/>
+      <xsl:with-param name="value" select="weapon-name/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@bonus"/>
+      <xsl:with-param name="value" select="atk-bonus/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@damage"/>
+      <xsl:with-param name="value" select="damage/text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="attacks/attack[position() &gt; 3]"> <!-- ?! -->
+    <xsl:comment>
+      <xsl:text> extra attack </xsl:text>
+      <xsl:value-of select="position()"/>
+      <xsl:text> </xsl:text>
     </xsl:comment>
   </xsl:template>
 
@@ -673,9 +709,6 @@ lower-case(
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
-
-  <!-- death save success: Check Box 12, Check Box 13, Check Box 14 -->
-  <!-- death save fail: Check Box 15, Check Box 16, Check Box 17 -->
 
   <xsl:template match="death-saves">
     <xsl:variable name="successes" select="@successes"/>
