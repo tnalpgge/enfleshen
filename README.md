@@ -28,7 +28,11 @@ than it should, typically in the middle of typing.
 
 # Use cases
 
-D&D 5th Edition character sheet.
+D&D 5th Edition character sheet.  Acquire the
+_Fifth Edition Character Sheets_
+from [the official site] and use the three-page model.
+
+[the official site]: https://dnd.wizards.com/products/tabletop-games/trpg-resources/trpg-resources
 
 ## Other use cases
 
