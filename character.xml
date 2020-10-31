@@ -54,6 +54,7 @@
   <hp-temp/>
   <hd/>
   <hd-total/>
+  <death-saves successes="0" failures="0"/>
   <attacks>
     <attack>
       <weapon-name/>
