@@ -15,24 +15,24 @@
     <charisma>11</charisma>
   </abilities>
   <skills>
-  <acrobatics proficient="false">+5</acrobatics>
-  <animal-handling>+2</animal-handling>
-  <arcana>+1</arcana>
-  <athletics>-1</athletics>
-  <deception proficient="false">+2</deception>
-  <history>+1</history>
-  <insight>+2</insight>
-  <intimidation>0</intimidation>
-  <investigation proficient="false">+3</investigation>
-  <medicine>+2</medicine>
-  <nature>+1</nature>
-  <perception proficient="false">+4</perception>
-  <performance>0</performance>
-  <persuasion>0</persuasion>
-  <religion>+1</religion>
-  <sleight-of-hand proficient="false">+5</sleight-of-hand>
-  <stealth proficient="false">+7</stealth>
-  <survival>+2</survival>
+    <acrobatics proficient="false">+5</acrobatics>
+    <animal-handling>+2</animal-handling>
+    <arcana>+1</arcana>
+    <athletics>-1</athletics>
+    <deception proficient="false">+2</deception>
+    <history>+1</history>
+    <insight>+2</insight>
+    <intimidation>0</intimidation>
+    <investigation proficient="false">+3</investigation>
+    <medicine>+2</medicine>
+    <nature>+1</nature>
+    <perception proficient="false">+4</perception>
+    <performance>0</performance>
+    <persuasion>0</persuasion>
+    <religion>+1</religion>
+    <sleight-of-hand proficient="false">+5</sleight-of-hand>
+    <stealth proficient="false">+7</stealth>
+    <survival>+2</survival>
   </skills>
   <passive>14</passive>
   <proficiencies-lang>
