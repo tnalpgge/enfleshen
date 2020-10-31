@@ -89,6 +89,11 @@
       <atk-bonus>wpn4atk</atk-bonus>
       <damage>wpn4dmg</damage>
     </attack>
+    <attack>
+      <weapon-name>weapon5</weapon-name>
+      <atk-bonus>wpn5atk</atk-bonus>
+      <damage>wpn5dmg</damage>
+    </attack>
   </attacks>
   <cp>0</cp>
   <sp>0</sp>

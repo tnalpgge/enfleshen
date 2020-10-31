@@ -3,6 +3,7 @@
     xmlns:xfdf="http://ns.adobe.com/xfdf/"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:x="urn:tnalpgge:enfleshen"
     exclude-result-prefixes="xfdf">
 
@@ -411,7 +412,7 @@ lower-case(
 	<xsl:text>preserve</xsl:text>
       </xsl:attribute>
       <xsl:element name="fields" namespace="http://ns.adobe.com/xfdf/">
-	<xsl:apply-templates/>	
+	<xsl:apply-templates/>
       </xsl:element>
     </xsl:element>
   </xsl:template>
@@ -420,16 +421,24 @@ lower-case(
     <xsl:comment>
       <xsl:text> computing attacks </xsl:text>
     </xsl:comment>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="attack[position() &lt; 4]"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:text>AttacksSpellcasting</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:apply-templates select="attack[position() &gt; 3]"/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="attacks/attack[position() &lt; 4]"> <!-- ?! -->
+  <xsl:template match="attacks/attack[position() &lt; 4]">
     <xsl:comment>
       <xsl:text> top attack </xsl:text>
       <xsl:value-of select="position()"/>
       <xsl:text> </xsl:text>
     </xsl:comment>
-    <xsl:variable name="index" select="position() div 2"/> <!-- ?! -->
+    <xsl:variable name="index" select="position()"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@weapon"/>
       <xsl:with-param name="value" select="weapon-name/text()"/>
@@ -450,6 +459,12 @@ lower-case(
       <xsl:value-of select="position()"/>
       <xsl:text> </xsl:text>
     </xsl:comment>
+    <xsl:value-of select="weapon-name/text()"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="atk-bonus/text()"/>
+    <xsl:text>, </xsl:text>
+    <xsl:value-of select="damage/text()"/>
+    <xsl:text>&#x0a;</xsl:text>
   </xsl:template>
 
   <xsl:template match="age |
