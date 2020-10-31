@@ -58,13 +58,13 @@
     <wisdom>+2</wisdom>
     <charisma>0</charisma>
   </saving-throws>
-  <inspiration>0</inspiration>
+  <inspiration/>
   <ac>14</ac>
   <speed>30</speed>
   <initiative>+3</initiative>
   <hp-max>9</hp-max>
   <hp-current>9</hp-current>
-  <hp-temp>0</hp-temp>
+  <hp-temp/>
   <hd>1d8</hd>
   <hd-total>1d8</hd-total>
   <death-saves successes="2" failures="1"/>
@@ -85,21 +85,16 @@
       <damage>1d4+3 piercing</damage>
     </attack>
     <attack>
-      <weapon-name>weapon4</weapon-name>
-      <atk-bonus>wpn4atk</atk-bonus>
-      <damage>wpn4dmg</damage>
-    </attack>
-    <attack>
-      <weapon-name>weapon5</weapon-name>
-      <atk-bonus>wpn5atk</atk-bonus>
-      <damage>wpn5dmg</damage>
+      <weapon-name>unarmed strike</weapon-name>
+      <atk-bonus>-1</atk-bonus>
+      <damage>1 bludgeoning</damage>
     </attack>
   </attacks>
-  <cp>0</cp>
-  <sp>0</sp>
-  <ep>0</ep>
+  <cp/>
+  <sp/>
+  <ep/>
   <gp>15</gp>
-  <pp>0</pp>
+  <pp/>
   <equipment>
     dark common clothes with hood
     tinderbox
@@ -150,138 +145,13 @@
   <eyes>Blue, always alert and moving</eyes>
   <skin>Pale, maybe a bit dirty</skin>
   <hair>Black, wavy, messy, above the shoulder</hair>
-  <allies>Allies &amp; Organizations</allies>
+  <allies/>
+  <faction-name/>
   <backstory>Been stealin' things long as I can remember.  Started with chickens in my farming town out in the sticks when I was a young'n.  Never kept 'em, just wanted to know if I could 'r not.  Never was much use on the farm anyway.  Ventured the Big City (hah!) in my teens to see if I could make an honest somethin' of my self.  That din't work out neither.  Still managed to keep my nose clean, mostly.  Picked a pocket I prob'ly shouldn't'a, but least it wasn't a law man -- very much the opposite.  Found someone who recognized my, er, unique talents and invited me to join the, er, organization.  Was pretty good for a year or so, ran outta challenges though.  Left there too.  Guess you could say I'm between jobs now?
 
-What's that in yer pocket, hm?</backstory>
-  <add-features-traits>Additional Features &amp; Traits</add-features-traits>
-  <treasure>Treasure</treasure>
-  <spellcasting>
-    <ability>Dexterity</ability>
-    <attack-bonus>+5</attack-bonus>
-    <class>Rogue</class>
-    <save-dc>13</save-dc>
-  </spellcasting>
-  <spells>
-    <level number="0">
-      <spell>cantrip 1</spell>
-      <spell>cantrip 2</spell>
-      <spell>cantrip 3</spell>
-      <spell>cantrip 4</spell>
-      <spell>cantrip 5</spell>
-      <spell>cantrip 6</spell>
-      <spell>cantrip 7</spell>
-      <spell>cantrip 8</spell>
-    </level>
-    <level number="1" slots="s1" expended="x1">
-      <spell>level 1 spell 1</spell>
-      <spell>level 1 spell 2</spell>
-      <spell>level 1 spell 3</spell>
-      <spell>level 1 spell 4</spell>
-      <spell>level 1 spell 5</spell>
-      <spell>level 1 spell 6</spell>
-      <spell>level 1 spell 7</spell>
-      <spell>level 1 spell 8</spell>
-      <spell>level 1 spell 9</spell>
-      <spell>level 1 spell 10</spell>
-      <spell>level 1 spell 11</spell>
-      <spell>level 1 spell 12</spell>
-    </level>
-    <level number="2" slots="s2" expended="x2">
-      <spell>level 2 spell 1</spell>
-      <spell>level 2 spell 2</spell>
-      <spell>level 2 spell 3</spell>
-      <spell>level 2 spell 4</spell>
-      <spell>level 2 spell 5</spell>
-      <spell>level 2 spell 6</spell>
-      <spell>level 2 spell 7</spell>
-      <spell>level 2 spell 8</spell>
-      <spell>level 2 spell 9</spell>
-      <spell>level 2 spell 10</spell>
-      <spell>level 2 spell 11</spell>
-      <spell>level 2 spell 12</spell>
-      <spell>level 2 spell 13</spell>
-    </level>
-    <level number="3" slots="s3" expended="x3">
-      <spell>level 3 spell 1</spell>
-      <spell>level 3 spell 2</spell>
-      <spell>level 3 spell 3</spell>
-      <spell>level 3 spell 4</spell>
-      <spell>level 3 spell 5</spell>
-      <spell>level 3 spell 6</spell>
-      <spell>level 3 spell 7</spell>
-      <spell>level 3 spell 8</spell>
-      <spell>level 3 spell 9</spell>
-      <spell>level 3 spell 10</spell>
-      <spell>level 3 spell 11</spell>
-      <spell>level 3 spell 12</spell>
-      <spell>level 3 spell 13</spell>
-    </level>
-    <level number="4" slots="s4" expended="x4">
-      <spell>level 4 spell 1</spell>
-      <spell>level 4 spell 2</spell>
-      <spell>level 4 spell 3</spell>
-      <spell>level 4 spell 4</spell>
-      <spell>level 4 spell 5</spell>
-      <spell>level 4 spell 6</spell>
-      <spell>level 4 spell 7</spell>
-      <spell>level 4 spell 8</spell>
-      <spell>level 4 spell 9</spell>
-      <spell>level 4 spell 10</spell>
-      <spell>level 4 spell 11</spell>
-      <spell>level 4 spell 12</spell>
-      <spell>level 4 spell 13</spell>
-    </level>
-    <level number="5" slots="s5" expended="x5">
-      <spell>level 5 spell 1</spell>
-      <spell>level 5 spell 2</spell>
-      <spell>level 5 spell 3</spell>
-      <spell>level 5 spell 4</spell>
-      <spell>level 5 spell 5</spell>
-      <spell>level 5 spell 6</spell>
-      <spell>level 5 spell 7</spell>
-      <spell>level 5 spell 8</spell>
-      <spell>level 5 spell 9</spell>
-    </level>
-    <level number="6" slots="s6" expended="x6">
-      <spell>level 6 spell 1</spell>
-      <spell>level 6 spell 2</spell>
-      <spell>level 6 spell 3</spell>
-      <spell>level 6 spell 4</spell>
-      <spell>level 6 spell 5</spell>
-      <spell>level 6 spell 6</spell>
-      <spell>level 6 spell 7</spell>
-      <spell>level 6 spell 8</spell>
-      <spell>level 6 spell 9</spell>
-    </level>
-    <level number="7" slots="s7" expended="x7">
-      <spell>level 7 spell 1</spell>
-      <spell>level 7 spell 2</spell>
-      <spell>level 7 spell 3</spell>
-      <spell>level 7 spell 4</spell>
-      <spell>level 7 spell 5</spell>
-      <spell>level 7 spell 6</spell>
-      <spell>level 7 spell 7</spell>
-      <spell>level 7 spell 8</spell>
-      <spell>level 7 spell 9</spell>
-    </level>
-    <level number="8" slots="s8" expended="x8">
-      <spell>level 8 spell 1</spell>
-      <spell>level 8 spell 2</spell>
-      <spell>level 8 spell 3</spell>
-      <spell>level 8 spell 4</spell>
-      <spell>level 8 spell 5</spell>
-      <spell>level 8 spell 6</spell>
-      <spell>level 8 spell 7</spell>
-    </level>
-    <level number="9" slots="s9" expended="x9">
-      <spell>level 9 spell 1</spell>
-      <spell>level 9 spell 2</spell>
-      <spell>level 9 spell 3</spell>
-      <spell>level 9 spell 4</spell>
-      <spell>level 9 spell 5</spell>
-      <spell>level 9 spell 6</spell>
-      <spell>level 9 spell 7</spell>
-    </level>
-  </spells>
+  What's that in yer pocket, hm?</backstory>
+  <add-features-traits/>
+
+
+  <treasure/>
 </character>
