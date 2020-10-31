@@ -1,6 +1,6 @@
 SOURCEPDF=dnd5e.pdf
 STYLESHEET=dnd5e.xsl
-CHARACTER=BendichoPaskudnyak
+CHARACTER=qa
 
 all: $(CHARACTER).fdf $(CHARACTER).pdf $(CHARACTER).xfdf
 
