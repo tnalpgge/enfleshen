@@ -152,13 +152,13 @@
 
     <x:slots level="8" total="SlotsTotal 26" expended="SlotsRemaining 26"/>
 
-    <x:level number="8" index="1" formfield="Spells 10101" prepared="Check Box"/>
-    <x:level number="8" index="2" formfield="Spells 10100" prepared="Check Box"/>
-    <x:level number="8" index="3" formfield="Spells 10102" prepared="Check Box"/>
-    <x:level number="8" index="4" formfield="Spells 10103" prepared="Check Box"/>
-    <x:level number="8" index="5" formfield="Spells 10104" prepared="Check Box"/>
-    <x:level number="8" index="6" formfield="Spells 10105" prepared="Check Box"/>
-    <x:level number="8" index="7" formfield="Spells 10106" prepared="Check Box"/>
+    <x:level number="8" index="1" formfield="Spells 10101" prepared="Check Box 325"/>
+    <x:level number="8" index="2" formfield="Spells 10100" prepared="Check Box 324"/>
+    <x:level number="8" index="3" formfield="Spells 10102" prepared="Check Box 3074"/>
+    <x:level number="8" index="4" formfield="Spells 10103" prepared="Check Box 3075"/>
+    <x:level number="8" index="5" formfield="Spells 10104" prepared="Check Box 3076"/>
+    <x:level number="8" index="6" formfield="Spells 10105" prepared="Check Box 3077"/>
+    <x:level number="8" index="7" formfield="Spells 10106" prepared="Check Box 3078"/>
 
     <x:slots level="9" total="SlotsTotal 27" expended="SlotsRemaining 27"/>
 
