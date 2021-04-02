@@ -1,0 +1,364 @@
+<?xml version="1.0"?>
+<character>
+  <character-name>QA Character</character-name>
+  <background>
+    <age>Age</age>
+    <gender>Gender</gender>
+    <caste>Caste</caste>
+    <archetype>Archetype</archetype>
+    <education>Education</education>
+    <homeland>Homeland</homeland>
+    <trait>Trait</trait>
+    <nature>Nature</nature>
+    <war-story>War Story</war-story>
+    <appearance>Appearance</appearance>
+    <personality>Personality</personality>
+    <languages>
+      <language>First Language</language>
+      <language>Second Language</language>
+      <language>Third Language</language>
+    </languages>
+  </background>
+  <fortune-points>5</fortune-points>
+  <renown>Renown</renown>
+  <standing>Standing</standing>
+  <experience>
+    <total-xp>Total XP</total-xp>
+    <xp-spent>XP Spent</xp-spent>
+  </experience>
+  <talents>
+    <homeland>
+      <name>Homeland Talent Name</name>
+      <effect>Homeland Talent Effect</effect>
+    </homeland>
+    <caste>
+      <name>Caste Talent 1 Name</name>
+      <effect>Caste Talent 1 Effect</effect>
+      <skill>Caste Talent 1 Skill</skill>
+    </caste>
+    <caste>
+      <name>Caste Talent 2 Name</name>
+      <effect>Caste Talent 2 Effect</effect>
+      <skill>Caste Talent 2 Skill</skill>
+    </caste>
+    <bloodline>
+      <name>Bloodline Talent Name</name>
+      <effect>Bloodline Talent Effect</effect>
+      <skill>Bloodline Talent Skill</skill>
+    </bloodline>
+    <education>
+      <name>Education Talent Name</name>
+      <effect>Education Talent Effect</effect>
+      <skill>Education Talent Skill</skill>
+      <rank>EdTalRank</rank>
+    </education>
+    <nature>
+      <name>Nature Talent Name</name>
+      <effect>Nature Talent Effect</effect>
+      <skill>Nature Talent Skill</skill>
+      <rank>NatTalRank</rank>
+    </nature>
+    <archetype>
+      <name>Archetype Talent Name</name>
+      <effect>Archetype Talent Effect</effect>
+      <skill>Archetype Talent Skill</skill>
+      <rank>ArchTalRank</rank>
+    </archetype>
+    <other>
+      <name>Other Talent 1 Name</name>
+      <effect>Other Talent 1 Effect</effect>
+      <skill>Other Talent 1 Skill</skill>
+      <rank>OthTal1Rank</rank>
+    </other>
+    <other>
+      <name>Other Talent 2 Name</name>
+      <effect>Other Talent 2 Effect</effect>
+      <skill>Other Talent 2 Skill</skill>
+      <rank>OthTal2Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 1 Name</name>
+      <effect>More Talents 1 Effect</effect>
+      <skill>More Talents 1 Skill</skill>
+      <rank>MorTal1Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 2 Name</name>
+      <effect>More Talents 2 Effect</effect>
+      <skill>More Talents 2 Skill</skill>
+      <rank>MorTal2Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 3 Name</name>
+      <effect>More Talents 3 Effect</effect>
+      <skill>More Talents 3 Skill</skill>
+      <rank>MorTal3Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 4 Name</name>
+      <effect>More Talents 4 Effect</effect>
+      <skill>More Talents 4 Skill</skill>
+      <rank>MorTal4Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 5 Name</name>
+      <effect>More Talents 5 Effect</effect>
+      <skill>More Talents 5 Skill</skill>
+      <rank>MorTal5Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 6 Name</name>
+      <effect>More Talents 6 Effect</effect>
+      <skill>More Talents 6 Skill</skill>
+      <rank>MorTal6Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 7 Name</name>
+      <effect>More Talents 7 Effect</effect>
+      <skill>More Talents 7 Skill</skill>
+      <rank>MorTal7Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 8 Name</name>
+      <effect>More Talents 8 Effect</effect>
+      <skill>More Talents 8 Skill</skill>
+      <rank>MorTal8Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 9 Name</name>
+      <effect>More Talents 9 Effect</effect>
+      <skill>More Talents 9 Skill</skill>
+      <rank>MorTal9Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 10 Name</name>
+      <effect>More Talents 10 Effect</effect>
+      <skill>More Talents 10 Skill</skill>
+      <rank>MorTal10Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 11 Name</name>
+      <effect>More Talents 11 Effect</effect>
+      <skill>More Talents 11 Skill</skill>
+      <rank>MorTal11Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 12 Name</name>
+      <effect>More Talents 12 Effect</effect>
+      <skill>More Talents 12 Skill</skill>
+      <rank>MorTal12Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 13 Name</name>
+      <effect>More Talents 13 Effect</effect>
+      <skill>More Talents 13 Skill</skill>
+      <rank>MorTal13Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 14 Name</name>
+      <effect>More Talents 14 Effect</effect>
+      <skill>More Talents 14 Skill</skill>
+      <rank>MorTal14Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 15 Name</name>
+      <effect>More Talents 15 Effect</effect>
+      <skill>More Talents 15 Skill</skill>
+      <rank>MorTal15Rank</rank>
+    </other>
+    <other>
+      <name>More Talents 16 Name</name>
+      <effect>More Talents 16 Effect</effect>
+      <skill>More Talents 16 Skill</skill>
+      <rank>MorTal16Rank</rank>
+    </other>    
+  </talents>
+  <attributes-and-skills>
+    <agility score="AgiScore">
+      <acrobatics expertise="0" focus="1" tn="2"/>
+      <melee expertise="3" focus="4" tn="5"/>
+      <stealth expertise="6" focus="7" tn="8"/>
+    </agility>
+    <awareness score="AwaScore">
+      <insight expertise="9" focus="10" tn="11"/>
+      <observation expertise="12" focus="13" tn="14"/>
+      <survival expertise="15" focus="16" tn="17"/>
+      <thievery expertise="18" focus="19" tn="20"/>
+    </awareness>
+    <brawn score="BrwScore">
+      <athletics expertise="21" focus="22" tn="23"/>
+      <resistance expertise="24" focus="25" tn="26"/>
+    </brawn>
+    <coordination score="CooScore">
+      <parry expertise="27" focus="28" tn="29"/>
+      <ranged-weapons expertise="30" focus="31" tn="32"/>
+      <sailing expertise="33" focus="34" tn="35"/>
+    </coordination>
+    <intelligence score="IntScore">
+      <alchemy expertise="36" focus="37" tn="38"/>
+      <craft expertise="39" focus="40" tn="41"/>
+      <healing expertise="42" focus="43" tn="44"/>
+      <linguistics expertise="45" focus="46" tn="47"/>
+      <lore expertise="48" focus="49" tn="50"/>
+      <warfare expertise="51" focus="52" tn="53"/>
+    </intelligence>
+    <personality score="PerScore">
+      <animal-handling expertise="54" focus="55" tn="56"/>
+      <command expertise="57" focus="58" tn="59"/>
+      <counsel expertise="60" focus="61" tn="62"/>
+      <persuade expertise="63" focus="64" tn="65"/>
+      <society expertise="66" focus="67" tn="68"/>
+    </personality>
+    <willpower score="WilScore">
+      <discipline expertise="69" focus="70" tn="71"/>
+      <sorcery expertise="72" focus="73" tn="74"/>
+    </willpower>
+  </attributes-and-skills>
+  <attacks>
+    <bonus-damage>
+      <ranged>Rbd</ranged>
+      <melee>Mbd</melee>
+      <presence>Pbd</presence>
+    </bonus-damage>
+    <attack>
+      <name>Primary Attack 1</name>
+      <range-reach>PA1rr</range-reach>
+      <grip>PA1g</grip>
+      <size>PA1sz</size>
+      <damage>PA1dmg</damage>
+      <loads>5</loads>
+      <qualities>PA1 Qualities</qualities>
+    </attack>
+    <attack>
+      <name>Primary Attack 2</name>
+      <range-reach>PA2rr</range-reach>
+      <grip>PA2g</grip>
+      <size>PA2sz</size>
+      <damage>PA2dmg</damage>
+      <loads>5</loads>
+      <qualities>PA2 Qualities</qualities>
+    </attack>
+    <attack>
+      <name>Other Attack 1</name>
+      <range-reach>OA1rr</range-reach>
+      <grip>OA1g</grip>
+      <size>OA1sz</size>
+      <damage>OA1dmg</damage>
+      <loads>5</loads>
+      <qualities>OA1 Qualities</qualities>
+    </attack>
+    <attack>
+      <name>Other Attack 2</name>
+      <range-reach>OA2rr</range-reach>
+      <grip>OA2g</grip>
+      <size>OA2sz</size>
+      <damage>OA2dmg</damage>
+      <loads>5</loads>
+      <qualities>OA2 Qualities</qualities>
+    </attack>
+    <attack>
+      <name>Other Attack 3</name>
+      <range-reach>OA3rr</range-reach>
+      <grip>OA3g</grip>
+      <size>OA3sz</size>
+      <damage>OA3dmg</damage>
+      <loads>5</loads>
+      <qualities>OA3 Qualities</qualities>
+    </attack>
+    <attack>
+      <name>Other Attack 4</name>
+      <range-reach>OA4rr</range-reach>
+      <grip>OA4g</grip>
+      <size>OA4sz</size>
+      <damage>OA4dmg</damage>
+      <loads>5</loads>
+      <qualities>OA4 Qualities</qualities>
+    </attack>
+    <attack>
+      <name>Other Attack 5</name>
+      <range-reach>OA5rr</range-reach>
+      <grip>OA5g</grip>
+      <size>OA5sz</size>
+      <damage>OA5dmg</damage>
+      <loads>5</loads>
+      <qualities>OA5 Qualities</qualities>
+    </attack>    
+  </attacks>
+  <stress-and-harms>
+    <courage>Courage</courage>
+    <armor-soak>
+      <head>Head</head>
+      <right-arm>RArm</right-arm>
+      <left-arm>LArm</left-arm>
+      <torso>Torso</torso>
+      <right-leg>RLeg</right-leg>
+      <left-leg>LLeg</left-leg>
+    </armor-soak>
+    <armor-qualities>Armor Qualities</armor-qualities>
+    <physical>
+      <vigor score="20">15</vigor>
+      <wounds>5</wounds>
+    </physical>
+    <mental>
+      <resolve score="20">10</resolve>
+      <trauma>5</trauma>
+    </mental>
+  </stress-and-harms>
+  <belongings>
+    <gold>Gold</gold>
+    <upkeep>Upkeep</upkeep>
+    <belonging>Belonging 1</belonging>
+    <belonging>Belonging 2</belonging>
+    <belonging>Belonging 3</belonging>
+    <belonging>Belonging 4</belonging>
+    <belonging>Belonging 5</belonging>
+    <belonging>Additional Belonging 1 Left</belonging>
+    <belonging>Additional Belonging 2 Left</belonging>
+    <belonging>Additional Belonging 3 Left</belonging>
+    <belonging>Additional Belonging 4 Left</belonging>
+    <belonging>Additional Belonging 5 Left</belonging>
+    <belonging>Additional Belonging 6 Left</belonging>
+    <belonging>Additional Belonging 7 Left</belonging>
+    <belonging>Additional Belonging 8 Left</belonging>
+    <belonging>Additional Belonging 9 Left</belonging>
+    <belonging>Additional Belonging 10 Left</belonging>
+    <belonging>Additional Belonging 11 Left</belonging>
+    <belonging>Additional Belonging 1 Right</belonging>
+    <belonging>Additional Belonging 2 Right</belonging>
+    <belonging>Additional Belonging 3 Right</belonging>
+    <belonging>Additional Belonging 4 Right</belonging>
+    <belonging>Additional Belonging 5 Right</belonging>
+    <belonging>Additional Belonging 6 Right</belonging>
+    <belonging>Additional Belonging 7 Right</belonging>
+    <belonging>Additional Belonging 8 Right</belonging>
+    <belonging>Additional Belonging 9 Right</belonging>
+    <belonging>Additional Belonging 10 Right</belonging>
+    <belonging>Additional Belonging 11 Right</belonging>        
+  </belongings>
+  <creatures>
+    <creature>
+      <name>Creature 1 Name</name>
+      <species>Creature 1 Species</species>
+      <agility>C1agi</agility>
+      <awareness>C1awa</awareness>
+      <brawn>C1brw</brawn>
+      <coordination>C1coo</coordination>
+      <intelligence>C1int</intelligence>
+      <personality>C1per</personality>
+      <willpower>C1wil</willpower>
+      <skills-details>Creature 1 Details</skills-details>
+    </creature>
+    <creature>
+      <name>Creature 2 Name</name>
+      <species>Creature 2 Species</species>
+      <agility>C2agi</agility>
+      <awareness>C2awa</awareness>
+      <brawn>C2brw</brawn>
+      <coordination>C2coo</coordination>
+      <intelligence>C2int</intelligence>
+      <personality>C2per</personality>
+      <willpower>C2wil</willpower>
+      <skills-details>Creature 2 Details</skills-details>
+    </creature>    
+  </creatures>
+</character>
