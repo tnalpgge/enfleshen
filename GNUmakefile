@@ -1,6 +1,6 @@
 SOURCEPDF=dnd5e.pdf
 STYLESHEET=dnd5e.xsl
-CHARACTER=qa
+CHARACTER=dnd5e-qa
 DND5E_SRC=$(wildcard hectic-horde-stint-affair/dnd5e/*/*_Level*.xml)
 DND5E_CHARS=$(DND5E_SRC:.xml=.pdf)
 
