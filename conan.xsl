@@ -494,7 +494,6 @@ concat(
     background |
     experience |
     attributes-and-skills |
-    talents |
     belongings |
     stress-and-harms |
     armor-soak |
@@ -625,6 +624,45 @@ concat(
       <xsl:with-param name="focus" select="@focus"/>
       <xsl:with-param name="tn" select="@tn"/>
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="talents">
+    <xsl:apply-templates select="
+				 archetype |
+				 bloodline |
+				 education |
+				 homeland |
+				 nature
+				 "/>
+    <xsl:for-each select="caste">
+      <xsl:call-template name="talent">
+	<xsl:with-param name="fieldname">
+	  <xsl:call-template name="ucfirst2words">
+	    <xsl:with-param name="thing" select="concat(local-name(), '-talent', position())"/>
+	  </xsl:call-template>
+	</xsl:with-param>
+	<xsl:with-param name="talent" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:for-each select="other">
+      <xsl:call-template name="talent">
+	<xsl:with-param name="fieldname">
+	  <xsl:call-template name="ucfirst2words">
+	    <xsl:with-param name="thing">
+	      <xsl:choose>
+		<xsl:when test="position() &lt; 3">
+		  <xsl:value-of select="concat(local-name(), '-talent', position())"/>
+		</xsl:when>
+		<xsl:otherwise>
+		  <xsl:value-of select="concat('more-talent', position() - 2)"/>
+		</xsl:otherwise>
+	      </xsl:choose>
+	    </xsl:with-param>
+	  </xsl:call-template>
+	</xsl:with-param>
+	<xsl:with-param name="talent" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match="
