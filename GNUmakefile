@@ -1,8 +1,12 @@
 SOURCEPDF=dnd5e.pdf
 STYLESHEET=dnd5e.xsl
 CHARACTER=dnd5e-qa
+
 DND5E_SRC=$(wildcard hectic-horde-stint-affair/dnd5e/*/*_Level*.xml)
 DND5E_CHARS=$(DND5E_SRC:.xml=.pdf)
+
+CONAN_SRC=$(wildcard hectic-horde-stint-affair/conan/*/*.xml)
+CONAN_CHARS=$(CONAN_SRC:.xml=.pdf)
 
 all: $(CHARACTER).fdf $(CHARACTER).pdf $(CHARACTER).xfdf
 
@@ -19,3 +23,5 @@ clean:
 	saxon -s:$< -xsl:$(STYLESHEET) | xmllint --format - > $@
 
 dnd5e: $(DND5E_CHARS)
+
+conan: $(CONAN_CHARS)
