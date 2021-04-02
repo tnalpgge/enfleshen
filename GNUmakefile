@@ -7,6 +7,7 @@ DND5E_CHARS=$(DND5E_SRC:.xml=.pdf)
 all: $(CHARACTER).fdf $(CHARACTER).pdf $(CHARACTER).xfdf
 
 clean:
+	rm -f $(CHARACTER).fdf $(CHARACTER).pdf $(CHARACTER).xfdf
 
 %.fdf: %.pdf
 	pdftk $< generate_fdf output $@
@@ -18,4 +19,3 @@ clean:
 	saxon -s:$< -xsl:$(STYLESHEET) | xmllint --format - > $@
 
 dnd5e: $(DND5E_CHARS)
-
