@@ -473,6 +473,40 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="creature">
+    <xsl:param name="index"/>
+    <xsl:param name="creature"/>
+    <xsl:for-each select="$creature/name |
+			  $creature/agility |
+			  $creature/awareness |
+			  $creature/brawn |
+			  $creature/coordination |
+			  $creature/intelligence |
+			  $creature/personality |
+			  $creature/willpower
+			  ">
+      <xsl:call-template name="field">
+	<xsl:with-param name="name">
+	  <xsl:call-template name="ucfirst2words">
+	    <xsl:with-param name="thing">
+	      <xsl:value-of select="concat('creature', $index, '-', local-name())"/>
+	    </xsl:with-param>
+	  </xsl:call-template>
+	</xsl:with-param>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat('Creature', $index, 'SkillsDetails')"/>
+      <xsl:with-param name="value">
+	<xsl:text>Species: </xsl:text>
+	<xsl:value-of select="species/text()"/>
+	<xsl:text>&#xa;</xsl:text>
+	<xsl:value-of select="skills-details/text()"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
   <!-- Walk the document and produce  the output -->
 
   <xsl:template match="node()|comment()">
@@ -758,6 +792,15 @@ concat(
 	  </xsl:choose>
 	</xsl:with-param>
 	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="creatures">
+    <xsl:for-each select="creature">
+      <xsl:call-template name="creature">
+	<xsl:with-param name="index" select="position()"/>
+	<xsl:with-param name="creature" select="."/>
       </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
