@@ -21,6 +21,7 @@ clean:
 
 %.xfdf: %.xml $(STYLESHEET)
 	saxon -s:$< -xsl:$(STYLESHEET) | xmllint --format - > $@
+	#java -jar /usr/share/java/Saxon-HE.jar -s:$< -xsl:$(STYLESHEET) | xmllint --format - > $@
 
 dnd5e: $(DND5E_CHARS)
 
