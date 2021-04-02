@@ -316,26 +316,23 @@ concat(
 
   <xsl:template name="talent">
     <xsl:param name="fieldname"/>
-    <xsl:param name="talentname"/>
-    <xsl:param name="effect"/>
-    <xsl:param name="skill"/>
-    <xsl:param name="rank"/>
+    <xsl:param name="talent"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat($fieldname, 'Name')"/>
-      <xsl:with-param name="value" select="$talentname"/>
+      <xsl:with-param name="value" select="$talent/name/text()"/>
     </xsl:call-template>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat($fieldname, 'Effect')"/>
-      <xsl:with-param name="value" select="$effect"/>
+      <xsl:with-param name="value" select="$talent/effect/text()"/>
     </xsl:call-template>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat($fieldname, 'Skill')"/>
-      <xsl:with-param name="value" select="$skill"/>
+      <xsl:with-param name="value" select="$talent/skill/text()"/>
     </xsl:call-template>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat($fieldname, 'Rank')"/>
-      <xsl:with-param name="value" select="$rank"/>
-    </xsl:call-template>    
+      <xsl:with-param name="value" select="$talent/rank/text()"/>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="acronym-followed-by-word">
@@ -408,6 +405,74 @@ concat(
     </xsl:call-template>    
   </xsl:template>
 
+  <xsl:template name="checkbox-loop">
+    <!--recursive loop until done-->
+    <xsl:param name="i"/>
+    <xsl:param name="max"/>
+    <xsl:param name="watermark"/>
+    <xsl:param name="name"/>
+    <xsl:if test="$i &lt;= $max">
+      <xsl:call-template name="field">
+	<xsl:with-param name="name" select="concat($name, $i)"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value">
+	      <xsl:choose>
+		<xsl:when test="$i &lt;= $watermark">
+		  <xsl:value-of select="number(1)"/>
+		</xsl:when>
+		<xsl:otherwise>
+		  <xsl:value-of select="number(0)"/>
+		</xsl:otherwise>
+	      </xsl:choose>
+	    </xsl:with-param>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+      <xsl:call-template name="checkbox-loop">
+        <xsl:with-param name="i" select="number($i + 1)"/>
+        <xsl:with-param name="max" select="number($max)"/>
+	<xsl:with-param name="watermark" select="number($watermark)"/>
+	<xsl:with-param name="name" select="$name"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="attack">
+    <xsl:param name="fieldname"/>
+    <xsl:param name="attack"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat($fieldname, 'Name')"/>
+      <xsl:with-param name="value" select="$attack/name/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat($fieldname, 'RangeReach')"/>
+      <xsl:with-param name="value" select="$attack/range-reach/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat($fieldname, 'Grip')"/>
+      <xsl:with-param name="value" select="$attack/grip/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat($fieldname, 'Size')"/>
+      <xsl:with-param name="value" select="$attack/size/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat($fieldname, 'Damage')"/>
+      <xsl:with-param name="value" select="$attack/damage/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat($fieldname, 'Qualities')"/>
+      <xsl:with-param name="value" select="$attack/qualities/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="checkbox-loop">
+      <xsl:with-param name="name" select="concat($fieldname, 'Loads')"/>
+      <xsl:with-param name="watermark" select="number($attack/loads/text())"/>
+      <xsl:with-param name="i" select="number(1)"/>
+      <xsl:with-param name="max" select="number(5)"/>
+    </xsl:call-template>
+  </xsl:template>
+
   <!-- Walk the document and produce  the output -->
 
   <xsl:template match="node()|comment()">
@@ -429,7 +494,12 @@ concat(
     background |
     experience |
     attributes-and-skills |
-    talents
+    talents |
+    belongings |
+    stress-and-harms |
+    armor-soak |
+    physical |
+    mental
     ">
     <xsl:apply-templates/>
   </xsl:template>
@@ -570,50 +640,68 @@ concat(
 	  <xsl:with-param name="thing" select="concat(local-name(), '-talent')"/>
 	</xsl:call-template>
       </xsl:with-param>
-      <xsl:with-param name="talentname" select="name/text()"/>
-      <xsl:with-param name="effect" select="effect/text()"/>
-      <xsl:with-param name="skill" select="skill/text()"/>
-      <xsl:with-param name="rank" select="rank/text()"/>
+      <xsl:with-param name="talent" select="."/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="attacks">
-    <xsl:apply-templates/>
+    <xsl:for-each select="attack">
+      <xsl:call-template name="attack">
+	<xsl:with-param name="fieldname">
+	  <xsl:choose>
+	    <xsl:when test="position() &lt; 3">
+	      <xsl:text>PrimaryAttack</xsl:text>
+	      <xsl:value-of select="position()"/>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:text>OtherAttack</xsl:text>
+	      <xsl:value-of select="position() - 2"/>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</xsl:with-param>
+	<xsl:with-param name="attack" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="attacks/attack[position() &lt; 3]">
-    <xsl:comment>
-      <xsl:text> top attack </xsl:text>
-      <xsl:value-of select="position()"/>
-      <xsl:text> </xsl:text>
-    </xsl:comment>
-    <xsl:variable name="index" select="position()"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@weapon"/>
-      <xsl:with-param name="value" select="weapon-name/text()"/>
-    </xsl:call-template>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@bonus"/>
-      <xsl:with-param name="value" select="atk-bonus/text()"/>
-    </xsl:call-template>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@damage"/>
-      <xsl:with-param name="value" select="damage/text()"/>
+  <xsl:template match="vigor | resolve">
+    <xsl:call-template name="checkbox-loop">
+      <xsl:with-param name="i" select="number(1)"/>
+      <xsl:with-param name="max" select="number(@score)"/>
+      <xsl:with-param name="watermark" select="number(text())"/>
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst">
+	  <xsl:with-param name="thing" select="local-name()"/>
+	</xsl:call-template>
+      </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="attacks/attack[position() &gt; 2]"> <!-- ?! -->
-    <xsl:comment>
-      <xsl:text> extra attack </xsl:text>
-      <xsl:value-of select="position()"/>
-      <xsl:text> </xsl:text>
-    </xsl:comment>
-    <xsl:value-of select="weapon-name/text()"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="atk-bonus/text()"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="damage/text()"/>
-    <xsl:text>&#x0a;</xsl:text>
+  <xsl:template match="trauma | wounds">
+    <xsl:call-template name="checkbox-loop">
+      <xsl:with-param name="i" select="number(1)"/>
+      <xsl:with-param name="max" select="number(5)"/>
+      <xsl:with-param name="watermark" select="number(text())"/>
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst">
+	  <xsl:with-param name="thing" select="local-name()"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
+
+  <xsl:template match="fortune-points">
+    <xsl:call-template name="checkbox-loop">
+      <xsl:with-param name="i" select="number(1)"/>
+      <xsl:with-param name="max" select="number(5)"/>
+      <xsl:with-param name="watermark" select="number(text())"/>
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst2words">
+	  <xsl:with-param name="thing" select="local-name()"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
 
 </xsl:stylesheet>
