@@ -494,7 +494,6 @@ concat(
     background |
     experience |
     attributes-and-skills |
-    belongings |
     stress-and-harms |
     armor-soak |
     physical |
@@ -741,5 +740,26 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="belongings">
+    <xsl:for-each select="belonging">
+      <xsl:call-template name="field">
+	<xsl:with-param name="name">
+	  <xsl:choose>
+	    <xsl:when test="position() &lt; 6">
+	      <xsl:call-template name="ucfirst">
+		<xsl:with-param name="thing" select="concat(local-name(), position())"/>
+	      </xsl:call-template>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:call-template name="ucfirst2words">
+		<xsl:with-param name="thing" select="concat('additional-', local-name(), position() - 5)"/>
+	      </xsl:call-template>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</xsl:with-param>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
 
 </xsl:stylesheet>
