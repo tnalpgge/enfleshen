@@ -312,85 +312,104 @@
   <!-- page 2 -->
   <feats>
     <ancestry>
-      <special/>
-      <heritage/>
-      <ancestry-feat level="1"/>
-      <ancestry-feat level="5"/>
-      <ancestry-feat level="9"/>
-      <ancestry-feat level="13"/>
-      <ancestry-feat level="17"/>
+      <special>Special Feat</special>
+      <heritage>Heritage Feat</heritage>
+      <ancestry-feat level="1">Ancestry Feat 1</ancestry-feat>
+      <ancestry-feat level="5">Ancestry Feat 5</ancestry-feat>
+      <ancestry-feat level="9">Ancestry Feat 9</ancestry-feat>
+      <ancestry-feat level="13">Ancestry Feat 13</ancestry-feat>
+      <ancestry-feat level="17">Ancestry Feat 17</ancestry-feat>
     </ancestry>
     <skill>
-      <background/>
-      <skill-feat level="2"/>
-      <skill-feat level="4"/>
-      <skill-feat level="6"/>
-      <skill-feat level="8"/>
-      <skill-feat level="10"/>
-      <skill-feat level="12"/>
-      <skill-feat level="14"/>
-      <skill-feat level="16"/>
-      <skill-feat level="18"/>
-      <skill-feat level="20"/>
+      <background>Background Feat</background>
+      <skill-feat level="2">Skill Feat 2</skill-feat>
+      <skill-feat level="4">Skill Feat 4</skill-feat>
+      <skill-feat level="6">Skill Feat 6</skill-feat>
+      <skill-feat level="8">Skill Feat 8</skill-feat>
+      <skill-feat level="10">Skill Feat 10</skill-feat>
+      <skill-feat level="12">Skill Feat 12</skill-feat>
+      <skill-feat level="14">Skill Feat 14</skill-feat>
+      <skill-feat level="16">Skill Feat 16</skill-feat>
+      <skill-feat level="18">Skill Feat 18</skill-feat>
+      <skill-feat level="20">Skill Feat 20</skill-feat>
     </skill>
     <general>
-      <general-feat level="3"/>
-      <general-feat level="7"/>
-      <general-feat level="11"/>
-      <general-feat level="15"/>
-      <general-feat level="19"/>
+      <general-feat level="3">General Feat 3</general-feat>
+      <general-feat level="7">General Feat 7</general-feat>
+      <general-feat level="11">General Feat 11</general-feat>
+      <general-feat level="15">General Feat 15</general-feat>
+      <general-feat level="19">General Feat 19</general-feat>
     </general>
     <class-feats>
-      <feature level="1"/>
-      <feature level="1"/>
-      <feature level="1"/>
-      <class-feat level="1"/>
-      <class-feat level="2"/>
-      <feature level="3"/>
-      <class-feat level="4"/>
-      <feature level="5"/>
-      <class-feat level="6"/>
-      <feature level="7"/>
-      <class-feat level="8"/>
-      <feature level="9"/>
-      <class-feat level="10"/>
-      <feature level="11"/>
-      <class-feat level="12"/>
-      <feature level="13"/>
-      <class-feat level="14"/>
-      <feature level="15"/>
-      <class-feat level="16"/>
-      <feature level="17"/>
-      <class-feat level="18"/>
-      <feature level="19"/>
-      <class-feat level="20"/>
+      <feature level="1">Class Feature 1A</feature>
+      <feature level="1">Class Feature 1B</feature>
+      <feature level="1">Class Feature 1C</feature>
+      <feature level="1">Class Feature 1D</feature>      
+      <class-feat level="1">Class Feat 1</class-feat>
+      <class-feat level="2">Class Feat 2</class-feat>
+      <feature level="3">Class Feature 3</feature>
+      <class-feat level="4">Class Feat 4</class-feat>
+      <feature level="5">Class Feature 5</feature>
+      <class-feat level="6">Class Feat 6</class-feat>
+      <feature level="7">Class Feature 7</feature>
+      <class-feat level="8">Class Feat 8</class-feat>
+      <feature level="9">Class Feature 9</feature>
+      <class-feat level="10">Class Feat 10</class-feat>
+      <feature level="11">Class Feature 11</feature>
+      <class-feat level="12">Class Feat 12</class-feat>
+      <feature level="13">Class Feature 13</feature>
+      <class-feat level="14">Class Feat 14</class-feat>
+      <feature level="15">Class Feature 15</feature>
+      <class-feat level="16">Class Feat 16</class-feat>
+      <feature level="17">Class Feature 17</feature>
+      <class-feat level="18">Class Feat 18</class-feat>
+      <feature level="19">Class Feature 19</feature>
+      <class-feat level="20">Class Feat 20</class-feat>
     </class-feats>
     <bonus>
-      <bonus-feat/>
-      <bonus-feat/>
+      <bonus-feat>Bonus Feat 1</bonus-feat>
+      <bonus-feat>Bonus Feat 2</bonus-feat>
     </bonus>
   </feats>
   <inventory>
     <worn-items>
-      <worn-item invest="" bulk=""/>
+      <worn-item invest="true" bulk="1">Worn Item 1</worn-item>
+      <worn-item invest="" bulk="L">Worn Item 2</worn-item>
+      <worn-item invest="true" bulk="-">Worn Item 3</worn-item>
+      <worn-item invest="" bulk="1">Worn Item 4</worn-item>
+      <worn-item invest="true" bulk="L">Worn Item 5</worn-item>
+      <worn-item invest="" bulk="-">Worn Item 6</worn-item>
+      <worn-item invest="true" bulk="1">Worn Item 7</worn-item>
+      <worn-item invest="" bulk="L">Worn Item 8</worn-item>
+      <worn-item invest="true" bulk="-">Worn Item 9</worn-item>
     </worn-items>
     <readied-items>
-      <readied-item bulk=""/>
+      <readied-item bulk="1">Readied Item 1</readied-item>
+      <readied-item bulk="L">Readied Item 2</readied-item>
+      <readied-item bulk="-">Readied Item 3</readied-item>
+      <readied-item bulk="1">Readied Item 4</readied-item>
+      <readied-item bulk="L">Readied Item 5</readied-item>
+      <readied-item bulk="-">Readied Item 6</readied-item>      
     </readied-items>
     <other-items>
-      <other-item bulk=""/>
+      <other-item bulk="1">Other Item 1</other-item>
+      <other-item bulk="L">Other Item 2</other-item>
+      <other-item bulk="-">Other Item 3</other-item>
+      <other-item bulk="1">Other Item 4</other-item>
+      <other-item bulk="L">Other Item 5</other-item>
+      <other-item bulk="-">Other Item 6</other-item>      
     </other-items>
-    <bulk/>
+    <bulk>bulkT</bulk>
     <encumbrance>
-      <encumbered/>
-      <maximum/>
-      <str-mod/>
+      <encumbered>eE</encumbered>
+      <maximum>eX</maximum>
+      <str-mod>eM</str-mod>
     </encumbrance>
     <money>
-      <cp/>
-      <sp/>
-      <gp/>
-      <pp/>
+      <cp>CP</cp>
+      <sp>SP</sp>
+      <gp>GP</gp>
+      <pp>PP</pp>
     </money>
   </inventory>
   <!-- page 3 -->
