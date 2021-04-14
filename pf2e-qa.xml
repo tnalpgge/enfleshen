@@ -617,84 +617,84 @@
     </spell>
   </spells>
   <!-- page 3 -->
-  <character-sketch/>
-  <ethnicity/>
-  <nationality/>
-  <birthplace/>
-  <age/>
-  <gender-pronouns/>
-  <height/>
-  <weight/>
-  <appearance/>
+  <character-sketch>Character Sketch Image</character-sketch>
+  <ethnicity>Ethnicity</ethnicity>
+  <nationality>Nationality</nationality>
+  <birthplace>Birthplace</birthplace>
+  <age>Age</age>
+  <gender-pronouns>Gender/Pronouns</gender-pronouns>
+  <height>Height</height>
+  <weight>Weight</weight>
+  <appearance>Appearance</appearance>
   <personality>
-    <attitude/>
-    <beliefs/>
-    <likes/>
-    <dislikes/>
-    <catchphrases/>
+    <attitude>Attitude</attitude>
+    <beliefs>Beliefs</beliefs>
+    <likes>Likes</likes>
+    <dislikes>Dislikes</dislikes>
+    <catchphrases>Catchphrases</catchphrases>
   </personality>
   <campaign-notes>
-    <notes/>
-    <allies/>
-    <enemies/>
-    <organizations/>
+    <notes>Campaign Notes</notes>
+    <allies>Allies</allies>
+    <enemies>Enemies</enemies>
+    <organizations>Organizations</organizations>
   </campaign-notes>
   <actions-activities>
-    <action actions="" page="">
-      <name/>
-      <traits/>
-      <description/>
+    <action actions="1" page="a1pg">
+      <name>Action 1 Name</name>
+      <traits>Action 1 Traits</traits>
+      <description>Action 1 Description</description>
     </action>
-    <action actions="" page="">
-      <name/>
-      <traits/>
-      <description/>
+    <action actions="2" page="a2pg">
+      <name>Action 2 Name</name>
+      <traits>Action 2 Traits</traits>
+      <description>Action 2 Description</description>
     </action>
-    <action actions="" page="">
-      <name/>
-      <traits/>
-      <description/>
+    <action actions="3" page="a3pg">
+      <name>Action 3 Name</name>
+      <traits>Action 3 Traits</traits>
+      <description>Action 3 Description</description>
     </action>
-    <action actions="" page="">
-      <name/>
-      <traits/>
-      <description/>
+    <action actions="R" page="a4pg">
+      <name>Action 4 Name</name>
+      <traits>Action 4 Traits</traits>
+      <description>Action 4 Description</description>
     </action>
-    <action actions="" page="">
-      <name/>
-      <traits/>
-      <description/>
+    <action actions="1" page="a5pg">
+      <name>Action 5 Name</name>
+      <traits>Action 5 Traits</traits>
+      <description>Action 5 Description</description>
     </action>
-    <action actions="" page="">
-      <name/>
-      <traits/>
-      <description/>
+    <action actions="2" page="a6pg">
+      <name>Action 6 Name</name>
+      <traits>Action 6 Traits</traits>
+      <description>Action 6 Description</description>
     </action>
   </actions-activities>
   <free-actions-reactions>
-    <action free="" reaction="" page="">
-      <name/>
-      <traits/>
-      <trigger/>
-      <description/>
+    <action free="true" reaction="" page="fr1pg">
+      <name>Free/Reaction 1 Name</name>
+      <traits>Free/Reaction 1 Traits</traits>
+      <trigger>Free/Reaction 1 Trigger</trigger>
+      <description>Free/Reaction 1 Description</description>
     </action>
-    <action free="" reaction="" page="">
-      <name/>
-      <traits/>
-      <trigger/>
-      <description/>
+    <action free="" reaction="true" page="fr2pg">
+      <name>Free/Reaction 2 Name</name>
+      <traits>Free/Reaction 2 Traits</traits>
+      <trigger>Free/Reaction 2 Trigger</trigger>
+      <description>Free/Reaction 2 Description</description>
     </action>
-    <action free="" reaction="" page="">
-      <name/>
-      <traits/>
-      <trigger/>
-      <description/>
+    <action free="true" reaction="" page="fr3pg">
+      <name>Free/Reaction 3 Name</name>
+      <traits>Free/Reaction 3 Traits</traits>
+      <trigger>Free/Reaction 3 Trigger</trigger>
+      <description>Free/Reaction 3 Description</description>
     </action>
-    <action free="" reaction="" page="">
-      <name/>
-      <traits/>
-      <trigger/>
-      <description/>
+    <action free="" reaction="true" page="fr4pg">
+      <name>Free/Reaction 4 Name</name>
+      <traits>Free/Reaction 4 Traits</traits>
+      <trigger>Free/Reaction 4 Trigger</trigger>
+      <description>Free/Reaction 4 Description</description>
     </action>
   </free-actions-reactions>
 </character>
