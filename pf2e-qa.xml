@@ -412,211 +412,211 @@
       <pp>PP</pp>
     </money>
   </inventory>
-  <!-- page 3 -->
+  <!-- page 4 -->
   <spellcasting>
     <attack-roll>
-      <total/>
-      <key/>
-      <proficiency level=""/>
+      <total>saT</total>
+      <key>saK</key>
+      <proficiency level="legendary">saP</proficiency>
     </attack-roll>
     <spell-dc>
-      <total/>
-      <key/>
-      <proficency level=""/>
+      <total>sdT</total>
+      <key>sdK</key>
+      <proficency level="trained">sdP</proficency>
     </spell-dc>
-    <traditions arcane="" divine="" occult="" primal=""/>
-    <methods prepared="" spontaneous=""/>
+    <traditions arcane="true" divine="true" occult="true" primal="true"/>
+    <methods prepared="true" spontaneous="true"/>
   </spellcasting>
   <cantrips>
-    <cantrip prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <cantrip prepared="true" actions="1" material="true" somatic="" verbal="">
+      <name>Cantrip 1 Name</name>
+      <description>Cantrip 1 Description</description>
     </cantrip>
-    <cantrip prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <cantrip prepared="" actions="2" material="" somatic="true" verbal="">
+      <name>Cantrip 2 Name</name>
+      <description>Cantrip 2 Description</description>
     </cantrip>
-    <cantrip prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <cantrip prepared="true" actions="3" material="" somatic="" verbal="true">
+      <name>Cantrip 3 Name</name>
+      <description>Cantrip 3 Description</description>
     </cantrip>
-    <cantrip prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <cantrip prepared="" actions="R" material="true" somatic="true" verbal="">
+      <name>Cantrip 4 Name</name>
+      <description>Cantrip 4 Description</description>
     </cantrip>
-    <cantrip prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <cantrip prepared="true" actions="1" material="true" somatic="" verbal="true">
+      <name>Cantrip 5 Name</name>
+      <description>Cantrip 5 Description</description>
     </cantrip>
-    <cantrip prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <cantrip prepared="" actions="2" material="" somatic="true" verbal="true">
+      <name>Cantrip 6 Name</name>
+      <description>Cantrip 6 Description</description>
     </cantrip>
-    <cantrip prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <cantrip prepared="true" actions="3" material="true" somatic="true" verbal="true">
+      <name>Cantrip 7 Name</name>
+      <description>Cantrip 7 Description</description>
     </cantrip>
   </cantrips>
   <innate-spells>
-    <innate-spell frequency="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <innate-spell frequency="Freq1" actions="R" material="true" somatic="" verbal="">
+      <name>Innate Spell 1 Name</name>
+      <description>Innate Spell 1 Description</description>
     </innate-spell>
-    <innate-spell frequency="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <innate-spell frequency="Freq2" actions="1" material="" somatic="true" verbal="">
+      <name>Innate Spell 2 Name</name>
+      <description>Innate Spell 2 Description</description>
     </innate-spell>
   </innate-spells>
   <focus-spells>
-    <focus-points current="" maximum=""/>
-    <focus-spell actions="" material="" somatic="" verbal=""/>
-    <focus-spell actions="" material="" somatic="" verbal=""/>
-    <focus-spell actions="" material="" somatic="" verbal=""/>
-    <focus-spell actions="" material="" somatic="" verbal=""/>
+    <focus-points current="fpCur" maximum="fpMax"/>
+    <focus-spell actions="2" material="" somatic="" verbal="true"/>
+    <focus-spell actions="3" material="true" somatic="true" verbal=""/>
+    <focus-spell actions="R" material="true" somatic="" verbal="true"/>
+    <focus-spell actions="1" material="" somatic="true" verbal="true"/>
   </focus-spells>
-  <slots cantrip-level="">
-    <level number="1" total="" remaining=""/>
-    <level number="2" total="" remaining=""/>
-    <level number="3" total="" remaining=""/>
-    <level number="4" total="" remaining=""/>
-    <level number="5" total="" remaining=""/>
-    <level number="6" total="" remaining=""/>
-    <level number="7" total="" remaining=""/>
-    <level number="8" total="" remaining=""/>
-    <level number="9" total="" remaining=""/>
-    <level number="10" total="" remaining=""/>
+  <slots cantrip-level="0">
+    <level number="1" total="10" remaining="9"/>
+    <level number="2" total="9" remaining="8"/>
+    <level number="3" total="8" remaining="7"/>
+    <level number="4" total="7" remaining="6"/>
+    <level number="5" total="6" remaining="5"/>
+    <level number="6" total="5" remaining="4"/>
+    <level number="7" total="4" remaining="3"/>
+    <level number="8" total="3" remaining="2"/>
+    <level number="9" total="2" remaining="1"/>
+    <level number="10" total="1" remaining="0"/>
   </slots>
   <spells>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="1" prepared="" actions="2" material="true" somatic="true" verbal="true">
+      <name>Spell Name 1</name>
+      <description>Spell Description 1</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="2" prepared="true" actions="3" material="true" somatic="true" verbal="true">
+      <name>Spell Name 2</name>
+      <description>Spell Description 2</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="3" prepared="" actions="R" material="true" somatic="" verbal="">
+      <name>Spell Name 3</name>
+      <description>Spell Description 3</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="4" prepared="true" actions="1" material="" somatic="true" verbal="">
+      <name>Spell Name 4</name>
+      <description>Spell Description 4</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="5" prepared="" actions="2" material="true" somatic="" verbal="">
+      <name>Spell Name 5</name>
+      <description>Spell Description 5</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="6" prepared="true" actions="3" material="" somatic="" verbal="true">
+      <name>Spell Name 6</name>
+      <description>Spell Description 6</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="7" prepared="" actions="R" material="true" somatic="true" verbal="">
+      <name>Spell Name 7</name>
+      <description>Spell Description 7</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="8" prepared="true" actions="1" material="true" somatic="true" verbal="true">
+      <name>Spell Name 8</name>
+      <description>Spell Description 8</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="9" prepared="" actions="2" material="true" somatic="" verbal="">
+      <name>Spell Name 9</name>
+      <description>Spell Description 9</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="10" prepared="true" actions="3" material="" somatic="true" verbal="">
+      <name>Spell Name 10</name>
+      <description>Spell Description 10</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="1" prepared="" actions="R" material="true" somatic="" verbal="true">
+      <name>Spell Name 11</name>
+      <description>Spell Description 11</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="2" prepared="true" actions="1" material="true" somatic="true" verbal="true">
+      <name>Spell Name 12</name>
+      <description>Spell Description 12</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="3" prepared="" actions="2" material="true" somatic="true" verbal="">
+      <name>Spell Name 13</name>
+      <description>Spell Description 13</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="4" prepared="true" actions="3" material="true" somatic="true" verbal="true">
+      <name>Spell Name 14</name>
+      <description>Spell Description 14</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="5" prepared="" actions="R" material="true" somatic="" verbal="">
+      <name>Spell Name 15</name>
+      <description>Spell Description 15</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="6" prepared="true" actions="1" material="" somatic="true" verbal="true">
+      <name>Spell Name 16</name>
+      <description>Spell Description 16</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="7" prepared="" actions="2" material="true" somatic="" verbal="">
+      <name>Spell Name 17</name>
+      <description>Spell Description 17</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="8" prepared="true" actions="3" material="true" somatic="true" verbal="true">
+      <name>Spell Name 18</name>
+      <description>Spell Description 18</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="9" prepared="" actions="R" material="true" somatic="true" verbal="">
+      <name>Spell Name 19</name>
+      <description>Spell Description 19</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="10" prepared="true" actions="1" material="true" somatic="true" verbal="true">
+      <name>Spell Name 20</name>
+      <description>Spell Description 20</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="1" prepared="" actions="2" material="true" somatic="" verbal="true">
+      <name>Spell Name 21</name>
+      <description>Spell Description 21</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="2" prepared="true" actions="3" material="" somatic="true" verbal="">
+      <name>Spell Name 22</name>
+      <description>Spell Description 22</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="3" prepared="" actions="R" material="true" somatic="" verbal="">
+      <name>Spell Name 23</name>
+      <description>Spell Description 23</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="4" prepared="true" actions="1" material="true" somatic="true" verbal="true">
+      <name>Spell Name 24</name>
+      <description>Spell Description 24</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="5" prepared="" actions="2" material="true" somatic="true" verbal="">
+      <name>Spell Name 25</name>
+      <description>Spell Description 25</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="6" prepared="true" actions="3" material="" somatic="" verbal="true">
+      <name>Spell Name 26</name>
+      <description>Spell Description 26</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="7" prepared="" actions="R" material="true" somatic="" verbal="">
+      <name>Spell Name 27</name>
+      <description>Spell Description 27</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="8" prepared="true" actions="1" material="" somatic="true" verbal="">
+      <name>Spell Name 28</name>
+      <description>Spell Description 28</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="9" prepared="" actions="2" material="true" somatic="" verbal="">
+      <name>Spell Name 29</name>
+      <description>Spell Description 29</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="10" prepared="true" actions="3" material="" somatic="" verbal="true">
+      <name>Spell Name 30</name>
+      <description>Spell Description 30</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="1" prepared="" actions="R" material="true" somatic="true" verbal="">
+      <name>Spell Name 31</name>
+      <description>Spell Description 31</description>
     </spell>
-    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
-      <name/>
-      <description/>
+    <spell level="2" prepared="true" actions="1" material="true" somatic="true" verbal="true">
+      <name>Spell Name 32</name>
+      <description>Spell Description 32</description>
     </spell>
   </spells>
-  <!-- page 4 -->
+  <!-- page 3 -->
   <character-sketch/>
   <ethnicity/>
   <nationality/>
