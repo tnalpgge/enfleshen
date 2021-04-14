@@ -1,0 +1,681 @@
+<?xml version="1.0"?>
+<character>
+  <!-- page 1 -->
+  <character-name>QA Character</character-name>
+  <player-name>QA Player</player-name>
+  <xp>XP</xp>
+  <ancestry>Ancestry</ancestry>
+  <heritage>Heritage</heritage>
+  <background>Background</background>
+  <class>Class</class>
+  <size>SZ</size>
+  <alignment>AL</alignment>
+  <traits>Traits</traits>
+  <deity>Deity</deity>
+  <level>Level</level>
+  <hero-points>Hero</hero-points>
+  <abilities>
+    <strength>StrScore</strength>
+    <dexterity>DexScore</dexterity>
+    <constitution>ConScore</constitution>
+    <intelligence>IntScore</intelligence>
+    <wisdom>WisScore</wisdom>
+    <charisma>ChaScore</charisma>
+  </abilities>
+  <class-dc>
+    <total>cdcT</total>
+    <key>cdcK</key>
+    <proficiency level="legendary">cdcP</proficiency>
+    <item>cdcI</item>
+  </class-dc>
+  <armor-class>
+    <total>acT</total>
+    <dex-mod>acD</dex-mod>
+    <cap>acC</cap>
+    <proficiency level="legendary">acP</proficiency>
+    <item>acI</item>
+    <unarmored level="legendary"/>
+    <light level="master"/>
+    <medium level="expert"/>
+    <heavy level="trained"/>
+    <shield>
+      <bonus>shB</bonus>
+      <hardness>shH</hardness>
+      <max-hp>shM</max-hp>
+      <break-threshold>shBT</break-threshold>
+      <current-hp>shC</current-hp>
+    </shield>
+  </armor-class>
+  <saving-throws>
+    <fortitude>
+      <total>fT</total>
+      <con-mod>fM</con-mod>
+      <proficiency level="legendary">fP</proficiency>
+      <item>fI</item>
+    </fortitude>
+    <reflex>
+      <total>rT</total>
+      <dex-mod>rM</dex-mod>
+      <proficiency level="master">rP</proficiency>
+      <item>rI</item>
+    </reflex>
+    <will>
+      <total>wT</total>
+      <wis-mod>wM</wis-mod>
+      <proficiency level="expert">wP</proficiency>
+      <item>wI</item>
+    </will>
+    <notes>Saving Throw Notes</notes>
+  </saving-throws>
+  <hit-points>
+    <maximum>hpM</maximum>
+    <current>Current HP</current>
+    <temporary>Temp HP</temporary>
+    <dying>hpD</dying>
+    <wounded>hpW</wounded>
+    <resistances>Resistances</resistances>
+    <immunities>Immunities</immunities>
+    <conditions>Conditions</conditions>
+  </hit-points>
+  <perception>
+    <total>perT</total>
+    <wis-mod>perM</wis-mod>
+    <proficiency level="trained">perP</proficiency>
+    <senses>Senses</senses>
+  </perception>
+  <speed>Speed</speed>
+  <movement-types>Movement Types</movement-types>
+  <melee-strikes>
+    <melee-strike>
+      <weapon>Melee Weapon 1</weapon>
+      <total>mw1T</total>
+      <str-mod>mw1AM</str-mod>
+      <proficiency level="trained">mw1P</proficiency>
+      <item>mw1I</item>
+      <damage>
+        <dice>mw1DD</dice>
+        <str-mod>mw1DM</str-mod>
+        <type bludgeoning="true" piercing="" slashing=""/>
+      </damage>
+      <specialization>mw1S</specialization>
+      <other>MW1 Other</other>
+      <traits>MW1 Traits</traits>
+    </melee-strike>
+    <melee-strike>
+      <weapon>Melee Weapon 2</weapon>
+      <total>mw2T</total>
+      <str-mod>mw2AM</str-mod>
+      <proficiency level="expert">mw2P</proficiency>
+      <item>mw2I</item>
+      <damage>
+        <dice>mw2DD</dice>
+        <str-mod>mw2DM</str-mod>
+        <type bludgeoning="" piercing="true" slashing=""/>
+      </damage>
+      <specialization>mw2S</specialization>
+      <other>MW2 Other</other>
+      <traits>MW2 Traits</traits>
+    </melee-strike>
+    <melee-strike>
+      <weapon>Melee Weapon 3</weapon>
+      <total>mw3T</total>
+      <str-mod>mw3AM</str-mod>
+      <proficiency level="master">mw3P</proficiency>
+      <item>mw3I</item>
+      <damage>
+        <dice>mw3DD</dice>
+        <str-mod>mw3DM</str-mod>
+        <type bludgeoning="" piercing="" slashing="true"/>
+      </damage>
+      <specialization>mw3S</specialization>
+      <other>MW3 Other</other>
+      <traits>MW3 Traits</traits>
+    </melee-strike>
+  </melee-strikes>
+  <ranged-strikes>
+    <ranged-strike>
+      <weapon>Ranged Weapon 1</weapon>
+      <total>rw1T</total>
+      <dex-mod>rw1AM</dex-mod>
+      <proficiency level="legendary">rw1P</proficiency>
+      <item>rw1I</item>
+      <damage>
+        <dice>rw1DD</dice>
+        <special>rw1DS</special>
+        <type bludgeoning="" piercing="" slashing="true"/>
+      </damage>
+      <specialization>rw1S</specialization>
+      <other>RW1 Other</other>
+      <traits>RW1 Traits</traits>
+    </ranged-strike>
+    <ranged-strike>
+      <weapon>Ranged Weapon 2</weapon>
+      <total>rw2T</total>
+      <dex-mod>rw2AM</dex-mod>
+      <proficiency level="untrained">rw2P</proficiency>
+      <item>rw2I</item>
+      <damage>
+        <dice>rw2DD</dice>
+        <special>rw2DS</special>
+        <type bludgeoning="" piercing="true" slashing=""/>
+      </damage>
+      <specialization>rw2S</specialization>
+      <other>RW2 Other</other>
+      <traits>RW2 Traits</traits>
+    </ranged-strike>
+    <ranged-strike>
+      <weapon>Ranged Weapon 3</weapon>
+      <total>rw3T</total>
+      <dex-mod>rw3AM</dex-mod>
+      <proficiency level="trained">rw3P</proficiency>
+      <item>rw3I</item>
+      <damage>
+        <dice>rw3DD</dice>
+        <special>rw3DS</special>
+        <type bludgeoning="true" piercing="" slashing=""/>
+      </damage>
+      <specialization>rw3S</specialization>
+      <other>RW3 Other</other>
+      <traits>RW3 Traits</traits>
+    </ranged-strike>    
+  </ranged-strikes>
+  <weapon-proficiencies>
+    <simple level="trained"/>
+    <martial level="expert"/>
+    <other level="master">Other Wpn Prof 1</other>
+    <other level="legendary">Other Wpn Prof 2</other>
+  </weapon-proficiencies>
+  <skills>
+    <acrobatics>
+      <total>acrT</total>
+      <dex-mod>acrM</dex-mod>
+      <proficiency level="t">acrP</proficiency>
+      <item>acrI</item>
+      <armor>acrA</armor>
+    </acrobatics>
+    <arcana>
+      <total>arcT</total>
+      <int-mod>arcM</int-mod>
+      <proficiency level="e">arcP</proficiency>
+      <item>arcI</item>
+    </arcana>
+    <athletics>
+      <total>athT</total>
+      <str-mod>athM</str-mod>
+      <proficiency level="m">athP</proficiency>
+      <item>athI</item>
+      <armor>athA</armor>
+    </athletics>
+    <crafting>
+      <total>cftT</total>
+      <int-mod>cftM</int-mod>
+      <proficiency level="l">cftP</proficiency>
+      <item>cftI</item>
+    </crafting>
+    <deception>
+      <total>dcpT</total>
+      <cha-mod>dcpM</cha-mod>
+      <proficiency level="">dcpP</proficiency>
+      <item>dcpI</item>
+    </deception>
+    <diplomacy>
+      <total>dplT</total>
+      <cha-mod>dplM</cha-mod>
+      <proficiency level="T">dplP</proficiency>
+      <item>dplI</item>
+    </diplomacy>
+    <intimidation>
+      <total>itdT</total>
+      <cha-mod>itdM</cha-mod>
+      <proficiency level="E">itdP</proficiency>
+      <item>itdI</item>
+    </intimidation>
+    <lore subject="Subject 1">
+      <total>lr1T</total>
+      <int-mod>lr1M</int-mod>
+      <proficiency level="M">lr1P</proficiency>
+      <item>lr1I</item>
+    </lore>
+    <lore subject="Subject 2">
+      <total>lr2T</total>
+      <int-mod>lr2M</int-mod>
+      <proficiency level="L">lr2P</proficiency>
+      <item>lr2I</item>
+    </lore>
+    <medicine>
+      <total>medT</total>
+      <wis-mod>medM</wis-mod>
+      <proficiency level="">medP</proficiency>
+      <item>medI</item>
+    </medicine>
+    <nature>
+      <total>natT</total>
+      <wis-mod>natM</wis-mod>
+      <proficiency level="toad">natP</proficiency>
+      <item>natI</item>
+    </nature>
+    <occultism>
+      <total>occT</total>
+      <int-mod>occM</int-mod>
+      <proficiency level="eel">occP</proficiency>
+      <item>occI</item>
+    </occultism>
+    <performance>
+      <total>prfT</total>
+      <cha-mod>prfM</cha-mod>
+      <proficiency level="moth">prfP</proficiency>
+      <item>prfI</item>
+    </performance>
+    <religion>
+      <total>rlgT</total>
+      <wis-mod>rlgM</wis-mod>
+      <proficiency level="lizard">rlgP</proficiency>
+      <item>rlgI</item>
+    </religion>
+    <society>
+      <total>socP</total>
+      <int-mod>socM</int-mod>
+      <proficiency level="hahalolno">socP</proficiency>
+      <item>socI</item>
+    </society>
+    <stealth>
+      <total>sthT</total>
+      <dex-mod>sthM</dex-mod>
+      <proficiency level="tra">sthP</proficiency>
+      <item>sthI</item>
+      <armor>sthA</armor>
+    </stealth>
+    <survival>
+      <total>srvT</total>
+      <wis-mod>srvM</wis-mod>
+      <proficiency level="exp">srvP</proficiency>
+      <item>srvI</item>
+    </survival>
+    <thievery>
+      <total>thvT</total>
+      <dex-mod>thvM</dex-mod>
+      <proficiency level="mas">thvP</proficiency>
+      <item>thvI</item>
+      <armor>thvA</armor>
+    </thievery>
+  </skills>
+  <languages>
+    <language>Language 1</language>
+    <language>Language Two</language>
+    <language>Lang 3</language>
+    <language>Lang Four</language>
+    <language>5th Language</language>
+    <language>Sixth Language</language>
+    <language>Tongue the 7th</language>
+    <language>Tongue the Eighth</language> 
+  </languages>
+  <!-- page 2 -->
+  <feats>
+    <ancestry>
+      <special/>
+      <heritage/>
+      <ancestry-feat level="1"/>
+      <ancestry-feat level="5"/>
+      <ancestry-feat level="9"/>
+      <ancestry-feat level="13"/>
+      <ancestry-feat level="17"/>
+    </ancestry>
+    <skill>
+      <background/>
+      <skill-feat level="2"/>
+      <skill-feat level="4"/>
+      <skill-feat level="6"/>
+      <skill-feat level="8"/>
+      <skill-feat level="10"/>
+      <skill-feat level="12"/>
+      <skill-feat level="14"/>
+      <skill-feat level="16"/>
+      <skill-feat level="18"/>
+      <skill-feat level="20"/>
+    </skill>
+    <general>
+      <general-feat level="3"/>
+      <general-feat level="7"/>
+      <general-feat level="11"/>
+      <general-feat level="15"/>
+      <general-feat level="19"/>
+    </general>
+    <class-feats>
+      <feature level="1"/>
+      <feature level="1"/>
+      <feature level="1"/>
+      <class-feat level="1"/>
+      <class-feat level="2"/>
+      <feature level="3"/>
+      <class-feat level="4"/>
+      <feature level="5"/>
+      <class-feat level="6"/>
+      <feature level="7"/>
+      <class-feat level="8"/>
+      <feature level="9"/>
+      <class-feat level="10"/>
+      <feature level="11"/>
+      <class-feat level="12"/>
+      <feature level="13"/>
+      <class-feat level="14"/>
+      <feature level="15"/>
+      <class-feat level="16"/>
+      <feature level="17"/>
+      <class-feat level="18"/>
+      <feature level="19"/>
+      <class-feat level="20"/>
+    </class-feats>
+    <bonus>
+      <bonus-feat/>
+      <bonus-feat/>
+    </bonus>
+  </feats>
+  <inventory>
+    <worn-items>
+      <worn-item invest="" bulk=""/>
+    </worn-items>
+    <readied-items>
+      <readied-item bulk=""/>
+    </readied-items>
+    <other-items>
+      <other-item bulk=""/>
+    </other-items>
+    <bulk/>
+    <encumbrance>
+      <encumbered/>
+      <maximum/>
+      <str-mod/>
+    </encumbrance>
+    <money>
+      <cp/>
+      <sp/>
+      <gp/>
+      <pp/>
+    </money>
+  </inventory>
+  <!-- page 3 -->
+  <spellcasting>
+    <attack-roll>
+      <total/>
+      <key/>
+      <proficiency level=""/>
+    </attack-roll>
+    <spell-dc>
+      <total/>
+      <key/>
+      <proficency level=""/>
+    </spell-dc>
+    <traditions arcane="" divine="" occult="" primal=""/>
+    <methods prepared="" spontaneous=""/>
+  </spellcasting>
+  <cantrips>
+    <cantrip prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </cantrip>
+    <cantrip prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </cantrip>
+    <cantrip prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </cantrip>
+    <cantrip prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </cantrip>
+    <cantrip prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </cantrip>
+    <cantrip prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </cantrip>
+    <cantrip prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </cantrip>
+  </cantrips>
+  <innate-spells>
+    <innate-spell frequency="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </innate-spell>
+    <innate-spell frequency="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </innate-spell>
+  </innate-spells>
+  <focus-spells>
+    <focus-points current="" maximum=""/>
+    <focus-spell actions="" material="" somatic="" verbal=""/>
+    <focus-spell actions="" material="" somatic="" verbal=""/>
+    <focus-spell actions="" material="" somatic="" verbal=""/>
+    <focus-spell actions="" material="" somatic="" verbal=""/>
+  </focus-spells>
+  <slots cantrip-level="">
+    <level number="1" total="" remaining=""/>
+    <level number="2" total="" remaining=""/>
+    <level number="3" total="" remaining=""/>
+    <level number="4" total="" remaining=""/>
+    <level number="5" total="" remaining=""/>
+    <level number="6" total="" remaining=""/>
+    <level number="7" total="" remaining=""/>
+    <level number="8" total="" remaining=""/>
+    <level number="9" total="" remaining=""/>
+    <level number="10" total="" remaining=""/>
+  </slots>
+  <spells>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+    <spell level="" prepared="" actions="" material="" somatic="" verbal="">
+      <name/>
+      <description/>
+    </spell>
+  </spells>
+  <!-- page 4 -->
+  <character-sketch/>
+  <ethnicity/>
+  <nationality/>
+  <birthplace/>
+  <age/>
+  <gender-pronouns/>
+  <height/>
+  <weight/>
+  <appearance/>
+  <personality>
+    <attitude/>
+    <beliefs/>
+    <likes/>
+    <dislikes/>
+    <catchphrases/>
+  </personality>
+  <campaign-notes>
+    <notes/>
+    <allies/>
+    <enemies/>
+    <organizations/>
+  </campaign-notes>
+  <actions-activities>
+    <action actions="" page="">
+      <name/>
+      <traits/>
+      <description/>
+    </action>
+    <action actions="" page="">
+      <name/>
+      <traits/>
+      <description/>
+    </action>
+    <action actions="" page="">
+      <name/>
+      <traits/>
+      <description/>
+    </action>
+    <action actions="" page="">
+      <name/>
+      <traits/>
+      <description/>
+    </action>
+    <action actions="" page="">
+      <name/>
+      <traits/>
+      <description/>
+    </action>
+    <action actions="" page="">
+      <name/>
+      <traits/>
+      <description/>
+    </action>
+  </actions-activities>
+  <free-actions-reactions>
+    <action free="" reaction="" page="">
+      <name/>
+      <traits/>
+      <trigger/>
+      <description/>
+    </action>
+    <action free="" reaction="" page="">
+      <name/>
+      <traits/>
+      <trigger/>
+      <description/>
+    </action>
+    <action free="" reaction="" page="">
+      <name/>
+      <traits/>
+      <trigger/>
+      <description/>
+    </action>
+    <action free="" reaction="" page="">
+      <name/>
+      <traits/>
+      <trigger/>
+      <description/>
+    </action>
+  </free-actions-reactions>
+</character>
