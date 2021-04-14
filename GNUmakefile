@@ -6,7 +6,10 @@ DND5E_SRC=$(wildcard hectic-horde-stint-affair/dnd5e/*/*_Level*.xml)
 DND5E_CHARS=$(DND5E_SRC:.xml=.pdf)
 
 CONAN_SRC=$(wildcard hectic-horde-stint-affair/conan/*/*.xml)
-CONAN_CHARS=$(CONAN_SRC:.xml=.pdf)
+CONAN_CHARS=$(CONAN_SRC:.xml=.xfdf)
+
+PF2E_SRC=$(wildcard hectic-horde-stint-affair/pf2e/*/*_Level*.xml)
+PF2E_CHARS=$(PF2E_SRC:.xml=.xfdf)
 
 all: $(CHARACTER).fdf $(CHARACTER).pdf $(CHARACTER).xfdf
 
@@ -26,3 +29,5 @@ clean:
 dnd5e: $(DND5E_CHARS)
 
 conan: $(CONAN_CHARS)
+
+pf2e: $(PF2E_CHARS)
