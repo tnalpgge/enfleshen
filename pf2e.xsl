@@ -110,6 +110,83 @@
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="ucfirst3words">
+    <xsl:param name="thing"/>
+    <xsl:value-of select="
+concat(
+  upper-case(
+    substring($thing, 1, 1)
+  ),
+  lower-case(
+    substring-before(
+      substring($thing, 2),
+      '-'
+    )
+  ),
+  upper-case(
+    substring(
+      substring-after($thing, '-'),
+      1,
+      1
+    )
+  ),
+  lower-case(
+    substring-before(
+      substring(
+        substring-after($thing, '-'),
+        2
+      ),
+      '-'
+    )
+  ),
+  upper-case(
+    substring(
+      substring-after(
+        substring-after($thing, '-'),
+        '-'
+      ),
+      1,
+      1
+    )
+  ),
+  lower-case(
+    substring(
+      substring-after(
+        substring-after($thing, '-'),
+        '-'
+      ),
+      2
+    )
+  )
+)"/>
+  </xsl:template>
+
+  <xsl:template name="three-word-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst3words">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="saving-throw-modifier">
+    <xsl:param name="save"/>
+    <xsl:param name="score"/>
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name" select="concat($save, '-save-modifier')"/>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$score"/>
+	</xsl:call-template>	
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template name="ability">
     <xsl:param name="name"/>
     <xsl:param name="score"/>
@@ -131,6 +208,12 @@
 	<xsl:with-param name="score" select="$score"/>
       </xsl:call-template>
     </xsl:for-each>
+    <xsl:for-each select="document('')//x:abilities/x:ability[@name=$name]/x:saving-throw">
+      <xsl:call-template name="saving-throw-modifier">
+	<xsl:with-param name="save" select="@name"/>
+	<xsl:with-param name="score" select="$score"/>	
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match="abilities">
@@ -138,6 +221,36 @@
   </xsl:template>
 
   <xsl:template match="abilities/strength">
+    <xsl:call-template name="ability">
+      <xsl:with-param name="name" select="local-name()"/>
+      <xsl:with-param name="score" select="number(text())"/>
+    </xsl:call-template>
+    <!-- also handle melee strikes -->
+    <!-- also handle encumbrance -->
+  </xsl:template>
+
+  <xsl:template match="abilities/dexterity">
+    <xsl:call-template name="ability">
+      <xsl:with-param name="name" select="local-name()"/>
+      <xsl:with-param name="score" select="number(text())"/>
+    </xsl:call-template>
+    <!-- also handle ranged strikes -->
+    <!-- also handle armor class -->
+  </xsl:template>
+
+  <xsl:template match="abilities/wisdom">
+    <xsl:call-template name="ability">
+      <xsl:with-param name="name" select="local-name()"/>
+      <xsl:with-param name="score" select="number(text())"/>
+    </xsl:call-template>
+    <!-- also handle perception -->
+  </xsl:template>
+
+  <xsl:template match="
+    abilities/charisma |
+    abilities/constitution |
+    abilities/intelligence
+    ">
     <xsl:call-template name="ability">
       <xsl:with-param name="name" select="local-name()"/>
       <xsl:with-param name="score" select="number(text())"/>
