@@ -15,12 +15,12 @@
   <level>Level</level>
   <hero-points>Hero</hero-points>
   <abilities>
-    <strength>StrScore</strength>
-    <dexterity>DexScore</dexterity>
-    <constitution>ConScore</constitution>
-    <intelligence>IntScore</intelligence>
-    <wisdom>WisScore</wisdom>
-    <charisma>ChaScore</charisma>
+    <strength>8</strength>
+    <dexterity>10</dexterity>
+    <constitution>12</constitution>
+    <intelligence>14</intelligence>
+    <wisdom>16</wisdom>
+    <charisma>18</charisma>
   </abilities>
   <class-dc>
     <total>cdcT</total>

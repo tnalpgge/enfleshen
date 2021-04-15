@@ -84,7 +84,7 @@ concat(
     <xsl:call-template name="field">
       <xsl:with-param name="name">
 	<xsl:call-template name="ucfirst2words">
-	  <xsl:with-param name="thing" select="local-name()"/>
+	  <xsl:with-param name="thing" select="$name"/>
 	</xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="value" select="$value"/>
