@@ -26,7 +26,8 @@
     <x:ability name="intelligence">
       <x:skill name="arcana"/>
       <x:skill name="crafting"/>
-      <x:skill name="lore"/>
+      <x:skill name="lore1"/>
+      <x:skill name="lore2"/>      
       <x:skill name="occultism"/>
       <x:skill name="society"/>
     </x:ability>
@@ -94,6 +95,19 @@
   <xsl:template name="ability-modifier">
     <xsl:param name="score"/>
     <xsl:value-of select="floor($score div 2) - 5"/>
+  </xsl:template>
+
+  <xsl:template name="skill-modifier">
+    <xsl:param name="skill"/>
+    <xsl:param name="score"/>
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat($skill, '-modifier')"/>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$score"/>
+	</xsl:call-template>	
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="ability">
