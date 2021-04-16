@@ -13,6 +13,9 @@
   <x:abilities>
     <x:ability name="strength">
       <x:skill name="athletics"/>
+      <x:melee-strike/>
+      <x:melee-strike/>
+      <x:melee-strike/>      
     </x:ability>
     <x:ability name="dexterity">
       <x:skill name="acrobatics"/>
@@ -216,17 +219,50 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template name="melee-ability-modifier">
+    <xsl:param name="seq"/>
+    <xsl:param name="score"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst3words">
+	  <xsl:with-param name="thing" select="concat('melee-strike', $seq, '-modifier')"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$score"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template match="abilities">
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="abilities/strength">
+    <xsl:variable name="name" select="local-name()"/>
+    <xsl:variable name="score" select="number(text())"/>    
     <xsl:call-template name="ability">
-      <xsl:with-param name="name" select="local-name()"/>
-      <xsl:with-param name="score" select="number(text())"/>
+      <xsl:with-param name="name" select="$name"/>
+      <xsl:with-param name="score" select="$score"/>
     </xsl:call-template>
-    <!-- also handle melee strikes -->
-    <!-- also handle encumbrance -->
+    <xsl:for-each select="document('')//x:abilities/x:ability[@name=$name]/x:melee-strike">
+      <xsl:call-template name="melee-ability-modifier">
+	<xsl:with-param name="seq" select="position()"/>
+	<xsl:with-param name="score" select="$score"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name">
+	<xsl:text>encumbrance-modifier</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$score"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="abilities/dexterity">
