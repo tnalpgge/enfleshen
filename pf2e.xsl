@@ -324,6 +324,7 @@ concat(
 		       abilities |
 		       armor-class |
 		       class-dc |
+		       saving-throws |
 		       shield |
 		       spellcasting |
 		       spellcasting/attack-roll |
@@ -722,6 +723,31 @@ concat(
     <xsl:call-template name="three-word-field">
       <xsl:with-param name="name" select="concat('shield-', local-name())"/>
       <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="saving-throw">
+    <xsl:param name="name"/>
+    <xsl:for-each select="total | item">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat($name, '-save-', local-name())"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:call-template name="proficiency-fields">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst2words">
+	  <xsl:with-param name="thing" select="concat($name, '-save')"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="proficiency/@level"/>
+      <xsl:with-param name="override" select="proficiency/text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="fortitude | reflex | will">
+    <xsl:call-template name="saving-throw">
+      <xsl:with-param name="name" select="local-name()"/>
     </xsl:call-template>
   </xsl:template>
   
