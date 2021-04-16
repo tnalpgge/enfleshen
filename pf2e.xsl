@@ -22,6 +22,9 @@
       <x:skill name="stealth"/>
       <x:skill name="thievery"/>
       <x:saving-throw name="reflex"/>
+      <x:ranged-strike/>
+      <x:ranged-strike/>
+      <x:ranged-strike/>      
     </x:ability>
     <x:ability name="constitution">
       <x:saving-throw name="fortitude"/>
@@ -219,13 +222,14 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template name="melee-ability-modifier">
+  <xsl:template name="strike-ability-modifier">
+    <xsl:param name="strike"/>
     <xsl:param name="seq"/>
     <xsl:param name="score"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name">
 	<xsl:call-template name="ucfirst3words">
-	  <xsl:with-param name="thing" select="concat('melee-strike', $seq, '-modifier')"/>
+	  <xsl:with-param name="thing" select="concat($strike, '-strike', $seq, '-modifier')"/>
 	</xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="value">
@@ -248,7 +252,10 @@ concat(
       <xsl:with-param name="score" select="$score"/>
     </xsl:call-template>
     <xsl:for-each select="document('')//x:abilities/x:ability[@name=$name]/x:melee-strike">
-      <xsl:call-template name="melee-ability-modifier">
+      <xsl:call-template name="strike-ability-modifier">
+	<xsl:with-param name="strike">
+	  <xsl:text>melee</xsl:text>
+	</xsl:with-param>
 	<xsl:with-param name="seq" select="position()"/>
 	<xsl:with-param name="score" select="$score"/>
       </xsl:call-template>
@@ -266,12 +273,31 @@ concat(
   </xsl:template>
 
   <xsl:template match="abilities/dexterity">
+    <xsl:variable name="name" select="local-name()"/>
+    <xsl:variable name="score" select="number(text())"/>    
     <xsl:call-template name="ability">
-      <xsl:with-param name="name" select="local-name()"/>
-      <xsl:with-param name="score" select="number(text())"/>
+      <xsl:with-param name="name" select="$name"/>
+      <xsl:with-param name="score" select="$score"/>
     </xsl:call-template>
-    <!-- also handle ranged strikes -->
-    <!-- also handle armor class -->
+    <xsl:for-each select="document('')//x:abilities/x:ability[@name=$name]/x:ranged-strike">
+      <xsl:call-template name="strike-ability-modifier">
+	<xsl:with-param name="strike">
+	  <xsl:text>ranged</xsl:text>
+	</xsl:with-param>	
+	<xsl:with-param name="seq" select="position()"/>
+	<xsl:with-param name="score" select="$score"/>
+      </xsl:call-template>
+    </xsl:for-each>    
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name">
+	<xsl:text>armor-class-modifier</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$score"/>
+	</xsl:call-template>	
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="abilities/wisdom">
