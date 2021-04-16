@@ -324,6 +324,7 @@ concat(
 		       abilities |
 		       armor-class |
 		       class-dc |
+		       shield |
 		       spellcasting |
 		       spellcasting/attack-roll |
 		       spellcasting/spell-dc
@@ -649,6 +650,78 @@ concat(
 	</xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="level" select="@level"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="shield/bonus | shield/hardness">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat('shield-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="two-words-followed-by-acronym">
+    <xsl:param name="thing"/>
+    <xsl:value-of select="
+concat(
+  upper-case(
+    substring($thing, 1, 1)
+  ),
+  lower-case(
+    substring-before(
+      substring($thing, 2),
+      '-'
+    )
+  ),
+  upper-case(
+    substring(
+      substring-after($thing, '-'),
+      1,
+      1
+    )
+  ),
+  lower-case(
+    substring-before(
+      substring(
+        substring-after($thing, '-'),
+        2
+      ),
+      '-'
+    )
+  ),
+  upper-case(
+    substring-after(
+      substring-after($thing, '-'),
+      '-'
+    )
+  )
+)"/>
+  </xsl:template>
+
+  <xsl:template name="two-word-acronym-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="two-words-followed-by-acronym">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="shield/max-hp | shield/current-hp">
+    <xsl:call-template name="two-word-acronym-field">
+      <xsl:with-param name="name" select="concat('shield-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="break-threshold">
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name" select="concat('shield-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
   </xsl:template>
   
