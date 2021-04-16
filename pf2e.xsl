@@ -636,4 +636,20 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="
+    armor-class/heavy |
+    armor-class/light | 
+    armor-class/medium |
+    armor-class/unarmored
+    ">
+    <xsl:call-template name="proficiency-boxes">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst3words">
+	  <xsl:with-param name="thing" select="concat('armor-type-', local-name())"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="@level"/>
+    </xsl:call-template>
+  </xsl:template>
+  
 </xsl:stylesheet>
