@@ -408,11 +408,63 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="class-dc/key">
+  <xsl:template name="word-acronym-word">
+    <xsl:param name="thing"/>
+      <xsl:value-of select="
+concat(
+  upper-case(
+    substring($thing, 1, 1)
+  ),
+  lower-case(
+    substring-before(
+      substring($thing, 2),
+      '-'
+    )
+  ),
+  upper-case(
+    substring-before(
+     substring-after($thing, '-'),
+     '-'
+    )
+  ),
+  upper-case(
+    substring(
+      substring-after(
+        substring-after($thing, '-'),
+        '-'
+      ),
+      1,
+      1
+    )
+  ),
+  lower-case(
+    substring(
+      substring-after(
+        substring-after($thing, '-'),
+        '-'
+      ),
+      2
+    )
+  )
+)"/>
+  </xsl:template>
+
+  <xsl:template name="word-acronym-word-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name">
-	<xsl:text>ClassDCKey</xsl:text>
+	<xsl:call-template name="word-acronym-word">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
       </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="class-dc/key">
+    <xsl:call-template name="word-acronym-word-field">
+      <xsl:with-param name="name" select="concat('class-dc-', local-name())"/>
       <xsl:with-param name="value">
 	<xsl:call-template name="ability-modifier">
 	  <xsl:with-param name="score" select="$key"/>
@@ -435,10 +487,8 @@ concat(
   </xsl:template>
 
   <xsl:template match="spellcasting/spell-dc/key">
-    <xsl:call-template name="three-word-field">
-      <xsl:with-param name="name">
-	<xsl:text>spell-dc-key</xsl:text>
-      </xsl:with-param>
+    <xsl:call-template name="word-acronym-word-field">
+      <xsl:with-param name="name" select="concat('spell-dc-', local-name())"/>
       <xsl:with-param name="value">
 	<xsl:call-template name="ability-modifier">
 	  <xsl:with-param name="score" select="$key"/>
