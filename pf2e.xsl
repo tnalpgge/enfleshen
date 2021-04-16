@@ -473,6 +473,20 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="class-dc/item | class-dc/total">
+    <xsl:call-template name="word-acronym-word-field">
+      <xsl:with-param name="name" select="concat('class-dc-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="spellcasting/attack-roll/total">
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name" select="concat('spell-attack-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>    
+  </xsl:template>
+
   <xsl:template match="spellcasting/attack-roll/key">
     <xsl:call-template name="three-word-field">
       <xsl:with-param name="name">
@@ -486,7 +500,14 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="spellcasting/spell-dc/key">
+  <xsl:template match="spell-dc/total">
+    <xsl:call-template name="word-acronym-word-field">
+      <xsl:with-param name="name" select="concat('spell-dc-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>  
+
+  <xsl:template match="spell-dc/key">
     <xsl:call-template name="word-acronym-word-field">
       <xsl:with-param name="name" select="concat('spell-dc-', local-name())"/>
       <xsl:with-param name="value">
