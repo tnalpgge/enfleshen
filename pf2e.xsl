@@ -15,7 +15,7 @@
       <x:skill name="athletics"/>
       <x:melee-strike/>
       <x:melee-strike/>
-      <x:melee-strike/>      
+      <x:melee-strike/>
     </x:ability>
     <x:ability name="dexterity">
       <x:skill name="acrobatics"/>
@@ -24,7 +24,7 @@
       <x:saving-throw name="reflex"/>
       <x:ranged-strike/>
       <x:ranged-strike/>
-      <x:ranged-strike/>      
+      <x:ranged-strike/>
     </x:ability>
     <x:ability name="constitution">
       <x:saving-throw name="fortitude"/>
@@ -51,6 +51,78 @@
       <x:skill name="performance"/>
     </x:ability>
   </x:abilities>
+
+  <xsl:variable name="strength" select="number(//abilities/strength/text())"/>
+  <xsl:variable name="dexterity" select="number(//abilities/dexterity/text())"/>
+  <xsl:variable name="constitution" select="number(//abilities/constitution/text())"/>
+  <xsl:variable name="intelligence" select="number(//abilities/intelligence/text())"/>
+  <xsl:variable name="wisdom" select="number(//abilities/wisdom/text())"/>
+  <xsl:variable name="charisma" select="number(//abilities/charisma/text())"/>
+
+  <xsl:variable name="class" select="lower-case(//class/text())"/>
+
+  <xsl:variable name="key-ability-name"/>
+
+  <xsl:variable name="key">
+    <xsl:choose>
+      <xsl:when test="starts-with(lower-case($key-ability-name), 'str')">
+	<xsl:value-of select="$strength"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($key-ability-name), 'dex')">
+	<xsl:value-of select="$dexterity"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($key-ability-name), 'cha')">
+	<xsl:value-of select="$charisma"/>
+      </xsl:when>
+      <xsl:when test="$key-ability-name">
+	<xsl:message>You may not select that ability as your key ability</xsl:message>
+      </xsl:when>
+      <xsl:when test="starts-with($class, 'barbarian')">
+	<xsl:value-of select="$strength"/>
+      </xsl:when>
+      <xsl:when test="starts-with($class, 'alchemist') or starts-with($class, 'wizard')">
+	<xsl:value-of select="$intelligence"/>
+      </xsl:when>
+      <xsl:when test="starts-with($class, 'cleric') or starts-with($class, 'druid')">
+	<xsl:value-of select="$wisdom"/>
+      </xsl:when>
+      <xsl:when test="starts-with($class, 'bard') or starts-with($class, 'sorcerer')">
+	<xsl:value-of select="$charisma"/>
+      </xsl:when>
+      <xsl:when test="starts-with($class, 'chamption') or starts-with($class, 'fighter') or starts-with($class, 'monk') or starts-with($class, 'ranger')">
+	<xsl:choose>
+	  <xsl:when test="$strength &gt; $dexterity">
+	    <xsl:value-of select="$strength"/>
+	  </xsl:when>
+	  <xsl:when test="$dexterity &gt; $strength">
+	    <xsl:value-of select="$dexterity"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:message>Strength vs. Dexterity problem!  Please set variable key-ability-name explicitly</xsl:message>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:when>
+      <xsl:when test="starts-with($class, 'rogue')">
+	<xsl:choose>
+	  <xsl:when test="($strength &gt; $dexterity) and ($strength &gt; $charisma)">
+	    <xsl:value-of select="$strength"/>
+	  </xsl:when>
+	  <xsl:when test="($dexterity &gt; $strength) and ($dexterity &gt; $charisma)">
+	    <xsl:value-of select="$dexterity"/>
+	  </xsl:when>
+	  <xsl:when test="($charisma &gt; $strength) and ($charisma &gt; $dexterity)">
+	    <xsl:value-of select="$charisma"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:message>Rogue problem!  Please set variable key-ability-name explicitly</xsl:message>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:message>Could not determine key ability score</xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:template match="
     age |
@@ -240,7 +312,10 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="abilities">
+  <xsl:template match="
+		       abilities |
+		       class-dc
+		       ">
     <xsl:apply-templates/>
   </xsl:template>
 
@@ -327,6 +402,19 @@ concat(
     <xsl:call-template name="ability">
       <xsl:with-param name="name" select="local-name()"/>
       <xsl:with-param name="score" select="number(text())"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="class-dc/key">
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:text>ClassDCKey</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$key"/>
+	</xsl:call-template>
+      </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
 
