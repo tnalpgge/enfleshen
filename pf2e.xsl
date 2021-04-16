@@ -322,6 +322,7 @@ concat(
 
   <xsl:template match="
 		       abilities |
+		       armor-class |
 		       class-dc |
 		       spellcasting |
 		       spellcasting/attack-roll |
@@ -612,6 +613,23 @@ concat(
     <xsl:call-template name="proficiency-fields">
       <xsl:with-param name="name">
 	<xsl:text>ClassDC</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="@level"/>
+      <xsl:with-param name="override" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="armor-class/total | armor-class/cap | armor-class/item">
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name" select="concat('armor-class-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="armor-class/proficiency">
+    <xsl:call-template name="proficiency-fields">
+      <xsl:with-param name="name">
+	<xsl:text>ArmorClass</xsl:text>
       </xsl:with-param>
       <xsl:with-param name="level" select="@level"/>
       <xsl:with-param name="override" select="text()"/>

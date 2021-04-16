@@ -32,7 +32,7 @@
     <total>acT</total>
     <dex-mod>acD</dex-mod>
     <cap>acC</cap>
-    <proficiency level="legendary">acP</proficiency>
+    <proficiency level="legendary"/>
     <item>acI</item>
     <unarmored level="legendary"/>
     <light level="master"/>
@@ -56,7 +56,7 @@
     <reflex>
       <total>rT</total>
       <dex-mod>rM</dex-mod>
-      <proficiency level="master">rP</proficiency>
+      <proficiency level="master"/>
       <item>rI</item>
     </reflex>
     <will>
@@ -80,7 +80,7 @@
   <perception>
     <total>perT</total>
     <wis-mod>perM</wis-mod>
-    <proficiency level="trained">perP</proficiency>
+    <proficiency level="trained"/>
     <senses>Senses</senses>
   </perception>
   <speed>Speed</speed>
@@ -105,7 +105,7 @@
       <weapon>Melee Weapon 2</weapon>
       <total>mw2T</total>
       <str-mod>mw2AM</str-mod>
-      <proficiency level="expert">mw2P</proficiency>
+      <proficiency level="expert"/>
       <item>mw2I</item>
       <damage>
         <dice>mw2DD</dice>
@@ -137,7 +137,7 @@
       <weapon>Ranged Weapon 1</weapon>
       <total>rw1T</total>
       <dex-mod>rw1AM</dex-mod>
-      <proficiency level="legendary">rw1P</proficiency>
+      <proficiency level="legendary"/>
       <item>rw1I</item>
       <damage>
         <dice>rw1DD</dice>
@@ -167,7 +167,7 @@
       <weapon>Ranged Weapon 3</weapon>
       <total>rw3T</total>
       <dex-mod>rw3AM</dex-mod>
-      <proficiency level="trained">rw3P</proficiency>
+      <proficiency level="trained"/>
       <item>rw3I</item>
       <damage>
         <dice>rw3DD</dice>
@@ -196,7 +196,7 @@
     <arcana>
       <total>arcT</total>
       <int-mod>arcM</int-mod>
-      <proficiency level="e">arcP</proficiency>
+      <proficiency level="e"/>
       <item>arcI</item>
     </arcana>
     <athletics>
@@ -209,7 +209,7 @@
     <crafting>
       <total>cftT</total>
       <int-mod>cftM</int-mod>
-      <proficiency level="l">cftP</proficiency>
+      <proficiency level="l"/>
       <item>cftI</item>
     </crafting>
     <deception>
@@ -221,7 +221,7 @@
     <diplomacy>
       <total>dplT</total>
       <cha-mod>dplM</cha-mod>
-      <proficiency level="T">dplP</proficiency>
+      <proficiency level="T"/>
       <item>dplI</item>
     </diplomacy>
     <intimidation>
@@ -233,7 +233,7 @@
     <lore subject="Subject 1">
       <total>lr1T</total>
       <int-mod>lr1M</int-mod>
-      <proficiency level="M">lr1P</proficiency>
+      <proficiency level="M"/>
       <item>lr1I</item>
     </lore>
     <lore subject="Subject 2">
@@ -245,7 +245,7 @@
     <medicine>
       <total>medT</total>
       <wis-mod>medM</wis-mod>
-      <proficiency level="">medP</proficiency>
+      <proficiency level=""/>
       <item>medI</item>
     </medicine>
     <nature>
@@ -257,7 +257,7 @@
     <occultism>
       <total>occT</total>
       <int-mod>occM</int-mod>
-      <proficiency level="eel">occP</proficiency>
+      <proficiency level="eel"/>
       <item>occI</item>
     </occultism>
     <performance>
@@ -269,7 +269,7 @@
     <religion>
       <total>rlgT</total>
       <wis-mod>rlgM</wis-mod>
-      <proficiency level="lizard">rlgP</proficiency>
+      <proficiency level="lizard"/>
       <item>rlgI</item>
     </religion>
     <society>
@@ -281,7 +281,7 @@
     <stealth>
       <total>sthT</total>
       <dex-mod>sthM</dex-mod>
-      <proficiency level="tra">sthP</proficiency>
+      <proficiency level="tra"/>
       <item>sthI</item>
       <armor>sthA</armor>
     </stealth>
@@ -294,7 +294,7 @@
     <thievery>
       <total>thvT</total>
       <dex-mod>thvM</dex-mod>
-      <proficiency level="mas">thvP</proficiency>
+      <proficiency level="mas"/>
       <item>thvI</item>
       <armor>thvA</armor>
     </thievery>
@@ -422,7 +422,7 @@
     <spell-dc>
       <total>sdT</total>
       <key>sdK</key>
-      <proficency level="trained">sdP</proficency>
+      <proficiency level="trained"/>
     </spell-dc>
     <traditions arcane="true" divine="true" occult="true" primal="true"/>
     <methods prepared="true" spontaneous="true"/>
