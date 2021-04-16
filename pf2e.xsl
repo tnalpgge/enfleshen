@@ -314,7 +314,10 @@ concat(
 
   <xsl:template match="
 		       abilities |
-		       class-dc
+		       class-dc |
+		       spellcasting |
+		       spellcasting/attack-roll |
+		       spellcasting/spell-dc
 		       ">
     <xsl:apply-templates/>
   </xsl:template>
@@ -416,6 +419,32 @@ concat(
 	</xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="spellcasting/attack-roll/key">
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name">
+	<xsl:text>spell-attack-key</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$key"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="spellcasting/spell-dc/key">
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name">
+	<xsl:text>spell-dc-key</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$key"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>    
   </xsl:template>
 
 </xsl:stylesheet>
