@@ -52,14 +52,22 @@
     </x:ability>
   </x:abilities>
 
-  <xsl:variable name="strength" select="number(//abilities/strength/text())"/>
-  <xsl:variable name="dexterity" select="number(//abilities/dexterity/text())"/>
-  <xsl:variable name="constitution" select="number(//abilities/constitution/text())"/>
-  <xsl:variable name="intelligence" select="number(//abilities/intelligence/text())"/>
-  <xsl:variable name="wisdom" select="number(//abilities/wisdom/text())"/>
-  <xsl:variable name="charisma" select="number(//abilities/charisma/text())"/>
+  <x:proficiency-levels>
+    <x:proficiency-level name="trained" value="1"/>
+    <x:proficiency-level name="expert" value="2"/>
+    <x:proficiency-level name="master" value="3"/>
+    <x:proficiency-level name="legendary" value="4"/>
+  </x:proficiency-levels>
 
-  <xsl:variable name="class" select="lower-case(//class/text())"/>
+  <xsl:variable name="strength" select="number(/character/abilities/strength/text())"/>
+  <xsl:variable name="dexterity" select="number(/character/abilities/dexterity/text())"/>
+  <xsl:variable name="constitution" select="number(/character/abilities/constitution/text())"/>
+  <xsl:variable name="intelligence" select="number(/character/abilities/intelligence/text())"/>
+  <xsl:variable name="wisdom" select="number(/character/abilities/wisdom/text())"/>
+  <xsl:variable name="charisma" select="number(/character/abilities/charisma/text())"/>
+  
+  <xsl:variable name="class" select="lower-case(/character/class/text())"/>
+  <xsl:variable name="characterlevel" select="number(/character/level/text())"/>
 
   <xsl:variable name="key-ability-name"/>
 
@@ -516,6 +524,98 @@ concat(
 	</xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>    
+  </xsl:template>
+
+  <xsl:template name="proficiency-bonus">
+    <xsl:param name="level"/>
+    <xsl:choose>
+      <xsl:when test="starts-with(lower-case($level), 't')">
+	<xsl:value-of select="2 + $characterlevel"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($level), 'e')">
+	<xsl:value-of select="4 + $characterlevel"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($level), 'm')">
+	<xsl:value-of select="6 + $characterlevel"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($level), 'l')">
+	<xsl:value-of select="8 + $characterlevel"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="0"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="proficiency-box">
+    <xsl:param name="name"/>
+    <xsl:param name="level"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat($name, 'ProficiencyBox', upper-case(substring($level, 1, 1)))"/>
+      <xsl:with-param name="value">
+	<xsl:call-template name="checkbox">
+	  <xsl:with-param name="value" select="$value"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="proficiency-boxes">
+    <xsl:param name="name"/>
+    <xsl:param name="level"/>
+    <xsl:variable name="watermark" select="document('')//x:proficiency-levels/x:proficiency-level[lower-case(substring($level, 1, 1)) = lower-case(substring(@name, 1, 1))]/@value"/>
+    <xsl:for-each select="document('')//x:proficiency-levels/x:proficiency-level">
+      <xsl:call-template name="proficiency-box">
+	<xsl:with-param name="name" select="$name"/>
+	<xsl:with-param name="level" select="@name"/>
+	<xsl:with-param name="value">
+	  <xsl:choose>
+	    <xsl:when test="@value &lt;= $watermark">
+	      <xsl:text>true</xsl:text>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:text>false</xsl:text>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="proficiency-fields">
+    <xsl:param name="name"/>
+    <xsl:param name="level"/>
+    <xsl:param name="override"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="concat($name, 'ProficiencyBonus')"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="boolean($override)">
+	    <xsl:value-of select="$override"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:call-template name="proficiency-bonus">
+	      <xsl:with-param name="level" select="$level"/>
+	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="proficiency-boxes">
+      <xsl:with-param name="name" select="$name"/>
+      <xsl:with-param name="level" select="$level"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="class-dc/proficiency">
+    <xsl:call-template name="proficiency-fields">
+      <xsl:with-param name="name">
+	<xsl:text>ClassDC</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="@level"/>
+      <xsl:with-param name="override" select="text()"/>
+    </xsl:call-template>
   </xsl:template>
 
 </xsl:stylesheet>
