@@ -301,11 +301,22 @@ concat(
   </xsl:template>
 
   <xsl:template match="abilities/wisdom">
+    <xsl:variable name="name" select="local-name()"/>
+    <xsl:variable name="score" select="number(text())"/>        
     <xsl:call-template name="ability">
-      <xsl:with-param name="name" select="local-name()"/>
-      <xsl:with-param name="score" select="number(text())"/>
+      <xsl:with-param name="name" select="$name"/>
+      <xsl:with-param name="score" select="$score"/>
     </xsl:call-template>
-    <!-- also handle perception -->
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name">
+	<xsl:text>perception-modifier</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$score"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="
