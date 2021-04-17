@@ -764,4 +764,46 @@ concat(
     </xsl:for-each>    
   </xsl:template>
 
+  <xsl:template name="other-weapon-proficiency">
+    <xsl:param name="ndx"/>
+    <xsl:param name="element"/>
+    <xsl:call-template name="proficiency-boxes">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst2words">
+	  <xsl:with-param name="thing" select="concat(local-name($element), $ndx, '-weapon')"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="$element/@level"/>
+    </xsl:call-template>
+    <xsl:call-template name="four-word-field">
+      <xsl:with-param name="name" select="concat(local-name($element), $ndx, '-weapon-proficiency-name')"/>
+      <xsl:with-param name="value" select="$element/text()"/>
+    </xsl:call-template>
+  </xsl:template>  
+
+  <xsl:template match="weapon-proficiencies">
+    <xsl:apply-templates select="martial | simple"/>
+    <xsl:for-each select="other">
+      <xsl:call-template name="other-weapon-proficiency">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="weapon-proficiencies/martial | 
+		       weapon-proficiencies/simple
+		       ">
+    <xsl:call-template name="proficiency-boxes">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst2words">
+	  <xsl:with-param name="thing" select="concat(local-name(), '-weapon')"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="@level"/>
+    </xsl:call-template>
+  </xsl:template>
+
+
+
 </xsl:stylesheet>
