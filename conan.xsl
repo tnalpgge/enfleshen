@@ -8,6 +8,7 @@
     exclude-result-prefixes="xfdf">
 
   <xsl:import href="util.xsl"/>
+  <xsl:import href="walk.xsl"/>  
 
   <xsl:template name="skill-field">
     <xsl:param name="name"/>
@@ -46,76 +47,6 @@
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat($fieldname, 'Rank')"/>
       <xsl:with-param name="value" select="$talent/rank/text()"/>
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template name="acronym-followed-by-word">
-    <xsl:param name="thing"/>
-    <xsl:value-of select="
-concat(
-  upper-case(
-    substring-before($thing, '-')
-  ),
-  upper-case(
-    substring(
-      substring-after($thing, '-'),
-      1,
-      1
-    )
-  ),
-  lower-case(
-    substring(
-      substring-after($thing, '-'),
-      2
-    )
-  )
-)
-"/>
-  </xsl:template>
-
-  <xsl:template name="acronym-with-word-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name">
-	<xsl:call-template  name="acronym-followed-by-word">
-	  <xsl:with-param name="thing" select="$name"/>
-	</xsl:call-template>
-      </xsl:with-param>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template name="word-followed-by-acronym">
-    <xsl:param name="thing"/>
-    <xsl:value-of select="
-concat(
-  upper-case(
-    substring($thing, 1, 1)
-  ),
-  lower-case(
-    substring(
-      substring-before($thing, '-'),
-      2
-    )
-  ),
-  upper-case(
-    substring-after($thing, '-')
-  )
-)
-"/>
-  </xsl:template>
-
-  <xsl:template name="word-with-acronym-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name">
-	<xsl:call-template  name="word-followed-by-acronym">
-	  <xsl:with-param name="thing" select="$name"/>
-	</xsl:call-template>
-      </xsl:with-param>
-      <xsl:with-param name="value" select="$value"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -219,23 +150,6 @@ concat(
 	<xsl:value-of select="skills-details/text()"/>
       </xsl:with-param>
     </xsl:call-template>
-  </xsl:template>
-
-  <!-- Walk the document and produce  the output -->
-
-  <xsl:template match="node()|comment()">
-    <!-- silently omit anything that we do not specifically match -->
-  </xsl:template>
-
-  <xsl:template match="/character">
-    <xsl:element name="xfdf" namespace="http://ns.adobe.com/xfdf/">
-      <xsl:attribute name="xml:space">
-	<xsl:text>preserve</xsl:text>
-      </xsl:attribute>
-      <xsl:element name="fields" namespace="http://ns.adobe.com/xfdf/">
-	<xsl:apply-templates/>
-      </xsl:element>
-    </xsl:element>
   </xsl:template>
 
   <xsl:template match="
