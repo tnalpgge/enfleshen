@@ -72,11 +72,10 @@
     </xsl:call-template>
   </xsl:variable>
 
-
   <xsl:variable name="class" select="lower-case(/character/class/text())"/>
   <xsl:variable name="characterlevel" select="number(/character/level/text())"/>
 
-  <xsl:variable name="key-ability-name"/>
+  <xsl:variable name="key-ability-name"/>  <!-- provide as string parameter -->
 
   <xsl:variable name="key">
     <xsl:choose>
@@ -158,37 +157,37 @@
   </xsl:variable>
 
   <xsl:template match="
-    age |
-    alignment |
-    allies |
-    appearance |
-    attitude |
-    beliefs |
-    birthplace |
-    catchphrases |
-    character/ancestry |
-    character/background |
-    character/heritage |
-    character/level |
-    character/traits |
-    class |
-    conditions |
-    deity |
-    dislikes |
-    dying |
-    enemies |
-    ethnicity |
-    height |
-    immunities |
-    likes |
-    nationality |
-    organizations |
-    resistances |
-    senses |
-    size |
-    speed |
-    weight |
-    wounded
+		       age |
+		       alignment |
+		       allies |
+		       appearance |
+		       attitude |
+		       beliefs |
+		       birthplace |
+		       catchphrases |
+		       character/ancestry |
+		       character/background |
+		       character/heritage |
+		       character/level |
+		       character/traits |
+		       class |
+		       conditions |
+		       deity |
+		       dislikes |
+		       dying |
+		       enemies |
+		       ethnicity |
+		       height |
+		       immunities |
+		       likes |
+		       nationality |
+		       organizations |
+		       resistances |
+		       senses |
+		       size |
+		       speed |
+		       weight |
+		       wounded
     ">
     <xsl:call-template name="single-word-field">
       <xsl:with-param name="name" select="local-name()"/>
@@ -197,12 +196,12 @@
   </xsl:template>
 
   <xsl:template match="
-    character-name |
-    character-sketch |
-    gender-pronouns |
-    hero-points |
-    movement-types |
-    player-name
+		       character-name |
+		       character-sketch |
+		       gender-pronouns |
+		       hero-points |
+		       movement-types |
+		       player-name
     ">
     <xsl:call-template name="two-word-field">
       <xsl:with-param name="name" select="local-name()"/>
@@ -388,9 +387,9 @@
   </xsl:template>
 
   <xsl:template match="
-    abilities/charisma |
-    abilities/constitution |
-    abilities/intelligence
+		       abilities/charisma |
+		       abilities/constitution |
+		       abilities/intelligence
     ">
     <xsl:call-template name="ability">
       <xsl:with-param name="name" select="local-name()"/>
@@ -725,9 +724,11 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="hit-points/current |
+  <xsl:template match="
+		       hit-points/current |
 		       hit-points/maximum |
-		       hit-points/temporary">
+		       hit-points/temporary
+		       ">
     <xsl:call-template name="word-with-acronym-field">
       <xsl:with-param name="name" select="concat(local-name(), '-hp')"/>
       <xsl:with-param name="value" select="text()"/>
@@ -754,7 +755,8 @@ concat(
   <xsl:template name="damage-type-boxes">
     <xsl:param name="name"/>
     <xsl:param name="element"/>
-    <xsl:for-each select="$element/@bludgeoning |
+    <xsl:for-each select="
+			  $element/@bludgeoning |
 			  $element/@piercing |
 			  $element/@slashing
 			  ">
@@ -794,13 +796,13 @@ concat(
     <xsl:param name="element"/>
     <xsl:param name="strike"/>
     <xsl:for-each select="
-      $element/item |
-      $element/other |
-      $element/specialization |
-      $element/total |
-      $element/traits |
-      $element/weapon
-      ">
+			  $element/item |
+			  $element/other |
+			  $element/specialization |
+			  $element/total |
+			  $element/traits |
+			  $element/weapon
+			  ">
       <xsl:call-template name="three-word-field">
 	<xsl:with-param name="name" select="concat($strike, '-strike', $ndx, '-', local-name())"/>
 	<xsl:with-param name="value" select="text()"/>
@@ -869,7 +871,8 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="weapon-proficiencies/martial |
+  <xsl:template match="
+		       weapon-proficiencies/martial |
 		       weapon-proficiencies/simple
 		       ">
     <xsl:call-template name="proficiency-boxes">
@@ -893,9 +896,11 @@ concat(
 	<xsl:value-of select="$ndx"/>
       </xsl:if>
     </xsl:variable>
-    <xsl:for-each select="$element/armor |
+    <xsl:for-each select="
+			  $element/armor |
 			  $element/item |
-			  $element/total">
+			  $element/total
+			  ">
       <xsl:call-template name="two-word-field">
 	<xsl:with-param name="name" select="concat($skill, '-', local-name())"/>
 	<xsl:with-param name="value" select="text()"/>
@@ -945,19 +950,23 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="feats/ancestry/heritage |
+  <xsl:template match="
+		       feats/ancestry/heritage |
 		       feats/ancestry/special |
-		       feats/skill/background">
+		       feats/skill/background
+		       ">
     <xsl:call-template name="two-word-field">
       <xsl:with-param name="name" select="concat(local-name(), '-feat')"/>
       <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="ancestry-feat |
+  <xsl:template match="
+		       ancestry-feat |
 		       class-feat |
 		       general-feat |
-		       skill-feat">
+		       skill-feat
+		       ">
     <xsl:call-template name="two-word-field">
       <xsl:with-param name="name" select="concat(local-name(), @level)"/>
       <xsl:with-param name="value" select="text()"/>
@@ -1091,7 +1100,8 @@ concat(
 	</xsl:with-param>
       </xsl:call-template>
     </xsl:for-each>
-    <xsl:for-each select="$element/@material |
+    <xsl:for-each select="
+			  $element/@material |
 			  $element/@prepared |
 			  $element/@somatic |
 			  $element/@verbal
@@ -1131,7 +1141,8 @@ concat(
 	<xsl:with-param name="value" select="."/>
       </xsl:call-template>
     </xsl:for-each>
-    <xsl:for-each select="$element/@material |
+    <xsl:for-each select="
+			  $element/@material |
 			  $element/@somatic |
 			  $element/@verbal
 			  ">
@@ -1224,11 +1235,11 @@ concat(
     <xsl:param name="element"/>
     <xsl:param name="action"/>
     <xsl:for-each select="
-      $element/description |
-      $element/name |
-      $element/traits |
-      $element/trigger
-      ">
+			  $element/description |
+			  $element/name |
+			  $element/traits |
+			  $element/trigger
+			  ">
       <xsl:call-template name="three-word-field">
 	<xsl:with-param name="name" select="concat($action, $ndx, '-', local-name())"/>
 	<xsl:with-param name="value" select="text()"/>
