@@ -7,6 +7,7 @@
     xmlns:x="urn:tnalpgge:enfleshen"
     exclude-result-prefixes="xfdf">
 
+  <xsl:import href="dnd3e-util.xsl"/>
   <xsl:import href="util.xsl"/>
   <xsl:import href="walk.xsl"/>
 
@@ -191,21 +192,13 @@
 
   </x:spells>
 
-  <xsl:template name="ability-modifier">
-    <xsl:param name="score" select="10"/>
-    <xsl:if test="number($score) &gt; 11">
-      <xsl:text>+</xsl:text>
-    </xsl:if>
-    <xsl:value-of select="floor(number($score) div 2) - 5"/>
-  </xsl:template>
-
   <xsl:template name="ability-modifier-field">
     <xsl:param name="name"/>
     <xsl:param name="score" select="10"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat(upper-case($name), 'mod')"/>
       <xsl:with-param name="value">
-	<xsl:call-template name="ability-modifier">
+	<xsl:call-template name="signed-ability-modifier">
 	  <xsl:with-param name="score" select="$score"/>
 	</xsl:call-template>
       </xsl:with-param>
@@ -428,7 +421,7 @@ lower-case(
 	<xsl:text>DEXmod </xsl:text> <!-- not a typo -->
       </xsl:with-param>
       <xsl:with-param name="value">
-	<xsl:call-template name="ability-modifier">
+	<xsl:call-template name="signed-ability-modifier">
 	  <xsl:with-param name="score" select="text()"/>
 	</xsl:call-template>
       </xsl:with-param>
@@ -445,7 +438,7 @@ lower-case(
 	<xsl:text>CHamod</xsl:text>
       </xsl:with-param>
       <xsl:with-param name="value">
-	<xsl:call-template name="ability-modifier">
+	<xsl:call-template name="signed-ability-modifier">
 	  <xsl:with-param name="score" select="text()"/>
 	</xsl:call-template>
       </xsl:with-param>

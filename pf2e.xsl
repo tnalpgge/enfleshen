@@ -7,6 +7,7 @@
     xmlns:x="urn:tnalpgge:enfleshen"
     exclude-result-prefixes="xfdf">
 
+  <xsl:import href="dnd3e-util.xsl"/>
   <xsl:import href="util.xsl"/>
   <xsl:import href="walk.xsl"/>
 
@@ -65,12 +66,12 @@
   <xsl:variable name="intelligence" select="number(/character/abilities/intelligence/text())"/>
   <xsl:variable name="wisdom" select="number(/character/abilities/wisdom/text())"/>
   <xsl:variable name="charisma" select="number(/character/abilities/charisma/text())"/>
-
+ 
   <xsl:variable name="strength-modifier">
     <xsl:call-template name="ability-modifier">
       <xsl:with-param name="score" select="$strength"/>
     </xsl:call-template>
-  </xsl:variable>
+  </xsl:variable> 
 
   <xsl:variable name="class" select="lower-case(/character/class/text())"/>
   <xsl:variable name="characterlevel" select="number(/character/level/text())"/>
@@ -209,11 +210,6 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template name="ability-modifier">
-    <xsl:param name="score"/>
-    <xsl:value-of select="floor($score div 2) - 5"/>
-  </xsl:template>
-
   <xsl:template name="skill-modifier">
     <xsl:param name="skill"/>
     <xsl:param name="score"/>
@@ -314,6 +310,16 @@
   <xsl:template match="abilities/strength">
     <xsl:variable name="name" select="local-name()"/>
     <xsl:variable name="score" select="number(text())"/>
+    <xsl:variable name="modifier">
+      <xsl:call-template name="ability-modifier">
+	<xsl:with-param name="score" select="$score"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="signed-modifier">
+      <xsl:call-template name="signed-ability-modifier">
+	<xsl:with-param name="score" select="$score"/>
+      </xsl:call-template>      
+    </xsl:variable>
     <xsl:call-template name="ability">
       <xsl:with-param name="name" select="$name"/>
       <xsl:with-param name="score" select="$score"/>
@@ -331,12 +337,20 @@
       <xsl:with-param name="name">
 	<xsl:text>encumbrance-modifier</xsl:text>
       </xsl:with-param>
-      <xsl:with-param name="value">
-	<xsl:call-template name="ability-modifier">
-	  <xsl:with-param name="score" select="$score"/>
-	</xsl:call-template>
-      </xsl:with-param>
+      <xsl:with-param name="value" select="$signed-modifier"/>
     </xsl:call-template>
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name">
+	<xsl:text>encumbrance-encumbered</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="5 + $modifier"/>
+    </xsl:call-template>
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name">
+	<xsl:text>encumbrance-maximum</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="10 + $modifier"/>
+    </xsl:call-template>    
   </xsl:template>
 
   <xsl:template match="abilities/dexterity">
