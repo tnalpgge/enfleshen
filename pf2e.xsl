@@ -65,7 +65,13 @@
   <xsl:variable name="intelligence" select="number(/character/abilities/intelligence/text())"/>
   <xsl:variable name="wisdom" select="number(/character/abilities/wisdom/text())"/>
   <xsl:variable name="charisma" select="number(/character/abilities/charisma/text())"/>
-  
+
+  <xsl:variable name="strength-modifier">
+    <xsl:call-template name="ability-modifier">
+      <xsl:with-param name="score" select="$strength"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:variable name="class" select="lower-case(/character/class/text())"/>
   <xsl:variable name="characterlevel" select="number(/character/level/text())"/>
 
@@ -266,12 +272,14 @@
 		       abilities |
 		       armor-class |
 		       class-dc |
+		       encumbrance |
 		       feats |
 		       feats/ancestry |
 		       feats/general |
 		       feats/skill |
 		       hit-points |
 		       inventory |
+		       money |
 		       perception |
 		       saving-throws |
 		       shield |
@@ -945,6 +953,39 @@ concat(
 	<xsl:with-param name="element" select="."/>
       </xsl:call-template>
     </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="cp | sp | gp | pp">
+    <xsl:call-template name="word-with-acronym-field">
+      <xsl:with-param name="name" select="concat('money-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="bulk">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat('total-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="encumbrance/encumbered | encumbrance/maximum">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat('encumbrance-', local-name())"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="starts-with(local-name(), 'e')">
+	    <xsl:value-of select="5 + number($strength-modifier)"/>
+	  </xsl:when>
+	  <xsl:when test="starts-with(local-name(), 'm')">
+	    <xsl:value-of select="10 + number($strength-modifier)"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:message>Encumbrance problem!</xsl:message>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
 </xsl:stylesheet>
