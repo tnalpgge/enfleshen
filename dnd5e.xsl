@@ -7,6 +7,9 @@
     xmlns:x="urn:tnalpgge:enfleshen"
     exclude-result-prefixes="xfdf">
 
+  <xsl:import href="util.xsl"/>
+  <xsl:import href="walk.xsl"/>
+
   <x:saving-throws>
     <x:saving-throw ability="strength" proficient="Check Box 11"/>
     <x:saving-throw ability="dexterity" proficient="Check Box 18"/>
@@ -188,19 +191,6 @@
 
   </x:spells>
 
-  <xsl:template name="field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:element name="field" namespace="http://ns.adobe.com/xfdf/">
-      <xsl:attribute name="name">
-	<xsl:value-of select="$name"/>
-      </xsl:attribute>
-      <xsl:element name="value" namespace="http://ns.adobe.com/xfdf/">
-	<xsl:value-of select="$value"/>
-      </xsl:element>
-    </xsl:element>
-  </xsl:template>
-
   <xsl:template name="ability-modifier">
     <xsl:param name="score" select="10"/>
     <xsl:if test="number($score) &gt; 11">
@@ -222,48 +212,6 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template name="single-word-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name" select="concat(upper-case(substring($name, 1, 1)), lower-case(substring($name, 2)))"/>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template name="two-word-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name" select="
-concat(
-  upper-case(
-    substring($name, 1, 1)
-  ),
-  lower-case(
-    substring-before(
-      substring($name, 2),
-      '-'
-    )
-  ),
-  upper-case(
-    substring(
-     substring-after($name, '-'),
-     1,
-     1
-    )
-  ),
-  lower-case(
-    substring(
-      substring-after($name, '-'),
-      2
-    )
-  )
-)"/>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
-
   <xsl:template name="single-word-space-field">
     <xsl:param name="name"/>
     <xsl:param name="value"/>
@@ -279,54 +227,6 @@ lower-case(
 $spaces)"/>
       <xsl:with-param name="value" select="$value"/>
     </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template name="all-caps-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name" select="upper-case($name)"/>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template name="first-word-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name" select="concat(
-upper-case(
-  substring($name, 1, 1)
-),
-lower-case(
-  substring-before(
-    substring($name, 2),
-    '-'
-  )
-))"/>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template name="checkbox">
-    <xsl:param name="value"/>
-    <xsl:choose>
-      <xsl:when test="lower-case($value) = 'on'">
-	<xsl:text>Yes</xsl:text>
-      </xsl:when>
-      <xsl:when test="lower-case($value) = 'true'">
-	<xsl:text>Yes</xsl:text>
-      </xsl:when>
-      <xsl:when test="lower-case($value) = 'yes'">
-	<xsl:text>Yes</xsl:text>
-      </xsl:when>
-      <xsl:when test="number($value) >= 1">
-	<xsl:text>Yes</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-	<xsl:text>Off</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
 
   <xsl:template name="saving-throw-field">
@@ -373,48 +273,6 @@ lower-case(
 	</xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
-
-  </xsl:template>
-
-  <xsl:template name="acronym-with-word-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name" select="concat(
-upper-case(
-  substring-before($name, '-')
-),
-upper-case(
-  substring(
-    substring-after($name, '-'),
-    1,
-    1
-  )
-),
-lower-case(
-  substring(
-    substring-after($name, '-'),
-    2
-  )
-)
-)"/>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template match="node()|comment()">
-    <!-- silently omit -->
-  </xsl:template>
-
-  <xsl:template match="/character">
-    <xsl:element name="xfdf" namespace="http://ns.adobe.com/xfdf/">
-      <xsl:attribute name="xml:space">
-	<xsl:text>preserve</xsl:text>
-      </xsl:attribute>
-      <xsl:element name="fields" namespace="http://ns.adobe.com/xfdf/">
-	<xsl:apply-templates/>
-      </xsl:element>
-    </xsl:element>
   </xsl:template>
 
   <xsl:template match="attacks">
@@ -499,16 +357,6 @@ lower-case(
       <xsl:with-param name="value" select="text()"/>
       <xsl:with-param name="spaces">
 	<xsl:text> </xsl:text>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template match="totallybogus">
-    <xsl:call-template name="single-word-space-field">
-      <xsl:with-param name="name" select="name()"/>
-      <xsl:with-param name="value" select="text()"/>
-      <xsl:with-param name="spaces">
-	<xsl:text>  </xsl:text>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>

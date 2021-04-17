@@ -258,4 +258,26 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="all-caps-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="upper-case($name)"/>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="first-word-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>
