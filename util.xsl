@@ -132,22 +132,10 @@ concat(
 
   <xsl:template name="word-followed-by-acronym">
     <xsl:param name="thing"/>
-    <xsl:value-of select="
-concat(
-  upper-case(
-    substring($thing, 1, 1)
-  ),
-  lower-case(
-    substring(
-      substring-before($thing, '-'),
-      2
-    )
-  ),
-  upper-case(
-    substring-after($thing, '-')
-  )
-)
-"/>
+    <xsl:call-template name="ucfirst">
+      <xsl:with-param name="thing" select="substring-before($thing, '-')"/>
+    </xsl:call-template>
+    <xsl:value-of select="upper-case(substring-after($thing, '-'))"/>
   </xsl:template>
 
   <xsl:template name="word-with-acronym-field">
