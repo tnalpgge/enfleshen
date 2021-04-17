@@ -853,4 +853,18 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="languages">
+    <xsl:call-template name="single-word-field">
+      <xsl:with-param name="name" select="local-name()"/>
+      <xsl:with-param name="value">
+	<xsl:for-each select="language">
+	  <xsl:value-of select="text()"/>
+	  <xsl:if test="position() &lt; last()">
+	    <xsl:text>, </xsl:text>
+	  </xsl:if>
+	</xsl:for-each>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>
