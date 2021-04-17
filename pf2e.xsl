@@ -1067,4 +1067,42 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template name="cantrip">
+    <xsl:param name="ndx"/>
+    <xsl:param name="element"/>
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat('cantrip', $ndx, '-', 'actions')"/>
+      <xsl:with-param name="value" select="$element/@actions"/>
+    </xsl:call-template>    
+    <xsl:for-each select="$element/description | $element/name">
+      <xsl:call-template name="two-word-field">
+	<xsl:with-param name="name" select="concat('cantrip', $ndx, '-', local-name())"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:for-each select="$element/@material |
+			  $element/@prepared | 
+			  $element/@somatic |
+			  $element/@verbal
+			  ">
+      <xsl:call-template name="two-word-field">
+	<xsl:with-param name="name" select="concat('cantrip', $ndx, '-', local-name())"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value" select="."/>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="cantrips">
+    <xsl:for-each select="cantrip">
+      <xsl:call-template name="cantrip">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
 </xsl:stylesheet>
