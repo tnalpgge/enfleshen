@@ -51,31 +51,12 @@ concat(
 
   <xsl:template name="ucfirst2words">
     <xsl:param name="thing"/>
-    <xsl:value-of select="
-concat(
-  upper-case(
-    substring($thing, 1, 1)
-  ),
-  lower-case(
-    substring-before(
-      substring($thing, 2),
-      '-'
-    )
-  ),
-  upper-case(
-    substring(
-     substring-after($thing, '-'),
-     1,
-     1
-    )
-  ),
-  lower-case(
-    substring(
-      substring-after($thing, '-'),
-      2
-    )
-  )
-)"/>
+    <xsl:call-template name="ucfirst">
+      <xsl:with-param name="thing" select="substring-before($thing, '-')"/>
+    </xsl:call-template>
+    <xsl:call-template name="ucfirst">
+      <xsl:with-param name="thing" select="substring-after($thing, '-')"/>
+    </xsl:call-template>    
   </xsl:template>
 
   <xsl:template name="two-word-field">
@@ -180,6 +161,115 @@ concat(
       </xsl:with-param>
       <xsl:with-param name="value" select="$value"/>
     </xsl:call-template>    
+  </xsl:template>
+
+  <xsl:template name="ucfirst3words">
+    <xsl:param name="thing"/>
+    <xsl:call-template name="ucfirst">
+      <xsl:with-param name="thing" select="substring-before($thing, '-')"/>
+    </xsl:call-template>
+    <xsl:call-template name="ucfirst2words">
+      <xsl:with-param name="thing" select="substring-after($thing, '-')"/>
+    </xsl:call-template>    
+  </xsl:template>
+
+  <xsl:template name="three-word-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst3words">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="ucfirst4words">
+    <xsl:param name="thing"/>
+    <xsl:call-template name="ucfirst">
+      <xsl:with-param name="thing" select="substring-before($thing, '-')"/>
+    </xsl:call-template>
+    <xsl:call-template name="ucfirst3words">
+      <xsl:with-param name="thing" select="substring-after($thing, '-')"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="four-word-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst4words">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="first-two-words">
+    <xsl:param name="thing"/>
+    <xsl:value-of select="
+substring(
+  substring-before(
+    $thing, 
+    substring-after(
+      substring-after($thing, '-'), 
+      '-'
+    )
+  ), 
+  1, 
+  -1)"/>
+  </xsl:template>
+
+  <xsl:template name="two-words-followed-by-acronym">
+    <xsl:param name="thing"/>
+    <xsl:call-template name="ucfirst2words">
+      <xsl:with-param name="thing">
+	<xsl:call-template name="first-two-words">
+	  <xsl:with-param name="thing" select="$thing"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+    <xsl:value-of select="upper-case(substring-after(substring-after($thing, '-'), '-'))"/>
+  </xsl:template>
+
+  <xsl:template name="two-word-acronym-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="two-words-followed-by-acronym">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="ucfirst5words">
+    <xsl:param name="thing"/>
+    <xsl:call-template name="ucfirst">
+      <xsl:with-param name="thing" select="substring-before($thing, '-')"/>
+    </xsl:call-template>
+    <xsl:call-template name="ucfirst4words">
+      <xsl:with-param name="thing" select="substring-after($thing, '-')"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="five-word-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst5words">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
   </xsl:template>  
 
 </xsl:stylesheet>

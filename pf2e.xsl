@@ -202,70 +202,6 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template name="ucfirst3words">
-    <xsl:param name="thing"/>
-    <xsl:value-of select="
-concat(
-  upper-case(
-    substring($thing, 1, 1)
-  ),
-  lower-case(
-    substring-before(
-      substring($thing, 2),
-      '-'
-    )
-  ),
-  upper-case(
-    substring(
-      substring-after($thing, '-'),
-      1,
-      1
-    )
-  ),
-  lower-case(
-    substring-before(
-      substring(
-        substring-after($thing, '-'),
-        2
-      ),
-      '-'
-    )
-  ),
-  upper-case(
-    substring(
-      substring-after(
-        substring-after($thing, '-'),
-        '-'
-      ),
-      1,
-      1
-    )
-  ),
-  lower-case(
-    substring(
-      substring-after(
-        substring-after($thing, '-'),
-        '-'
-      ),
-      2
-    )
-  )
-)"/>
-  </xsl:template>
-
-  <xsl:template name="three-word-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name">
-	<xsl:call-template name="ucfirst3words">
-	  <xsl:with-param name="thing" select="$name"/>
-	</xsl:call-template>
-      </xsl:with-param>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
-
   <xsl:template name="saving-throw-modifier">
     <xsl:param name="save"/>
     <xsl:param name="score"/>
@@ -314,8 +250,8 @@ concat(
     <xsl:param name="score"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name">
-	<xsl:call-template name="ucfirst3words">
-	  <xsl:with-param name="thing" select="concat($strike, '-strike', $seq, '-modifier')"/>
+	<xsl:call-template name="ucfirst4words">
+	  <xsl:with-param name="thing" select="concat($strike, '-strike', $seq, '-attack-modifier')"/>
 	</xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="value">
@@ -669,56 +605,8 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template name="two-words-followed-by-acronym">
-    <xsl:param name="thing"/>
-    <xsl:value-of select="
-concat(
-  upper-case(
-    substring($thing, 1, 1)
-  ),
-  lower-case(
-    substring-before(
-      substring($thing, 2),
-      '-'
-    )
-  ),
-  upper-case(
-    substring(
-      substring-after($thing, '-'),
-      1,
-      1
-    )
-  ),
-  lower-case(
-    substring-before(
-      substring(
-        substring-after($thing, '-'),
-        2
-      ),
-      '-'
-    )
-  ),
-  upper-case(
-    substring-after(
-      substring-after($thing, '-'),
-      '-'
-    )
-  )
-)"/>
-  </xsl:template>
 
-  <xsl:template name="two-word-acronym-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name">
-	<xsl:call-template name="two-words-followed-by-acronym">
-	  <xsl:with-param name="thing" select="$name"/>
-	</xsl:call-template>
-      </xsl:with-param>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
+
 
   <xsl:template match="shield/max-hp | shield/current-hp">
     <xsl:call-template name="two-word-acronym-field">
@@ -784,5 +672,75 @@ concat(
       <xsl:with-param name="override" select="text()"/>
     </xsl:call-template>
   </xsl:template>
-  
+
+  <xsl:template name="damage-type-boxes">
+    <xsl:param name="name"/>
+    <xsl:param name="element"/>
+    <xsl:for-each select="$element/@bludgeoning | 
+			  $element/@piercing |
+			  $element/@slashing
+			  ">
+      <xsl:call-template name="five-word-field">
+	<xsl:with-param name="name" select="concat($name, '-damage-type-', local-name())"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value" select="."/>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="melee-damage">
+    <xsl:param name="ndx"/>
+    <xsl:param name="element"/>
+    <xsl:call-template name="four-word-field">
+      <xsl:with-param name="name" select="concat('melee-strike', $ndx, '-damage-dice')"/>
+      <xsl:with-param name="value" select="$element/dice/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="damage-type-boxes">
+      <xsl:with-param name="name" select="concat('melee-strike', $ndx)"/>
+      <xsl:with-param name="element" select="$element/type"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="melee-strike">
+    <xsl:param name="ndx"/>
+    <xsl:param name="element"/>
+    <xsl:for-each select="
+      $element/item |
+      $element/other |
+      $element/specialization |
+      $element/total |
+      $element/traits
+      ">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat('melee-strike', $ndx, '-', local-name())"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:call-template name="proficiency-fields">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst2words">
+	  <xsl:with-param name="thing" select="concat('melee-strike', $ndx)"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="proficiency/@level"/>
+      <xsl:with-param name="override" select="proficiency/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="melee-damage">
+      <xsl:with-param name="ndx" select="$ndx"/>
+      <xsl:with-param name="element" select="damage"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="melee-strikes">
+    <xsl:for-each select="melee-strike">
+      <xsl:call-template name="melee-strike">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
 </xsl:stylesheet>
