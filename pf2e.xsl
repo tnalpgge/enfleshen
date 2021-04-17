@@ -1188,4 +1188,24 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template match="slots">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name">
+	<xsl:text>cantrip-level</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="@cantrip-level"/>
+    </xsl:call-template>
+    <xsl:apply-templates select="level"/>
+  </xsl:template>
+
+  <xsl:template match="slots/level">
+    <xsl:variable name="lvl" select="@number"/>
+    <xsl:for-each select="@remaining | @total">
+      <xsl:call-template name="four-word-field">
+	<xsl:with-param name="name" select="concat('spell-slots-level', $lvl, '-', local-name())"/>
+	<xsl:with-param name="value" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
 </xsl:stylesheet>
