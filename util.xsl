@@ -211,17 +211,7 @@ concat(
 
   <xsl:template name="first-two-words">
     <xsl:param name="thing"/>
-    <xsl:value-of select="
-substring(
-  substring-before(
-    $thing, 
-    substring-after(
-      substring-after($thing, '-'), 
-      '-'
-    )
-  ), 
-  1, 
-  -1)"/>
+    <xsl:value-of select="string-join(subsequence(tokenize($thing, '-'), 1, 2),  '-')"/>    
   </xsl:template>
 
   <xsl:template name="two-words-followed-by-acronym">
