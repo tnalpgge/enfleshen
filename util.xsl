@@ -262,4 +262,28 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="word-acronym-word">
+    <xsl:param name="thing"/>
+    <xsl:call-template name="ucfirst">
+      <xsl:with-param name="thing" select="substring-before($thing, '-')"/>
+    </xsl:call-template>
+    <xsl:value-of select="upper-case(substring-before(substring-after($thing, '-'), '-'))"/>
+    <xsl:call-template name="ucfirst">
+      <xsl:with-param name="thing" select="substring-after(substring-after($thing, '-'), '-')"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="word-acronym-word-field">
+    <xsl:param name="name"/>
+    <xsl:param name="value"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name">
+	<xsl:call-template name="word-acronym-word">
+	  <xsl:with-param name="thing" select="$name"/>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="value" select="$value"/>
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>

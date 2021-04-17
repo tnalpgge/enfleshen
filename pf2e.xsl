@@ -397,60 +397,6 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template name="word-acronym-word">
-    <xsl:param name="thing"/>
-      <xsl:value-of select="
-concat(
-  upper-case(
-    substring($thing, 1, 1)
-  ),
-  lower-case(
-    substring-before(
-      substring($thing, 2),
-      '-'
-    )
-  ),
-  upper-case(
-    substring-before(
-     substring-after($thing, '-'),
-     '-'
-    )
-  ),
-  upper-case(
-    substring(
-      substring-after(
-        substring-after($thing, '-'),
-        '-'
-      ),
-      1,
-      1
-    )
-  ),
-  lower-case(
-    substring(
-      substring-after(
-        substring-after($thing, '-'),
-        '-'
-      ),
-      2
-    )
-  )
-)"/>
-  </xsl:template>
-
-  <xsl:template name="word-acronym-word-field">
-    <xsl:param name="name"/>
-    <xsl:param name="value"/>
-    <xsl:call-template name="field">
-      <xsl:with-param name="name">
-	<xsl:call-template name="word-acronym-word">
-	  <xsl:with-param name="thing" select="$name"/>
-	</xsl:call-template>
-      </xsl:with-param>
-      <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>
-  </xsl:template>
-
   <xsl:template match="class-dc/key">
     <xsl:call-template name="word-acronym-word-field">
       <xsl:with-param name="name" select="concat('class-dc-', local-name())"/>
@@ -663,11 +609,11 @@ concat(
   </xsl:template>
 
   <xsl:template match="
-    armor-class/heavy |
-    armor-class/light |
-    armor-class/medium |
-    armor-class/unarmored
-    ">
+		       armor-class/heavy |
+		       armor-class/light |
+		       armor-class/medium |
+		       armor-class/unarmored
+		       ">
     <xsl:call-template name="proficiency-boxes">
       <xsl:with-param name="name">
 	<xsl:call-template name="ucfirst3words">
