@@ -804,6 +804,53 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="skill">
+    <xsl:param name="element"/>
+    <xsl:param name="ndx"/>
+    <xsl:variable name="skill">
+      <xsl:call-template name="ucfirst">
+	<xsl:with-param name="thing" select="local-name($element)"/>
+      </xsl:call-template>
+      <xsl:if test="local-name($element) = 'lore'">
+	<xsl:value-of select="$ndx"/>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:for-each select="$element/armor | 
+			  $element/item | 
+			  $element/total">
+      <xsl:call-template name="two-word-field">
+	<xsl:with-param name="name" select="concat($skill, '-', local-name())"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:call-template name="proficiency-fields">
+      <xsl:with-param name="name" select="$skill"/>
+      <xsl:with-param name="level" select="$element/proficiency/@level"/>
+      <xsl:with-param name="override" select="$element/proficiency/text()"/>
+    </xsl:call-template>
+    <xsl:if test="starts-with($skill, 'lore')">
+      <xsl:call-template name="two-word-field">
+	<xsl:with-param name="name" select="concat($skill, '-subject')"/>
+	<xsl:with-param name="value" select="$element/@subject"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template match="skills">
+    <xsl:apply-templates select="*[local-name() != 'lore']"/>
+    <xsl:for-each select="lore">
+      <xsl:call-template name="skill">
+	<xsl:with-param name="element" select="."/>
+	<xsl:with-param name="ndx" select="position()"/>	
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
 
+  <xsl:template match="skills/*[local-name() != 'lore']">
+    <xsl:variable name="skill" select="local-name()"/>
+    <xsl:call-template name="skill">
+      <xsl:with-param name="element" select="."/>
+    </xsl:call-template>
+  </xsl:template>
 
 </xsl:stylesheet>
