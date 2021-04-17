@@ -1219,4 +1219,61 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template name="action-or-reaction">
+    <xsl:param name="ndx"/>
+    <xsl:param name="element"/>
+    <xsl:param name="action"/>
+    <xsl:for-each select="
+      $element/description |
+      $element/name |
+      $element/traits |
+      $element/trigger
+      ">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat($action, $ndx, '-', local-name())"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:for-each select="$element/@actions | $element/@page">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat($action, $ndx, '-', local-name())"/>
+	<xsl:with-param name="value" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:for-each select="$element/@free | $element/@reaction">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat($action, $ndx, '-', local-name())"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value" select="."/>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="actions-activities">
+    <xsl:for-each select="action">
+      <xsl:call-template name="action-or-reaction">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
+	<xsl:with-param name="action">
+	  <xsl:text>action-activity</xsl:text>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="free-actions-reactions">
+    <xsl:for-each select="action">
+      <xsl:call-template name="action-or-reaction">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
+	<xsl:with-param name="action">
+	  <xsl:text>free-reaction</xsl:text>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>  
+
 </xsl:stylesheet>
