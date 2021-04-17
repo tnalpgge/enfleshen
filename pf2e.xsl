@@ -691,22 +691,30 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template name="melee-damage">
+  <xsl:template name="strike-damage">
     <xsl:param name="ndx"/>
     <xsl:param name="element"/>
+    <xsl:param name="strike"/>
     <xsl:call-template name="four-word-field">
-      <xsl:with-param name="name" select="concat('melee-strike', $ndx, '-damage-dice')"/>
+      <xsl:with-param name="name" select="concat($strike, '-strike', $ndx, '-damage-dice')"/>
       <xsl:with-param name="value" select="$element/dice/text()"/>
     </xsl:call-template>
     <xsl:call-template name="damage-type-boxes">
-      <xsl:with-param name="name" select="concat('melee-strike', $ndx)"/>
+      <xsl:with-param name="name" select="concat($strike, '-strike', $ndx)"/>
       <xsl:with-param name="element" select="$element/type"/>
     </xsl:call-template>
+    <xsl:if test="$element/special">
+      <xsl:call-template name="four-word-field">
+	<xsl:with-param name="name" select="concat($strike, '-strike', $ndx, '-damage-special')"/>
+	<xsl:with-param name="value" select="$element/special/text()"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
 
-  <xsl:template name="melee-strike">
+  <xsl:template name="strike">
     <xsl:param name="ndx"/>
     <xsl:param name="element"/>
+    <xsl:param name="strike"/>
     <xsl:for-each select="
       $element/item |
       $element/other |
@@ -715,32 +723,44 @@ concat(
       $element/traits
       ">
       <xsl:call-template name="three-word-field">
-	<xsl:with-param name="name" select="concat('melee-strike', $ndx, '-', local-name())"/>
+	<xsl:with-param name="name" select="concat($strike, '-strike', $ndx, '-', local-name())"/>
 	<xsl:with-param name="value" select="text()"/>
       </xsl:call-template>
     </xsl:for-each>
     <xsl:call-template name="proficiency-fields">
       <xsl:with-param name="name">
 	<xsl:call-template name="ucfirst2words">
-	  <xsl:with-param name="thing" select="concat('melee-strike', $ndx)"/>
+	  <xsl:with-param name="thing" select="concat($strike, '-strike', $ndx)"/>
 	</xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="level" select="proficiency/@level"/>
       <xsl:with-param name="override" select="proficiency/text()"/>
     </xsl:call-template>
-    <xsl:call-template name="melee-damage">
+    <xsl:call-template name="strike-damage">
       <xsl:with-param name="ndx" select="$ndx"/>
       <xsl:with-param name="element" select="damage"/>
-    </xsl:call-template>
+      <xsl:with-param name="strike" select="$strike"/>
+    </xsl:call-template>    	
   </xsl:template>
 
   <xsl:template match="melee-strikes">
     <xsl:for-each select="melee-strike">
-      <xsl:call-template name="melee-strike">
+      <xsl:call-template name="strike">
 	<xsl:with-param name="ndx" select="position()"/>
 	<xsl:with-param name="element" select="."/>
+	<xsl:with-param name="strike" select="substring-before(local-name(), '-')"/>	
       </xsl:call-template>
     </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="ranged-strikes">
+    <xsl:for-each select="ranged-strike">
+      <xsl:call-template name="strike">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
+	<xsl:with-param name="strike" select="substring-before(local-name(), '-')"/>
+      </xsl:call-template>
+    </xsl:for-each>    
   </xsl:template>
 
 </xsl:stylesheet>
