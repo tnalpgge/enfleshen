@@ -198,6 +198,7 @@
 
   <xsl:template match="
     character-name |
+    character-sketch |
     gender-pronouns |
     hero-points |
     movement-types |
@@ -290,6 +291,7 @@
   <xsl:template match="
 		       abilities |
 		       armor-class |
+		       campaign-notes |
 		       class-dc |
 		       encumbrance |
 		       feats |
@@ -300,6 +302,7 @@
 		       inventory |
 		       money |
 		       perception |
+		       personality |
 		       saving-throws |
 		       shield |
 		       spellcasting |
