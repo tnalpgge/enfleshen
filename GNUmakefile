@@ -1,7 +1,7 @@
 SOURCEPDF=dnd5e.pdf
 STYLESHEET=dnd5e.xsl
 CHARACTER=dnd5e-qa
-
+COMMON_XSL=util.xsl walk.xsl
 DND5E_SRC=$(wildcard hectic-horde-stint-affair/dnd5e/*/*_Level*.xml)
 DND5E_CHARS=$(DND5E_SRC:.xml=.pdf)
 
@@ -31,3 +31,10 @@ dnd5e: $(DND5E_CHARS)
 conan: $(CONAN_CHARS)
 
 pf2e: $(PF2E_CHARS)
+
+dnd5e.xsl: $(COMMON_XSL)
+
+conan.xsl: $(COMMON_XSL)
+
+pf2e.xsl: $(COMMON_XSL)
+
