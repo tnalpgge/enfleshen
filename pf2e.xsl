@@ -271,6 +271,7 @@
 		       feats/general |
 		       feats/skill |
 		       hit-points |
+		       inventory |
 		       perception |
 		       saving-throws |
 		       shield |
@@ -609,9 +610,6 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-
-
-
   <xsl:template match="shield/max-hp | shield/current-hp">
     <xsl:call-template name="two-word-acronym-field">
       <xsl:with-param name="name" select="concat('shield-', local-name())"/>
@@ -912,6 +910,39 @@ concat(
       <xsl:call-template name="two-word-field">
 	<xsl:with-param name="name" select="concat(local-name(), position())"/>
 	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="inventory-item">
+    <xsl:param name="ndx"/>
+    <xsl:param name="element"/>
+    <xsl:variable name="inventory" select="local-name($element)"/>
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name" select="concat($inventory, $ndx, '-name')"/>
+      <xsl:with-param name="value" select="$element/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name" select="concat($inventory, $ndx, '-bulk')"/>
+      <xsl:with-param name="value" select="$element/@bulk"/>
+    </xsl:call-template>
+    <xsl:if test="$element/@invest">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat($inventory, $ndx, '-invest')"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value" select="$element/@invest"/>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="other-items | readied-items | worn-items">
+    <xsl:for-each select="*[ends-with(local-name(), '-item')]">
+      <xsl:call-template name="inventory-item">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
       </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
