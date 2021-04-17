@@ -1053,4 +1053,18 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="spellcasting/methods | spellcasting/traditions">
+    <xsl:variable name="thing" select="substring(local-name(), 1, string-length(local-name()) - 1)"/>
+    <xsl:for-each select="@*">
+      <xsl:call-template name="two-word-field">
+	<xsl:with-param name="name" select="concat(local-name(), '-', $thing)"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value" select="."/>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
 </xsl:stylesheet>
