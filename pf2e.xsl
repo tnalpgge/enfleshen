@@ -147,17 +147,22 @@
     character/level |
     character/traits |
     class |
+    conditions |
     deity |
     dislikes |
+    dying |
     enemies |
     ethnicity |
     height |
+    immunities |
     likes |
     nationality |
     organizations |
+    resistances |
     size |
     speed |
-    weight
+    weight |
+    wounded
     ">
     <xsl:call-template name="single-word-field">
       <xsl:with-param name="name" select="local-name()"/>
@@ -324,6 +329,7 @@ concat(
 		       abilities |
 		       armor-class |
 		       class-dc |
+		       hit-points |
 		       saving-throws |
 		       shield |
 		       spellcasting |
@@ -748,6 +754,15 @@ concat(
   <xsl:template match="fortitude | reflex | will">
     <xsl:call-template name="saving-throw">
       <xsl:with-param name="name" select="local-name()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="hit-points/current | 
+		       hit-points/maximum | 
+		       hit-points/temporary">
+    <xsl:call-template name="word-with-acronym-field">
+      <xsl:with-param name="name" select="concat(local-name(), '-hp')"/>
+      <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
   </xsl:template>
   
