@@ -1144,4 +1144,48 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template name="focus-spell">
+    <xsl:param name="ndx"/>
+    <xsl:param name="element"/>
+    <xsl:variable name="thing" select="local-name($element)"/>
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name" select="concat($thing, $ndx, '-name')"/>
+      <xsl:with-param name="value" select="$element/text()"/>
+    </xsl:call-template>
+    <xsl:call-template name="three-word-field">
+      <xsl:with-param name="name" select="concat($thing, $ndx, '-actions')"/>
+      <xsl:with-param name="value" select="$element/@actions"/>
+    </xsl:call-template>
+    <xsl:for-each select="@material | @somatic | @verbal">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat($thing, $ndx, '-', local-name())"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value" select="."/>
+	  </xsl:call-template>	  
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="focus-spells">
+    <xsl:apply-templates select="focus-points"/>
+    <xsl:for-each select="focus-spell">
+      <xsl:call-template name="focus-spell">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="focus-points">
+    <xsl:variable name="thing" select="local-name()"/>
+    <xsl:for-each select="@current | @maximum">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat($thing, '-', local-name())"/>
+	<xsl:with-param name="value" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
 </xsl:stylesheet>

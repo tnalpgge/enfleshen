@@ -469,10 +469,10 @@
   </innate-spells>
   <focus-spells>
     <focus-points current="fpCur" maximum="fpMax"/>
-    <focus-spell actions="2" material="" somatic="" verbal="true"/>
-    <focus-spell actions="3" material="true" somatic="true" verbal=""/>
-    <focus-spell actions="R" material="true" somatic="" verbal="true"/>
-    <focus-spell actions="1" material="" somatic="true" verbal="true"/>
+    <focus-spell actions="2" material="" somatic="" verbal="true">Focus Spell 1</focus-spell>
+    <focus-spell actions="3" material="true" somatic="true" verbal="">Focus Spell 2</focus-spell>
+    <focus-spell actions="R" material="true" somatic="" verbal="true">Focus Spell 3</focus-spell>
+    <focus-spell actions="1" material="" somatic="true" verbal="true">Focus Spell 4</focus-spell>
   </focus-spells>
   <slots cantrip-level="0">
     <level number="1" total="10" remaining="9"/>
