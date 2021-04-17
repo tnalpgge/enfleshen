@@ -72,6 +72,7 @@
     </xsl:call-template>
   </xsl:variable>
 
+
   <xsl:variable name="class" select="lower-case(/character/class/text())"/>
   <xsl:variable name="characterlevel" select="number(/character/level/text())"/>
 
@@ -137,6 +138,24 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+
+  <xsl:variable name="key-modifier">
+    <xsl:call-template name="ability-modifier">
+      <xsl:with-param name="score" select="$key"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="spell-atk-prof">
+    <xsl:call-template name="proficiency-bonus">
+      <xsl:with-param name="level" select="/character/spellcasting/attack-roll/proficiency/@level"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="spell-dc-prof">
+    <xsl:call-template name="proficiency-bonus">
+      <xsl:with-param name="level" select="/character/spellcasting/spell-dc/proficiency/@level"/>
+    </xsl:call-template>
+  </xsl:variable>  
 
   <xsl:template match="
     age |
@@ -451,7 +470,16 @@ concat(
   <xsl:template match="spellcasting/attack-roll/total">
     <xsl:call-template name="three-word-field">
       <xsl:with-param name="name" select="concat('spell-attack-', local-name())"/>
-      <xsl:with-param name="value" select="text()"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="text()">
+	    <xsl:value-of select="text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:value-of select="$spell-atk-prof + $key-modifier"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
     </xsl:call-template>    
   </xsl:template>
 
@@ -468,12 +496,35 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="spellcasting/attack-roll/proficiency">
+    <xsl:call-template name="proficiency-fields">
+      <xsl:with-param name="name">
+	<xsl:call-template name="ucfirst2words">
+	  <xsl:with-param name="thing">
+	    <xsl:text>spell-attack</xsl:text>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="@level"/>
+      <xsl:with-param name="override" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template match="spell-dc/total">
     <xsl:call-template name="word-acronym-word-field">
       <xsl:with-param name="name" select="concat('spell-dc-', local-name())"/>
-      <xsl:with-param name="value" select="text()"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="text()">
+	    <xsl:value-of select="text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:value-of select="$spell-dc-prof + $key-modifier"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
     </xsl:call-template>
-  </xsl:template>  
+  </xsl:template>
 
   <xsl:template match="spell-dc/key">
     <xsl:call-template name="word-acronym-word-field">
@@ -483,6 +534,20 @@ concat(
 	  <xsl:with-param name="score" select="$key"/>
 	</xsl:call-template>
       </xsl:with-param>
+    </xsl:call-template>    
+  </xsl:template>
+
+  <xsl:template match="spell-dc/proficiency">
+    <xsl:call-template name="proficiency-fields">
+      <xsl:with-param name="name">
+	<xsl:call-template name="word-followed-by-acronym">
+	  <xsl:with-param name="thing">
+	    <xsl:text>spell-dc</xsl:text>
+	  </xsl:with-param>
+	</xsl:call-template>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="@level"/>
+      <xsl:with-param name="override" select="text()"/>
     </xsl:call-template>    
   </xsl:template>
 
