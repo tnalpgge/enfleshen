@@ -29,7 +29,7 @@
 concat(
   upper-case(
     substring($thing, 1, 1)
-  ), 
+  ),
   lower-case(
     substring($thing, 2)
   )
@@ -56,7 +56,7 @@ concat(
     </xsl:call-template>
     <xsl:call-template name="ucfirst">
       <xsl:with-param name="thing" select="substring-after($thing, '-')"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="two-word-field">
@@ -148,7 +148,7 @@ concat(
   )
 )
 "/>
-  </xsl:template>  
+  </xsl:template>
 
   <xsl:template name="word-with-acronym-field">
     <xsl:param name="name"/>
@@ -160,7 +160,7 @@ concat(
 	</xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="ucfirst3words">
@@ -170,7 +170,7 @@ concat(
     </xsl:call-template>
     <xsl:call-template name="ucfirst2words">
       <xsl:with-param name="thing" select="substring-after($thing, '-')"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="three-word-field">
@@ -211,7 +211,7 @@ concat(
 
   <xsl:template name="first-two-words">
     <xsl:param name="thing"/>
-    <xsl:value-of select="string-join(subsequence(tokenize($thing, '-'), 1, 2),  '-')"/>    
+    <xsl:value-of select="string-join(subsequence(tokenize($thing, '-'), 1, 2),  '-')"/>
   </xsl:template>
 
   <xsl:template name="two-words-followed-by-acronym">
@@ -260,6 +260,6 @@ concat(
       </xsl:with-param>
       <xsl:with-param name="value" select="$value"/>
     </xsl:call-template>
-  </xsl:template>  
+  </xsl:template>
 
 </xsl:stylesheet>

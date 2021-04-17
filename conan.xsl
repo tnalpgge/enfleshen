@@ -13,7 +13,7 @@
     <xsl:param name="name"/>
     <xsl:param name="expertise"/>
     <xsl:param name="focus"/>
-    <xsl:param name="tn"/>    
+    <xsl:param name="tn"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat($name, '-Exp')"/>
       <xsl:with-param name="value" select="$expertise"/>
@@ -25,7 +25,7 @@
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="concat($name, '-TN')"/>
       <xsl:with-param name="value" select="$tn"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="talent">
@@ -104,7 +104,7 @@ concat(
   )
 )
 "/>
-  </xsl:template>  
+  </xsl:template>
 
   <xsl:template name="word-with-acronym-field">
     <xsl:param name="name"/>
@@ -116,7 +116,7 @@ concat(
 	</xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="value" select="$value"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="checkbox-loop">
@@ -254,7 +254,7 @@ concat(
     age |
     appearance |
     archetype |
-    background/caste | 
+    background/caste |
     courage |
     education |
     gender |
@@ -318,7 +318,7 @@ concat(
       <xsl:with-param name="name" select="local-name()"/>
       <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
-  </xsl:template>  
+  </xsl:template>
 
   <xsl:template match="
     agility/acrobatics |
@@ -343,7 +343,7 @@ concat(
     personality/persuade |
     personality/society |
     willpower/discipline |
-    willpower/sorcery 
+    willpower/sorcery
     ">
     <xsl:call-template name="skill-field">
       <xsl:with-param name="name">
@@ -359,7 +359,7 @@ concat(
 
   <xsl:template match="
     coordination/ranged-weapons |
-    personality/animal-handling 
+    personality/animal-handling
     ">
     <xsl:call-template name="skill-field">
       <xsl:with-param name="name">

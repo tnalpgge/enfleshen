@@ -33,7 +33,7 @@
       <x:skill name="arcana"/>
       <x:skill name="crafting"/>
       <x:skill name="lore1"/>
-      <x:skill name="lore2"/>      
+      <x:skill name="lore2"/>
       <x:skill name="occultism"/>
       <x:skill name="society"/>
     </x:ability>
@@ -155,7 +155,7 @@
     <xsl:call-template name="proficiency-bonus">
       <xsl:with-param name="level" select="/character/spellcasting/spell-dc/proficiency/@level"/>
     </xsl:call-template>
-  </xsl:variable>  
+  </xsl:variable>
 
   <xsl:template match="
     age |
@@ -207,7 +207,7 @@
     <xsl:call-template name="two-word-field">
       <xsl:with-param name="name" select="local-name()"/>
       <xsl:with-param name="value" select="text()"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="ability-modifier">
@@ -223,7 +223,7 @@
       <xsl:with-param name="value">
 	<xsl:call-template name="ability-modifier">
 	  <xsl:with-param name="score" select="$score"/>
-	</xsl:call-template>	
+	</xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
@@ -236,7 +236,7 @@
       <xsl:with-param name="value">
 	<xsl:call-template name="ability-modifier">
 	  <xsl:with-param name="score" select="$score"/>
-	</xsl:call-template>	
+	</xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
@@ -265,7 +265,7 @@
     <xsl:for-each select="document('')//x:abilities/x:ability[@name=$name]/x:saving-throw">
       <xsl:call-template name="saving-throw-modifier">
 	<xsl:with-param name="save" select="@name"/>
-	<xsl:with-param name="score" select="$score"/>	
+	<xsl:with-param name="score" select="$score"/>
       </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
@@ -314,7 +314,7 @@
 
   <xsl:template match="abilities/strength">
     <xsl:variable name="name" select="local-name()"/>
-    <xsl:variable name="score" select="number(text())"/>    
+    <xsl:variable name="score" select="number(text())"/>
     <xsl:call-template name="ability">
       <xsl:with-param name="name" select="$name"/>
       <xsl:with-param name="score" select="$score"/>
@@ -342,7 +342,7 @@
 
   <xsl:template match="abilities/dexterity">
     <xsl:variable name="name" select="local-name()"/>
-    <xsl:variable name="score" select="number(text())"/>    
+    <xsl:variable name="score" select="number(text())"/>
     <xsl:call-template name="ability">
       <xsl:with-param name="name" select="$name"/>
       <xsl:with-param name="score" select="$score"/>
@@ -351,11 +351,11 @@
       <xsl:call-template name="strike-ability-modifier">
 	<xsl:with-param name="strike">
 	  <xsl:text>ranged</xsl:text>
-	</xsl:with-param>	
+	</xsl:with-param>
 	<xsl:with-param name="seq" select="position()"/>
 	<xsl:with-param name="score" select="$score"/>
       </xsl:call-template>
-    </xsl:for-each>    
+    </xsl:for-each>
     <xsl:call-template name="three-word-field">
       <xsl:with-param name="name">
 	<xsl:text>armor-class-modifier</xsl:text>
@@ -363,14 +363,14 @@
       <xsl:with-param name="value">
 	<xsl:call-template name="ability-modifier">
 	  <xsl:with-param name="score" select="$score"/>
-	</xsl:call-template>	
+	</xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="abilities/wisdom">
     <xsl:variable name="name" select="local-name()"/>
-    <xsl:variable name="score" select="number(text())"/>        
+    <xsl:variable name="score" select="number(text())"/>
     <xsl:call-template name="ability">
       <xsl:with-param name="name" select="$name"/>
       <xsl:with-param name="score" select="$score"/>
@@ -483,7 +483,7 @@ concat(
 	  </xsl:otherwise>
 	</xsl:choose>
       </xsl:with-param>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="spellcasting/attack-roll/key">
@@ -537,7 +537,7 @@ concat(
 	  <xsl:with-param name="score" select="$key"/>
 	</xsl:call-template>
       </xsl:with-param>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="spell-dc/proficiency">
@@ -551,7 +551,7 @@ concat(
       </xsl:with-param>
       <xsl:with-param name="level" select="@level"/>
       <xsl:with-param name="override" select="text()"/>
-    </xsl:call-template>    
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template name="proficiency-bonus">
@@ -665,7 +665,7 @@ concat(
 
   <xsl:template match="
     armor-class/heavy |
-    armor-class/light | 
+    armor-class/light |
     armor-class/medium |
     armor-class/unarmored
     ">
@@ -725,8 +725,8 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="hit-points/current | 
-		       hit-points/maximum | 
+  <xsl:template match="hit-points/current |
+		       hit-points/maximum |
 		       hit-points/temporary">
     <xsl:call-template name="word-with-acronym-field">
       <xsl:with-param name="name" select="concat(local-name(), '-hp')"/>
@@ -754,7 +754,7 @@ concat(
   <xsl:template name="damage-type-boxes">
     <xsl:param name="name"/>
     <xsl:param name="element"/>
-    <xsl:for-each select="$element/@bludgeoning | 
+    <xsl:for-each select="$element/@bludgeoning |
 			  $element/@piercing |
 			  $element/@slashing
 			  ">
@@ -819,7 +819,7 @@ concat(
       <xsl:with-param name="ndx" select="$ndx"/>
       <xsl:with-param name="element" select="damage"/>
       <xsl:with-param name="strike" select="$strike"/>
-    </xsl:call-template>    	
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="melee-strikes">
@@ -827,7 +827,7 @@ concat(
       <xsl:call-template name="strike">
 	<xsl:with-param name="ndx" select="position()"/>
 	<xsl:with-param name="element" select="."/>
-	<xsl:with-param name="strike" select="substring-before(local-name(), '-')"/>	
+	<xsl:with-param name="strike" select="substring-before(local-name(), '-')"/>
       </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
@@ -839,7 +839,7 @@ concat(
 	<xsl:with-param name="element" select="."/>
 	<xsl:with-param name="strike" select="substring-before(local-name(), '-')"/>
       </xsl:call-template>
-    </xsl:for-each>    
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template name="other-weapon-proficiency">
@@ -857,7 +857,7 @@ concat(
       <xsl:with-param name="name" select="concat(local-name($element), $ndx, '-weapon-proficiency-name')"/>
       <xsl:with-param name="value" select="$element/text()"/>
     </xsl:call-template>
-  </xsl:template>  
+  </xsl:template>
 
   <xsl:template match="weapon-proficiencies">
     <xsl:apply-templates select="martial | simple"/>
@@ -869,7 +869,7 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="weapon-proficiencies/martial | 
+  <xsl:template match="weapon-proficiencies/martial |
 		       weapon-proficiencies/simple
 		       ">
     <xsl:call-template name="proficiency-boxes">
@@ -893,8 +893,8 @@ concat(
 	<xsl:value-of select="$ndx"/>
       </xsl:if>
     </xsl:variable>
-    <xsl:for-each select="$element/armor | 
-			  $element/item | 
+    <xsl:for-each select="$element/armor |
+			  $element/item |
 			  $element/total">
       <xsl:call-template name="two-word-field">
 	<xsl:with-param name="name" select="concat($skill, '-', local-name())"/>
@@ -913,13 +913,13 @@ concat(
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
-  
+
   <xsl:template match="skills">
     <xsl:apply-templates select="*[local-name() != 'lore']"/>
     <xsl:for-each select="lore">
       <xsl:call-template name="skill">
 	<xsl:with-param name="element" select="."/>
-	<xsl:with-param name="ndx" select="position()"/>	
+	<xsl:with-param name="ndx" select="position()"/>
       </xsl:call-template>
     </xsl:for-each>
   </xsl:template>
@@ -945,7 +945,7 @@ concat(
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="feats/ancestry/heritage | 
+  <xsl:template match="feats/ancestry/heritage |
 		       feats/ancestry/special |
 		       feats/skill/background">
     <xsl:call-template name="two-word-field">
@@ -971,9 +971,9 @@ concat(
 	<xsl:with-param name="value" select="text()"/>
       </xsl:call-template>
     </xsl:for-each>
-    <xsl:apply-templates select="feature[@level > 1]"/>    
+    <xsl:apply-templates select="feature[@level > 1]"/>
   </xsl:template>
-  
+
   <xsl:template match="class-feats/feature[@level > 1]">
     <xsl:call-template name="two-word-field">
       <xsl:with-param name="name" select="concat('class-', local-name(), @level)"/>
@@ -1077,7 +1077,7 @@ concat(
     <xsl:call-template name="two-word-field">
       <xsl:with-param name="name" select="concat($thing, $ndx, '-', 'actions')"/>
       <xsl:with-param name="value" select="$element/@actions"/>
-    </xsl:call-template>    
+    </xsl:call-template>
     <xsl:for-each select="$element/description | $element/name">
       <xsl:call-template name="two-word-field">
 	<xsl:with-param name="name" select="concat($thing, $ndx, '-', local-name())"/>
@@ -1092,7 +1092,7 @@ concat(
       </xsl:call-template>
     </xsl:for-each>
     <xsl:for-each select="$element/@material |
-			  $element/@prepared | 
+			  $element/@prepared |
 			  $element/@somatic |
 			  $element/@verbal
 			  ">
@@ -1128,11 +1128,11 @@ concat(
     <xsl:for-each select="$element/@actions | $element/@frequency">
       <xsl:call-template name="three-word-field">
 	<xsl:with-param name="name" select="concat('innate-spell', $ndx, '-', local-name())"/>
-	<xsl:with-param name="value" select="."/>	
+	<xsl:with-param name="value" select="."/>
       </xsl:call-template>
     </xsl:for-each>
-    <xsl:for-each select="$element/@material | 
-			  $element/@somatic | 
+    <xsl:for-each select="$element/@material |
+			  $element/@somatic |
 			  $element/@verbal
 			  ">
       <xsl:call-template name="three-word-field">
@@ -1173,7 +1173,7 @@ concat(
 	<xsl:with-param name="value">
 	  <xsl:call-template name="checkbox">
 	    <xsl:with-param name="value" select="."/>
-	  </xsl:call-template>	  
+	  </xsl:call-template>
 	</xsl:with-param>
       </xsl:call-template>
     </xsl:for-each>
@@ -1274,6 +1274,6 @@ concat(
 	</xsl:with-param>
       </xsl:call-template>
     </xsl:for-each>
-  </xsl:template>  
+  </xsl:template>
 
 </xsl:stylesheet>

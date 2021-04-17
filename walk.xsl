@@ -6,7 +6,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:x="urn:tnalpgge:enfleshen"
     exclude-result-prefixes="xfdf">
-  
+
   <!-- Walk the document and produce the output -->
 
   <xsl:template match="node()|comment()">
