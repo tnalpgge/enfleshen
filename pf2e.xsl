@@ -720,7 +720,8 @@ concat(
       $element/other |
       $element/specialization |
       $element/total |
-      $element/traits
+      $element/traits |
+      $element/weapon
       ">
       <xsl:call-template name="three-word-field">
 	<xsl:with-param name="name" select="concat($strike, '-strike', $ndx, '-', local-name())"/>
