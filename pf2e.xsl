@@ -266,6 +266,10 @@
 		       abilities |
 		       armor-class |
 		       class-dc |
+		       feats |
+		       feats/ancestry |
+		       feats/general |
+		       feats/skill |
 		       hit-points |
 		       perception |
 		       saving-throws |
@@ -865,6 +869,51 @@ concat(
 	</xsl:for-each>
       </xsl:with-param>
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="feats/ancestry/heritage | 
+		       feats/ancestry/special |
+		       feats/skill/background">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat(local-name(), '-feat')"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="ancestry-feat |
+		       class-feat |
+		       general-feat |
+		       skill-feat">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat(local-name(), @level)"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="class-feats">
+    <xsl:for-each select="feature[@level = 1]">
+      <xsl:call-template name="two-word-acronym-field">
+	<xsl:with-param name="name" select="concat('class-', local-name(), '-', @level, substring('abcdefghijklmnopqrstuvwxyz', position(), 1))"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:apply-templates select="feature[@level > 1]"/>    
+  </xsl:template>
+  
+  <xsl:template match="class-feats/feature[@level > 1]">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat('class-', local-name(), @level)"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="feats/bonus">
+    <xsl:for-each select="bonus-feat">
+      <xsl:call-template name="two-word-field">
+	<xsl:with-param name="name" select="concat(local-name(), position())"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
 </xsl:stylesheet>
