@@ -159,6 +159,7 @@
     nationality |
     organizations |
     resistances |
+    senses |
     size |
     speed |
     weight |
@@ -330,6 +331,7 @@ concat(
 		       armor-class |
 		       class-dc |
 		       hit-points |
+		       perception |
 		       saving-throws |
 		       shield |
 		       spellcasting |
@@ -763,6 +765,23 @@ concat(
     <xsl:call-template name="word-with-acronym-field">
       <xsl:with-param name="name" select="concat(local-name(), '-hp')"/>
       <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="perception/total">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="concat('perception-', local-name())"/>
+      <xsl:with-param name="value" select="text()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="perception/proficiency">
+    <xsl:call-template name="proficiency-fields">
+      <xsl:with-param name="name">
+	<xsl:text>Perception</xsl:text>
+      </xsl:with-param>
+      <xsl:with-param name="level" select="@level"/>
+      <xsl:with-param name="override" select="text()"/>
     </xsl:call-template>
   </xsl:template>
   
