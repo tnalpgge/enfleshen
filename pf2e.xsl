@@ -1105,4 +1105,43 @@ concat(
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template name="innate-spell">
+    <xsl:param name="ndx"/>
+    <xsl:param name="element"/>
+    <xsl:for-each select="$element/description | $element/name">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat('innate-spell', $ndx, '-', local-name())"/>
+	<xsl:with-param name="value" select="text()"/>
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:for-each select="$element/@actions | $element/@frequency">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat('innate-spell', $ndx, '-', local-name())"/>
+	<xsl:with-param name="value" select="."/>	
+      </xsl:call-template>
+    </xsl:for-each>
+    <xsl:for-each select="$element/@material | 
+			  $element/@somatic | 
+			  $element/@verbal
+			  ">
+      <xsl:call-template name="three-word-field">
+	<xsl:with-param name="name" select="concat('innate-spell', $ndx, '-', local-name())"/>
+	<xsl:with-param name="value">
+	  <xsl:call-template name="checkbox">
+	    <xsl:with-param name="value" select="."/>
+	  </xsl:call-template>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="innate-spells">
+    <xsl:for-each select="innate-spell">
+      <xsl:call-template name="innate-spell">
+	<xsl:with-param name="ndx" select="position()"/>
+	<xsl:with-param name="element" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
 </xsl:stylesheet>
