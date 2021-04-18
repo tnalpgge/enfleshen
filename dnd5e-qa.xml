@@ -1,7 +1,7 @@
 <character>
   <character-name>QA Character</character-name>
   <player-name>Player McPlayerName</player-name>
-  <class-level>Commoner 1</class-level>
+  <class-level>Warlock 1</class-level>
   <background>Folk Hero</background>
   <xp>1234567890</xp>
   <alignment>Lawful Neutral</alignment>
@@ -137,10 +137,10 @@
     Life-size marble statue of an elephant
   </treasure>
   <spellcasting>
-    <ability>Constitution</ability>
-    <attack-bonus>+1</attack-bonus>
-    <class>Commoner</class>
-    <save-dc>10</save-dc>
+    <ability>Charisma</ability>
+    <attack-bonus/>
+    <class>Warlock</class>
+    <save-dc/>
   </spellcasting>
   <spells>
     <level number="0">

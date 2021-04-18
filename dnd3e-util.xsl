@@ -12,15 +12,24 @@
   <xsl:template name="ability-modifier">
     <xsl:param name="score" select="10"/>
     <xsl:value-of select="floor(number($score) div 2) - 5"/>
-  </xsl:template>  
+  </xsl:template>
+
+  <xsl:template name="signed-number">
+    <xsl:param name="number"/>
+    <xsl:if test="number($number) &gt; 0">
+      <xsl:text>+</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$number"/>
+  </xsl:template>
 
   <xsl:template name="signed-ability-modifier">
     <xsl:param name="score" select="10"/>
-    <xsl:if test="number($score) &gt; 11">
-      <xsl:text>+</xsl:text>
-    </xsl:if>
-    <xsl:call-template name="ability-modifier">
-      <xsl:with-param name="score" select="$score"/>
+    <xsl:call-template name="signed-number">
+      <xsl:with-param name="number">
+	<xsl:call-template name="ability-modifier">
+	  <xsl:with-param name="score" select="$score"/>
+	</xsl:call-template>
+      </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
 

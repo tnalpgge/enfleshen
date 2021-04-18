@@ -297,6 +297,70 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:variable name="spell-ability-modifier">
+    <xsl:choose>
+      <xsl:when test="starts-with(lower-case(/character/spellcasting/ability), 'str')">
+	<xsl:value-of select="$strength-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case(/character/spellcasting/ability), 'dex')">
+	<xsl:value-of select="$dexterity-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case(/character/spellcasting/ability), 'con')">
+	<xsl:value-of select="$constitution-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case(/character/spellcasting/ability), 'int')">
+	<xsl:value-of select="$intelligence-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case(/character/spellcasting/ability), 'wis')">
+	<xsl:value-of select="$wisdom-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case(/character/spellcasting/ability), 'cha')">
+	<xsl:value-of select="$charisma-modifier"/>
+      </xsl:when>      
+      <xsl:when test="matches(lower-case(/character/class-level), 'barbarian')">
+	<xsl:value-of select="$wisdom-modifier"/>
+      </xsl:when>      
+      <xsl:when test="matches(lower-case(/character/class-level), 'bard')">
+	<xsl:value-of select="$charisma-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'cleric')">
+	<xsl:value-of select="$wisdom-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'druid')">
+	<xsl:value-of select="$wisdom-modifier"/>
+      </xsl:when>
+      <!-- fighter is ambiguous: battle master can use str or dex, eldritch knight uses int; hopefully they chose explicitly above!  if not, assume eldritch knight -->
+      <xsl:when test="matches(lower-case(/character/class-level), 'fighter')">
+	<xsl:value-of select="$intelligence-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'monk')">
+	<xsl:value-of select="$wisdom-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'paladin')">
+	<xsl:value-of select="$charisma-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'ranger')">
+	<xsl:value-of select="$wisdom-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'rogue')">
+	<xsl:value-of select="$intelligence-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'sorcerer')">
+	<xsl:value-of select="$charisma-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'warlock')">
+	<xsl:value-of select="$charisma-modifier"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case(/character/class-level), 'wizard')">
+	<xsl:value-of select="$intelligence-modifier"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:message> Unable to determine spellcasting ability </xsl:message>
+	<xsl:value-of select="0"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:template name="ability-modifier-field">
     <xsl:param name="name"/>
     <xsl:param name="score" select="10"/>
@@ -390,20 +454,28 @@ lower-case(
 	  <xsl:when test="$value != ''">
 	    <xsl:value-of select="$value"/>
 	  </xsl:when>
-	  <xsl:when test="lower-case(@expertise) = 'on'">
-	    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
-	  </xsl:when>
-	  <xsl:when test="lower-case(@expertise) = 'true'">
-	    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
-	  </xsl:when>
-	  <xsl:when test="lower-case(@expertise) = 'yes'">
-	    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
-	  </xsl:when>
-	  <xsl:when test="number(@expertise) &gt;= 1">
-	    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
-	  </xsl:when>	  	  	  
 	  <xsl:otherwise>
-	    <xsl:value-of select="$proficient * $proficiency-bonus + $skill-ability-modifier"/>
+	    <xsl:call-template name="signed-number">
+	      <xsl:with-param name="number">	    
+		<xsl:choose>
+		  <xsl:when test="lower-case(@expertise) = 'on'">
+		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>
+		  </xsl:when>
+		  <xsl:when test="lower-case(@expertise) = 'true'">
+		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>
+		  </xsl:when>
+		  <xsl:when test="lower-case(@expertise) = 'yes'">
+		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>
+		  </xsl:when>
+		  <xsl:when test="number(@expertise) &gt;= 1">
+		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>
+		  </xsl:when>	  	  	  
+		  <xsl:otherwise>
+		    <xsl:value-of select="$proficient * $proficiency-bonus + $skill-ability-modifier"/>
+		  </xsl:otherwise>
+		</xsl:choose>
+	      </xsl:with-param>
+	    </xsl:call-template>
 	  </xsl:otherwise>
 	</xsl:choose>
       </xsl:with-param>
@@ -660,15 +732,50 @@ lower-case(
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="spellcasting/ability |
-		       spellcasting/attack-bonus |
-		       spellcasting/class |
-		       spellcasting/save-dc">
+  <xsl:template match="spellcasting/ability | spellcasting/class">
     <xsl:variable name="x" select="name()"/>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="document('')//x:spells/*[local-name()=$x]/@formfield"/>
       <xsl:with-param name="value" select="text()"/>
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="spellcasting/attack-bonus">
+    <xsl:variable name="name" select="local-name()"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:spells/*[local-name()=$name]/@formfield"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="text() != ''">
+	    <xsl:value-of select="text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:call-template name="signed-number">
+	      <xsl:with-param name="number">
+		<xsl:value-of select="$spell-ability-modifier + $proficiency-bonus"/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="spellcasting/save-dc">
+    <xsl:variable name="name" select="local-name()"/>
+    <xsl:call-template name="field">
+      <xsl:with-param name="name" select="document('')//x:spells/*[local-name()=$name]/@formfield"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="text() != ''">
+	    <xsl:value-of select="text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:value-of select="8 + $spell-ability-modifier + $proficiency-bonus"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>        
   </xsl:template>
 
   <xsl:template match="spells">
