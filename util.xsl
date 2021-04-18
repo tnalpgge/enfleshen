@@ -84,7 +84,7 @@ concat(
       <xsl:when test="lower-case($value) = 'yes'">
 	<xsl:text>Yes</xsl:text>
       </xsl:when>
-      <xsl:when test="number($value) >= 1">
+      <xsl:when test="number($value) &gt;= 1">
 	<xsl:text>Yes</xsl:text>
       </xsl:when>
       <xsl:otherwise>
@@ -278,6 +278,33 @@ concat(
       </xsl:with-param>
       <xsl:with-param name="value" select="$value"/>
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="extract-numbers-from-text">
+    <xsl:param name="txt"/>
+    <xsl:for-each select="tokenize($txt, '\D+')">
+      <xsl:if test="string(number(.)) != 'NaN'">
+	<xsl:element name="n" xmlns="urn:tnalpgge:enfleshen">
+	  <xsl:value-of select="."/>
+	</xsl:element>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="add-extracted-numbers">
+    <xsl:param name="nn"/>
+    <xsl:value-of select="sum($nn/x:n)"/>
+  </xsl:template>
+
+  <xsl:template name="add-scattered-numbers-in-text">
+    <xsl:param name="txt"/>
+    <xsl:call-template name="add-extracted-numbers">
+      <xsl:with-param name="nn">
+	<xsl:call-template name="extract-numbers-from-text">
+	  <xsl:with-param name="txt" select="$txt"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>    
   </xsl:template>
 
 </xsl:stylesheet>

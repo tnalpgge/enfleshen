@@ -1,7 +1,7 @@
 <character>
   <character-name>QA Character</character-name>
   <player-name>Player McPlayerName</player-name>
-  <class-level>Commoner 0</class-level>
+  <class-level>Commoner 1</class-level>
   <background>Folk Hero</background>
   <xp>1234567890</xp>
   <alignment>Lawful Neutral</alignment>
@@ -16,23 +16,23 @@
   </abilities>
   <skills>
     <acrobatics proficient="true">+5</acrobatics>
-    <animal-handling proficient="yes">+2</animal-handling>
+    <animal-handling proficient="yes"/>
     <arcana proficient="on">+1</arcana>
-    <athletics proficient="1">-1</athletics>
+    <athletics proficient="1"/>
     <deception proficient="2">+2</deception>
-    <history proficient="TrUe">+1</history>
+    <history proficient="TrUe"/>
     <insight proficient="YeS">+2</insight>
-    <intimidation proficient="oN">0</intimidation>
+    <intimidation proficient="oN"/>
     <investigation proficient="1">+3</investigation>
-    <medicine proficient="11">+2</medicine>
+    <medicine proficient="11"/>
     <nature proficient="12">+1</nature>
-    <perception proficient="true">+4</perception>
+    <perception proficient="true"/>
     <performance proficient="13">0</performance>
-    <persuasion proficient="41">0</persuasion>
+    <persuasion proficient="41"/>
     <religion proficient="51">+1</religion>
-    <sleight-of-hand proficient="61">+5</sleight-of-hand>
+    <sleight-of-hand proficient="61" expertise="62"/>
     <stealth proficient="71">+7</stealth>
-    <survival proficient="19">+2</survival>
+    <survival proficient="19"/>
   </skills>
   <passive>14</passive>
   <proficiencies-lang>

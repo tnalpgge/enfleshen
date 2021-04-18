@@ -21,24 +21,24 @@
   </x:saving-throws>
 
   <x:skills>
-    <x:skill name="acrobatics" formfield="Acrobatics" proficient="Check Box 23"/>
-    <x:skill name="animal-handling" formfield="Animal" proficient="Check Box 24"/>
-    <x:skill name="arcana" formfield="Arcana" proficient="Check Box 25"/>
-    <x:skill name="athletics" formfield="Athletics" proficient="Check Box 26"/>
-    <x:skill name="deception" formfield="Deception " proficient="Check Box 27"/>
-    <x:skill name="history" formfield="History " proficient="Check Box 28"/>
-    <x:skill name="insight" formfield="Insight" proficient="Check Box 29"/>
-    <x:skill name="intimidation" formfield="Intimidation" proficient="Check Box 30"/>
-    <x:skill name="investigation" formfield="Investigation " proficient="Check Box 31"/>
-    <x:skill name="medicine" formfield="Medicine" proficient="Check Box 32"/>
-    <x:skill name="nature" formfield="Nature" proficient="Check Box 33"/>
-    <x:skill name="perception" formfield="Perception " proficient="Check Box 34"/>
-    <x:skill name="performance" formfield="Performance" proficient="Check Box 35"/>
-    <x:skill name="persuasion" formfield="Persuasion" proficient="Check Box 36"/>
-    <x:skill name="religion" formfield="Religion" proficient="Check Box 37"/>
-    <x:skill name="sleight-of-hand" formfield="SleightofHand" proficient="Check Box 38"/>
-    <x:skill name="stealth" formfield="Stealth " proficient="Check Box 39"/>
-    <x:skill name="survival" formfield="Survival" proficient="Check Box 40"/>
+    <x:skill name="acrobatics" formfield="Acrobatics" proficient="Check Box 23" ability="dexterity"/>
+    <x:skill name="animal-handling" formfield="Animal" proficient="Check Box 24" ability="wisdom"/>
+    <x:skill name="arcana" formfield="Arcana" proficient="Check Box 25" ability="intelligence"/>
+    <x:skill name="athletics" formfield="Athletics" proficient="Check Box 26" ability="strength"/>
+    <x:skill name="deception" formfield="Deception " proficient="Check Box 27" ability="charisma"/>
+    <x:skill name="history" formfield="History " proficient="Check Box 28" ability="intelligence"/>
+    <x:skill name="insight" formfield="Insight" proficient="Check Box 29" ability="wisdom"/>
+    <x:skill name="intimidation" formfield="Intimidation" proficient="Check Box 30" ability="charisma"/>
+    <x:skill name="investigation" formfield="Investigation " proficient="Check Box 31" ability="intelligence"/>
+    <x:skill name="medicine" formfield="Medicine" proficient="Check Box 32" ability="wisdom"/>
+    <x:skill name="nature" formfield="Nature" proficient="Check Box 33" ability="intelligence"/>
+    <x:skill name="perception" formfield="Perception " proficient="Check Box 34" ability="wisdom"/>
+    <x:skill name="performance" formfield="Performance" proficient="Check Box 35" ability="charisma"/>
+    <x:skill name="persuasion" formfield="Persuasion" proficient="Check Box 36" ability="charisma"/>
+    <x:skill name="religion" formfield="Religion" proficient="Check Box 37" ability="intelligence"/>
+    <x:skill name="sleight-of-hand" formfield="SleightofHand" proficient="Check Box 38" ability="dexterity"/>
+    <x:skill name="stealth" formfield="Stealth " proficient="Check Box 39" ability="dexterity"/>
+    <x:skill name="survival" formfield="Survival" proficient="Check Box 40" ability="wisdom"/>
   </x:skills>
 
   <x:death-saves>
@@ -192,6 +192,111 @@
 
   </x:spells>
 
+  <xsl:template name="proficiency-bonus">
+    <xsl:param name="level"/>
+    <xsl:value-of select="($level - 1) div 4 + 2"/>
+  </xsl:template>
+
+  <xsl:variable name="total-character-level">
+    <xsl:call-template name="add-scattered-numbers-in-text">
+      <xsl:with-param name="txt" select="/character/class-level/text()"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="proficiency-bonus">
+    <xsl:call-template name="proficiency-bonus">
+      <xsl:with-param name="level" select="$total-character-level"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="strength-score">
+    <xsl:value-of select="number(/character/abilities/strength/text())"/>
+  </xsl:variable>
+
+  <xsl:variable name="dexterity-score">
+    <xsl:value-of select="number(/character/abilities/dexterity/text())"/>
+  </xsl:variable>
+
+  <xsl:variable name="constitution-score">
+    <xsl:value-of select="number(/character/abilities/constitution/text())"/>
+  </xsl:variable>
+
+  <xsl:variable name="intelligence-score">
+    <xsl:value-of select="number(/character/abilities/intelligence/text())"/>
+  </xsl:variable>
+
+  <xsl:variable name="wisdom-score">
+    <xsl:value-of select="number(/character/abilities/wisdom/text())"/>
+  </xsl:variable>
+
+  <xsl:variable name="charisma-score">
+    <xsl:value-of select="number(/character/abilities/charisma/text())"/>
+  </xsl:variable>  
+  
+  <xsl:variable name="strength-modifier">
+    <xsl:call-template name="ability-modifier">
+      <xsl:with-param name="score" select="$strength-score"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="dexterity-modifier">
+    <xsl:call-template name="ability-modifier">
+      <xsl:with-param name="score" select="$dexterity-score"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="constitution-modifier">
+    <xsl:call-template name="ability-modifier">
+      <xsl:with-param name="score" select="$constitution-score"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="intelligence-modifier">
+    <xsl:call-template name="ability-modifier">
+      <xsl:with-param name="score" select="$intelligence-score"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="wisdom-modifier">
+    <xsl:call-template name="ability-modifier">
+      <xsl:with-param name="score" select="$wisdom-score"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="charisma-modifier">
+    <xsl:call-template name="ability-modifier">
+      <xsl:with-param name="score" select="$charisma-score"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:template name="skill-ability-modifier">
+    <xsl:param name="ability"/>
+    <xsl:choose>
+      <xsl:when test="starts-with(lower-case($ability), 'str')">
+	<xsl:value-of select="$strength-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($ability), 'dex')">
+	<xsl:value-of select="$dexterity-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($ability), 'con')">
+	<xsl:value-of select="$constitution-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($ability), 'int')">
+	<xsl:value-of select="$intelligence-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($ability), 'wis')">
+	<xsl:value-of select="$wisdom-modifier"/>
+      </xsl:when>
+      <xsl:when test="starts-with(lower-case($ability), 'cha')">
+	<xsl:value-of select="$charisma-modifier"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:message>Unknown ability name</xsl:message>
+	<xsl:value-of select="0"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template name="ability-modifier-field">
     <xsl:param name="name"/>
     <xsl:param name="score" select="10"/>
@@ -254,9 +359,54 @@ lower-case(
     <xsl:param name="name"/>
     <xsl:param name="value"/>
     <xsl:param name="proficient"/>
+    <xsl:variable name="skill-ability-modifier">
+      <xsl:call-template name="skill-ability-modifier">
+	<xsl:with-param name="ability" select="document('')//x:skills/x:skill[@name=$name]/@ability"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="proficient">
+      <xsl:choose>
+	<xsl:when test="lower-case(@proficient) = 'on'">
+	  <xsl:value-of select="1"/>
+	</xsl:when>
+	<xsl:when test="lower-case(@proficient) = 'true'">
+	  <xsl:value-of select="1"/>
+	</xsl:when>
+	<xsl:when test="lower-case(@proficient) = 'yes'">
+	  <xsl:value-of select="1"/>
+	</xsl:when>
+	<xsl:when test="number(@proficient) &gt;= 1">
+	  <xsl:value-of select="1"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:value-of select="0"/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="document('')//x:skills/x:skill[@name=$name]/@formfield"/>
-      <xsl:with-param name="value" select="$value"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="$value != ''">
+	    <xsl:value-of select="$value"/>
+	  </xsl:when>
+	  <xsl:when test="lower-case(@expertise) = 'on'">
+	    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
+	  </xsl:when>
+	  <xsl:when test="lower-case(@expertise) = 'true'">
+	    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
+	  </xsl:when>
+	  <xsl:when test="lower-case(@expertise) = 'yes'">
+	    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
+	  </xsl:when>
+	  <xsl:when test="number(@expertise) &gt;= 1">
+	    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
+	  </xsl:when>	  	  	  
+	  <xsl:otherwise>
+	    <xsl:value-of select="$proficient * $proficiency-bonus + $skill-ability-modifier"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
     </xsl:call-template>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="document('')//x:skills/x:skill[@name=$name]/@proficient"/>
