@@ -391,6 +391,27 @@ $spaces)"/>
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="proficiency-eligibility-multiplier">
+    <xsl:param name="proficient"/>
+    <xsl:choose>
+      <xsl:when test="lower-case(@proficient) = 'on'">
+	<xsl:value-of select="1"/>
+      </xsl:when>
+      <xsl:when test="lower-case(@proficient) = 'true'">
+	<xsl:value-of select="1"/>
+      </xsl:when>
+      <xsl:when test="lower-case(@proficient) = 'yes'">
+	<xsl:value-of select="1"/>
+      </xsl:when>
+      <xsl:when test="number(@proficient) &gt;= 1">
+	<xsl:value-of select="1"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="0"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template name="saving-throw-field">
     <xsl:param name="name"/>
     <xsl:param name="value"/>
@@ -407,7 +428,28 @@ lower-case(
   substring($name, 2)
 )
 )"/>
-      <xsl:with-param name="value" select="$value"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="$value != ''">
+	    <xsl:value-of select="$value"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:variable name="proficient">
+	      <xsl:call-template name="proficiency-eligibility-multiplier">
+		<xsl:with-param name="proficient" select="$proficient"/>
+	      </xsl:call-template>
+	    </xsl:variable>
+	    <xsl:variable name="save-ability-modifier">
+	      <xsl:call-template name="skill-ability-modifier">
+		<xsl:with-param name="ability" select="document('')//x:saving-throws/x:saving-throw[@ability=$name]/@ability"/>
+	      </xsl:call-template>
+	    </xsl:variable>
+	    <xsl:call-template name="signed-number">
+	      <xsl:with-param name="number" select="$proficient * $proficiency-bonus + $save-ability-modifier"/>
+	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
     </xsl:call-template>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="document('')//x:saving-throws/x:saving-throw[@ability=$name]/@proficient"/>
@@ -429,23 +471,9 @@ lower-case(
       </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="proficient">
-      <xsl:choose>
-	<xsl:when test="lower-case(@proficient) = 'on'">
-	  <xsl:value-of select="1"/>
-	</xsl:when>
-	<xsl:when test="lower-case(@proficient) = 'true'">
-	  <xsl:value-of select="1"/>
-	</xsl:when>
-	<xsl:when test="lower-case(@proficient) = 'yes'">
-	  <xsl:value-of select="1"/>
-	</xsl:when>
-	<xsl:when test="number(@proficient) &gt;= 1">
-	  <xsl:value-of select="1"/>
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:value-of select="0"/>
-	</xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="proficiency-eligibility-multiplier">
+	<xsl:with-param name="proficient" select="$proficient"/>
+      </xsl:call-template>
     </xsl:variable>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="document('')//x:skills/x:skill[@name=$name]/@formfield"/>
