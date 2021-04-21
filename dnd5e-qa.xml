@@ -57,7 +57,7 @@
   <inspiration>0</inspiration>
   <ac>14</ac>
   <speed>30</speed>
-  <initiative>+3</initiative>
+  <initiative/>
   <hp-max>9</hp-max>
   <hp-current>9</hp-current>
   <hp-temp>0</hp-temp>

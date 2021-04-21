@@ -580,7 +580,6 @@ lower-case(
 		       hair |
 		       height |
 		       ideals |
-		       initiative |
 		       inspiration |
 		       passive |
 		       skin |
@@ -878,6 +877,26 @@ lower-case(
 	</xsl:with-param>
       </xsl:call-template>
     </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="initiative">
+    <xsl:call-template name="single-word-field">
+      <xsl:with-param name="name" select="name()"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="text() != ''">
+	    <xsl:value-of select="text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:call-template name="signed-ability-modifier">
+	      <xsl:with-param name="score">
+		<xsl:value-of select="$dexterity-score"/>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
 </xsl:stylesheet>
