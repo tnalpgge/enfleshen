@@ -394,16 +394,12 @@ $spaces)"/>
   <xsl:template name="proficiency-eligibility-multiplier">
     <xsl:param name="proficient"/>
     <xsl:choose>
-      <xsl:when test="lower-case(@proficient) = 'on'">
-	<xsl:value-of select="1"/>
-      </xsl:when>
-      <xsl:when test="lower-case(@proficient) = 'true'">
-	<xsl:value-of select="1"/>
-      </xsl:when>
-      <xsl:when test="lower-case(@proficient) = 'yes'">
-	<xsl:value-of select="1"/>
-      </xsl:when>
-      <xsl:when test="number(@proficient) &gt;= 1">
+      <xsl:when test="
+		      lower-case(@proficient) = 'on' or
+		      lower-case(@proficient) = 'true' or
+		      lower-case(@proficient) = 'yes' or
+		      number(@proficient) &gt;= 1
+		      ">
 	<xsl:value-of select="1"/>
       </xsl:when>
       <xsl:otherwise>
@@ -486,18 +482,14 @@ lower-case(
 	    <xsl:call-template name="signed-number">
 	      <xsl:with-param name="number">	    
 		<xsl:choose>
-		  <xsl:when test="lower-case(@expertise) = 'on'">
-		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>
+		  <xsl:when test="
+				  lower-case(@expertise) = 'on' or 
+				  lower-case(@expertise) = 'true' or
+				  lower-case(@expertise) = 'yes' or
+				  number(@expertise) &gt;= 1
+				  ">
+		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>	    
 		  </xsl:when>
-		  <xsl:when test="lower-case(@expertise) = 'true'">
-		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>
-		  </xsl:when>
-		  <xsl:when test="lower-case(@expertise) = 'yes'">
-		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>
-		  </xsl:when>
-		  <xsl:when test="number(@expertise) &gt;= 1">
-		    <xsl:value-of select="2 * $proficient * $proficiency-bonus + $skill-ability-modifier"/>
-		  </xsl:when>	  	  	  
 		  <xsl:otherwise>
 		    <xsl:value-of select="$proficient * $proficiency-bonus + $skill-ability-modifier"/>
 		  </xsl:otherwise>
@@ -522,18 +514,18 @@ lower-case(
     <xsl:param name="element"/>
     <xsl:choose>
       <xsl:when test="
-	lower-case($element/@melee) = 'on' or
-	lower-case($element/@melee) = 'true' or
-	lower-case($element/@melee) = 'yes' or
-	number($element/@melee) &gt;= 1
-	">
+		      lower-case($element/@melee) = 'on' or
+		      lower-case($element/@melee) = 'true' or
+		      lower-case($element/@melee) = 'yes' or
+		      number($element/@melee) &gt;= 1
+		      ">
 	<xsl:choose>
 	  <xsl:when test="
-	    lower-case($element/@finesse) = 'on' or
-	    lower-case($element/@finesse) = 'true' or
-	    lower-case($element/@finesse) = 'yes' or
-	    lower-case($element/@finesse) &gt;= 1
-	    ">
+			  lower-case($element/@finesse) = 'on' or
+			  lower-case($element/@finesse) = 'true' or
+			  lower-case($element/@finesse) = 'yes' or
+			  lower-case($element/@finesse) &gt;= 1
+			  ">
 	    <xsl:value-of select="$dexterity-modifier"/>
 	  </xsl:when>
 	  <xsl:otherwise>
@@ -542,18 +534,18 @@ lower-case(
 	</xsl:choose>
       </xsl:when>
       <xsl:when test="
-	lower-case($element/@ranged) = 'on' or
-	lower-case($element/@ranged) = 'true' or
-	lower-case($element/@ranged) = 'yes' or
-	number($element/@ranged) &gt;= 1
-	">
+		      lower-case($element/@ranged) = 'on' or
+		      lower-case($element/@ranged) = 'true' or
+		      lower-case($element/@ranged) = 'yes' or
+		      number($element/@ranged) &gt;= 1
+		      ">
 	<xsl:choose>
 	  <xsl:when test="
-	    lower-case($element/@thrown) = 'on' or
-	    lower-case($element/@thrown) = 'true' or
-	    lower-case($element/@thrown) = 'yes' or
-	    lower-case($element/@thrown) &gt;= 1
-	    ">
+			  lower-case($element/@thrown) = 'on' or
+			  lower-case($element/@thrown) = 'true' or
+			  lower-case($element/@thrown) = 'yes' or
+			  lower-case($element/@thrown) &gt;= 1
+			  ">
 	    <xsl:value-of select="$strength-modifier"/>
 	  </xsl:when>
 	  <xsl:otherwise>
