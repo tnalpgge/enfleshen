@@ -520,10 +520,6 @@ lower-case(
 
   <xsl:template name="attack-ability-modifier">
     <xsl:param name="element"/>
-    <xsl:message>attack-ability-modifier</xsl:message>
-    <xsl:for-each select="$element/@*">
-      <xsl:message><xsl:value-of select="local-name()"/> = <xsl:value-of select="."/></xsl:message>
-    </xsl:for-each>
     <xsl:choose>
       <xsl:when test="
 	lower-case($element/@melee) = 'on' or
@@ -538,11 +534,9 @@ lower-case(
 	    lower-case($element/@finesse) = 'yes' or
 	    lower-case($element/@finesse) &gt;= 1
 	    ">
-	    <xsl:message>melee finesse dexterity modifier</xsl:message>
 	    <xsl:value-of select="$dexterity-modifier"/>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <xsl:message>melee strength modifier</xsl:message>
 	    <xsl:value-of select="$strength-modifier"/>
 	  </xsl:otherwise>
 	</xsl:choose>
@@ -560,17 +554,14 @@ lower-case(
 	    lower-case($element/@thrown) = 'yes' or
 	    lower-case($element/@thrown) &gt;= 1
 	    ">
-	    <xsl:message>ranged thrown strength modifier</xsl:message>
 	    <xsl:value-of select="$strength-modifier"/>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <xsl:message>ranged dexterity modifier</xsl:message>
 	    <xsl:value-of select="$dexterity-modifier"/>
 	  </xsl:otherwise>
 	</xsl:choose>	
       </xsl:when>
       <xsl:otherwise>
-	<xsl:message>Could not determine attack ability modifier</xsl:message>
 	<xsl:value-of select="0"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -578,7 +569,6 @@ lower-case(
     
   <xsl:template name="attack-modifier">
     <xsl:param name="element"/>
-    <xsl:message>attack-modifier</xsl:message>
     <xsl:variable name="ability-modifier">
       <xsl:call-template name="attack-ability-modifier">
 	<xsl:with-param name="element" select="$element"/>
@@ -679,9 +669,31 @@ lower-case(
     </xsl:comment>
     <xsl:value-of select="weapon-name/text()"/>
     <xsl:text>, </xsl:text>
-    <xsl:value-of select="atk-bonus/text()"/>
+    <xsl:choose>
+      <xsl:when test="atk-bonus/text() != ''">
+	<xsl:value-of select="atk-bonus/text()"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:call-template name="explicit-signed-number">
+	  <xsl:with-param name="number">
+	    <xsl:call-template name="attack-modifier">
+	      <xsl:with-param name="element" select="."/>
+	    </xsl:call-template>
+	  </xsl:with-param>
+	</xsl:call-template>	
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>, </xsl:text>
-    <xsl:value-of select="damage/text()"/>
+    <xsl:choose>
+      <xsl:when test="damage/text() != ''">
+	<xsl:value-of select="damage/text()"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:call-template name="attack-damage">
+	  <xsl:with-param name="element" select="."/>
+	</xsl:call-template>	
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>&#x0a;</xsl:text>
   </xsl:template>
 

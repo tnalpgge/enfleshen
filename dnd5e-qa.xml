@@ -65,22 +65,24 @@
   <hd-total>1d8</hd-total>
   <death-saves successes="3" failures="3"/>
   <attacks>    
-    <attack melee="true">
+    <attack melee="true" proficient="false">
       <weapon-name>greataxe</weapon-name>
       <atk-bonus/>
       <damage dice="1d12" type="slashing"/>
     </attack>
-    <attack melee="true" finesse="true">
+    <attack melee="true" finesse="true" proficient="true">
       <weapon-name>dagger</weapon-name>
       <atk-bonus/>
       <damage dice="1d4" type="piercing"/>
     </attack>
+<!--    
     <attack ranged="true">
       <weapon-name>longbow</weapon-name>
       <atk-bonus/>
       <damage dice="1d8" type="piercing"/>
     </attack>
-    <attack ranged="true" thrown="true">
+-->
+    <attack ranged="true" thrown="true" proficient="true">
       <weapon-name>javelin</weapon-name>
       <atk-bonus/>
       <damage dice="1d6" type="piercing"/>
@@ -90,15 +92,15 @@
       <atk-bonus>+2</atk-bonus>
       <damage>1d6-1 bludgeoning</damage>
     </attack>
-    <attack>
+    <attack melee="true" proficient="false">
       <weapon-name>unarmed strike</weapon-name>
-      <atk-bonus>+0</atk-bonus>
-      <damage>1d1 bludgeoning</damage>
+      <atk-bonus/>
+      <damage dice="1" type="bludgeoning"/>
     </attack>
     <attack>
-      <weapon-name>weapon5</weapon-name>
-      <atk-bonus>wpn5atk</atk-bonus>
-      <damage>wpn5dmg</damage>
+      <weapon-name>another weapon</weapon-name>
+      <atk-bonus>with an attack bonus</atk-bonus>
+      <damage>and some damage dice</damage>
     </attack>
   </attacks>
   <cp>30</cp>
