@@ -64,21 +64,31 @@
   <hd>1d8</hd>
   <hd-total>1d8</hd-total>
   <death-saves successes="3" failures="3"/>
-  <attacks>
-    <attack>
+  <attacks>    
+    <attack melee="true">
       <weapon-name>greataxe</weapon-name>
-      <atk-bonus>+5</atk-bonus>
-      <damage>1d12+3 slashing</damage>
+      <atk-bonus/>
+      <damage dice="1d12" type="slashing"/>
+    </attack>
+    <attack melee="true" finesse="true">
+      <weapon-name>dagger</weapon-name>
+      <atk-bonus/>
+      <damage dice="1d4" type="piercing"/>
+    </attack>
+    <attack ranged="true">
+      <weapon-name>longbow</weapon-name>
+      <atk-bonus/>
+      <damage dice="1d8" type="piercing"/>
+    </attack>
+    <attack ranged="true" thrown="true">
+      <weapon-name>javelin</weapon-name>
+      <atk-bonus/>
+      <damage dice="1d6" type="piercing"/>
     </attack>
     <attack>
       <weapon-name>club</weapon-name>
       <atk-bonus>+2</atk-bonus>
       <damage>1d6-1 bludgeoning</damage>
-    </attack>
-    <attack>
-      <weapon-name>dagger</weapon-name>
-      <atk-bonus>+3</atk-bonus>
-      <damage>1d4+3 piercing</damage>
     </attack>
     <attack>
       <weapon-name>unarmed strike</weapon-name>

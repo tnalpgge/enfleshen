@@ -33,4 +33,27 @@
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="explicit-signed-number">
+    <xsl:param name="number"/>
+    <xsl:if test="number($number) &gt;= 0">
+      <xsl:text>+</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$number"/>    
+  </xsl:template>
+
+  <xsl:template name="implicit-signed-number">
+    <xsl:param name="number"/>
+    <xsl:choose>
+      <xsl:when test="number($number) &gt; 0">
+	<xsl:text>+</xsl:text>
+	<xsl:value-of select="$number"/>
+      </xsl:when>
+      <xsl:when test="number($number) &lt; 0">
+	<xsl:value-of select="$number"/>
+      </xsl:when>
+      <xsl:otherwise><!-- silently omit --></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+    
+
 </xsl:stylesheet>

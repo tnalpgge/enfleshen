@@ -518,6 +518,97 @@ lower-case(
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="attack-ability-modifier">
+    <xsl:param name="element"/>
+    <xsl:message>attack-ability-modifier</xsl:message>
+    <xsl:for-each select="$element/@*">
+      <xsl:message><xsl:value-of select="local-name()"/> = <xsl:value-of select="."/></xsl:message>
+    </xsl:for-each>
+    <xsl:choose>
+      <xsl:when test="
+	lower-case($element/@melee) = 'on' or
+	lower-case($element/@melee) = 'true' or
+	lower-case($element/@melee) = 'yes' or
+	number($element/@melee) &gt;= 1
+	">
+	<xsl:choose>
+	  <xsl:when test="
+	    lower-case($element/@finesse) = 'on' or
+	    lower-case($element/@finesse) = 'true' or
+	    lower-case($element/@finesse) = 'yes' or
+	    lower-case($element/@finesse) &gt;= 1
+	    ">
+	    <xsl:message>melee finesse dexterity modifier</xsl:message>
+	    <xsl:value-of select="$dexterity-modifier"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:message>melee strength modifier</xsl:message>
+	    <xsl:value-of select="$strength-modifier"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:when>
+      <xsl:when test="
+	lower-case($element/@ranged) = 'on' or
+	lower-case($element/@ranged) = 'true' or
+	lower-case($element/@ranged) = 'yes' or
+	number($element/@ranged) &gt;= 1
+	">
+	<xsl:choose>
+	  <xsl:when test="
+	    lower-case($element/@thrown) = 'on' or
+	    lower-case($element/@thrown) = 'true' or
+	    lower-case($element/@thrown) = 'yes' or
+	    lower-case($element/@thrown) &gt;= 1
+	    ">
+	    <xsl:message>ranged thrown strength modifier</xsl:message>
+	    <xsl:value-of select="$strength-modifier"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:message>ranged dexterity modifier</xsl:message>
+	    <xsl:value-of select="$dexterity-modifier"/>
+	  </xsl:otherwise>
+	</xsl:choose>	
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:message>Could not determine attack ability modifier</xsl:message>
+	<xsl:value-of select="0"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+    
+  <xsl:template name="attack-modifier">
+    <xsl:param name="element"/>
+    <xsl:message>attack-modifier</xsl:message>
+    <xsl:variable name="ability-modifier">
+      <xsl:call-template name="attack-ability-modifier">
+	<xsl:with-param name="element" select="$element"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="proficiency-eligibility-multiplier">
+      <xsl:call-template name="proficiency-eligibility-multiplier">
+	<xsl:with-param name="proficient" select="$element/@proficient"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:value-of select="$proficiency-eligibility-multiplier * $proficiency-bonus + $ability-modifier"/>
+  </xsl:template>
+
+  <xsl:template name="attack-damage">
+    <xsl:param name="element"/>
+    <xsl:variable name="ability-modifier">
+      <xsl:call-template name="attack-ability-modifier">
+	<xsl:with-param name="element" select="$element"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:value-of select="$element/damage/@dice"/>
+    <xsl:call-template name="implicit-signed-number">
+      <xsl:with-param name="number" select="$ability-modifier"/>
+    </xsl:call-template>
+    <xsl:if test="$element/damage/@type != ''">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$element/damage/@type"/>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="attacks">
     <xsl:comment>
       <xsl:text> computing attacks </xsl:text>
@@ -546,11 +637,37 @@ lower-case(
     </xsl:call-template>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@bonus"/>
-      <xsl:with-param name="value" select="atk-bonus/text()"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="atk-bonus/text() != ''">
+	    <xsl:value-of select="atk-bonus/text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:call-template name="explicit-signed-number">
+	      <xsl:with-param name="number">
+		<xsl:call-template name="attack-modifier">
+		  <xsl:with-param name="element" select="."/>
+		</xsl:call-template>
+	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
     </xsl:call-template>
     <xsl:call-template name="field">
       <xsl:with-param name="name" select="document('')//x:attacks/x:attack[position()=$index]/@damage"/>
-      <xsl:with-param name="value" select="damage/text()"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="damage/text() != ''">
+	    <xsl:value-of select="damage/text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:call-template name="attack-damage">
+	      <xsl:with-param name="element" select="."/>
+	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
 
