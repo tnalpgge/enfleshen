@@ -64,7 +64,12 @@
   <hd>1d8</hd>
   <hd-total>1d8</hd-total>
   <death-saves successes="3" failures="3"/>
-  <attacks>    
+  <attacks>
+    <attack spell="true" proficient="true">
+      <weapon-name>Shillelagh</weapon-name>
+      <atk-bonus/>
+      <damage dice="1d8" type="bludgeoning"/>
+    </attack>
     <attack melee="true" proficient="false">
       <weapon-name>greataxe</weapon-name>
       <atk-bonus/>

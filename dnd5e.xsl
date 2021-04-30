@@ -553,6 +553,14 @@ lower-case(
 	  </xsl:otherwise>
 	</xsl:choose>	
       </xsl:when>
+      <xsl:when test="
+		      lower-case($element/@spell) = 'on' or
+		      lower-case($element/@spell) = 'true' or
+		      lower-case($element/@spell) = 'yes' or
+		      lower-case($element/@spell) &gt;= 1
+		      ">
+	<xsl:value-of select="$spell-ability-modifier"/>
+      </xsl:when>
       <xsl:otherwise>
 	<xsl:value-of select="0"/>
       </xsl:otherwise>
