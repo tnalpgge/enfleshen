@@ -735,7 +735,6 @@ lower-case(
   <xsl:template match="class-level |
 		       faction-name |
 		       player-name |
-		       prof-bonus |
 		       proficiencies-lang
 		       ">
     <xsl:call-template name="two-word-field">
@@ -1021,6 +1020,24 @@ lower-case(
 	      <xsl:with-param name="score">
 		<xsl:value-of select="$dexterity-score"/>
 	      </xsl:with-param>
+	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="prof-bonus">
+    <xsl:call-template name="two-word-field">
+      <xsl:with-param name="name" select="name()"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="text() != ''">
+	    <xsl:value-of select="text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:call-template name="signed-number">
+	      <xsl:with-param name="number" select="$proficiency-bonus"/>
 	    </xsl:call-template>
 	  </xsl:otherwise>
 	</xsl:choose>

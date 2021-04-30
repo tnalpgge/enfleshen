@@ -45,7 +45,7 @@
     Simple weapons
     Vehicles, metaphysical
   </proficiencies-lang>
-  <prof-bonus>+2</prof-bonus>
+  <prof-bonus/>
   <saving-throws>
     <strength proficient="true">-1</strength>
     <dexterity proficient="true"/>
