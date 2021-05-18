@@ -579,7 +579,17 @@ lower-case(
 	<xsl:with-param name="proficient" select="$element/@proficient"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:value-of select="$proficiency-eligibility-multiplier * $proficiency-bonus + $ability-modifier"/>
+    <xsl:variable name="item-modifier">
+      <xsl:choose>
+	<xsl:when test="$element/atk-bonus/@item">
+	  <xsl:value-of select="number($element/atk-bonus/@item)"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:value-of select="0"/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:value-of select="$proficiency-eligibility-multiplier * $proficiency-bonus + $ability-modifier + $item-modifier"/>
   </xsl:template>
 
   <xsl:template name="attack-damage">
@@ -589,9 +599,19 @@ lower-case(
 	<xsl:with-param name="element" select="$element"/>
       </xsl:call-template>
     </xsl:variable>
+    <xsl:variable name="item-modifier">
+      <xsl:choose>
+	<xsl:when test="$element/damage/@item">
+	  <xsl:value-of select="number($element/damage/@item)"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:value-of select="0"/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:value-of select="$element/damage/@dice"/>
     <xsl:call-template name="implicit-signed-number">
-      <xsl:with-param name="number" select="$ability-modifier"/>
+      <xsl:with-param name="number" select="$ability-modifier + $item-modifier"/>
     </xsl:call-template>
     <xsl:if test="$element/damage/@type != ''">
       <xsl:text> </xsl:text>

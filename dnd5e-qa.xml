@@ -72,8 +72,8 @@
     </attack>
     <attack melee="true" proficient="false">
       <weapon-name>greataxe</weapon-name>
-      <atk-bonus/>
-      <damage dice="1d12" type="slashing"/>
+      <atk-bonus item="1"/>
+      <damage dice="1d12" type="slashing" item="2"/>
     </attack>
     <attack melee="true" finesse="true" proficient="true">
       <weapon-name>dagger</weapon-name>
@@ -99,8 +99,8 @@
     </attack>
     <attack melee="true" proficient="false">
       <weapon-name>unarmed strike</weapon-name>
-      <atk-bonus/>
-      <damage dice="1" type="bludgeoning"/>
+      <atk-bonus item="3"/>
+      <damage dice="1" type="bludgeoning" item="4"/>
     </attack>
     <attack>
       <weapon-name>another weapon</weapon-name>
