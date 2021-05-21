@@ -194,7 +194,7 @@
 
   <xsl:template name="proficiency-bonus">
     <xsl:param name="level"/>
-    <xsl:value-of select="($level - 1) div 4 + 2"/>
+    <xsl:value-of select="2 + floor(($level - 1) div 4)"/>
   </xsl:template>
 
   <xsl:variable name="total-character-level">
