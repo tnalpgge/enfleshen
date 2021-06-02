@@ -361,6 +361,22 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="perception-proficiency-multiplier">
+    <xsl:choose>
+      <xsl:when test="
+	lower-case(/character/skills/perception/@proficient) = 'on' or
+	lower-case(/character/skills/perception/@proficient) = 'true' or
+	lower-case(/character/skills/perception/@proficient) = 'yes' or
+	number(/character/skills/perception/@proficient) &gt;= 1
+	">
+	<xsl:value-of select="1"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="0"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:template name="ability-modifier-field">
     <xsl:param name="name"/>
     <xsl:param name="score" select="10"/>
@@ -730,7 +746,6 @@ lower-case(
 		       height |
 		       ideals |
 		       inspiration |
-		       passive |
 		       skin |
 		       speed |
 		       treasure |
@@ -1059,6 +1074,22 @@ lower-case(
 	    <xsl:call-template name="signed-number">
 	      <xsl:with-param name="number" select="$proficiency-bonus"/>
 	    </xsl:call-template>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="passive">
+    <xsl:call-template name="single-word-field">
+      <xsl:with-param name="name" select="name()"/>
+      <xsl:with-param name="value">
+	<xsl:choose>
+	  <xsl:when test="text() != ''">
+	    <xsl:value-of select="text()"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:value-of select="$proficiency-bonus * $perception-proficiency-multiplier + $wisdom-modifier + 10"/>
 	  </xsl:otherwise>
 	</xsl:choose>
       </xsl:with-param>
