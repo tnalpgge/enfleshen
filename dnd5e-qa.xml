@@ -34,7 +34,7 @@
     <stealth proficient="71">+7</stealth>
     <survival proficient="19"/>
   </skills>
-  <passive>14</passive>
+  <passive/>
   <proficiencies-lang>
     Language: Common
     Demolisher's Tools
@@ -68,7 +68,12 @@
     <attack spell="true" proficient="true">
       <weapon-name>Shillelagh</weapon-name>
       <atk-bonus/>
-      <damage dice="1d8" type="bludgeoning"/>
+      <damage dice="1d8" type="bludgeoning" spell="true"/>
+    </attack>
+    <attack spell="true" proficient="true">
+      <weapon-name>Produce Flame</weapon-name>
+      <atk-bonus/>
+      <damage dice="1d8" type="fire"/>
     </attack>
     <attack melee="true" proficient="false">
       <weapon-name>greataxe</weapon-name>
